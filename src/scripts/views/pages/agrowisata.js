@@ -1,4 +1,4 @@
-const API_URL = 'https://katalog.data.go.id/api/3/action/datastore_search?resource_id=266e3b85-1c43-4a84-b864-a54d41c218b1&limit=10';
+const API_URL = 'https://katalog.data.go.id/api/3/action/datastore_search?resource_id=266e3b85-1c43-4a84-b864-a54d41c218b1&limit=18';
 
 const Agrowisata = {
     async render() {
@@ -9,10 +9,8 @@ const Agrowisata = {
     },
 
     async afterRender() {
-        // Ambil elemen `data-container`
         const dataContainer = document.getElementById('data-container');
 
-        // Fungsi untuk mengambil data dari API
         async function fetchData() {
             try {
                 const response = await fetch(API_URL);
@@ -29,7 +27,6 @@ const Agrowisata = {
             }
         }
 
-        // Fungsi untuk menampilkan data
         function displayData(records) {
             dataContainer.innerHTML = '';
             if (records.length === 0) {
@@ -41,15 +38,19 @@ const Agrowisata = {
                 const recordElement = document.createElement('div');
                 recordElement.classList.add('record');
                 recordElement.innerHTML = `
-                     <h2>${record.deskripsi || 'Nama tidak tersedia'}</h2>
-                    <p><strong>Lokasi:</strong> ${record.alamat || 'Lokasi tidak tersedia'}</p>
-                    <p><strong>Keterangan:</strong> ${record.fasilitas || 'Keterangan tidak tersedia'}</p>
+                <div class="record">
+                <h3>${record.deskripsi || 'Nama tidak tersedia'}</h3>
+                <p><strong>Lokasi:</strong> ${record.alamat || 'Lokasi tidak tersedia'}</p>
+                <p><strong>Wilayah:</strong> ${record.wilayah || 'Wilayah tidak tersedia'}</p>
+                <p><strong>Kecamatan:</strong> ${record.kecamatan || 'Kecamatan tidak tersedia'}</p>
+                <p><strong>Kelurahan:</strong> ${record.kelurahan || 'Kelurahan tidak tersedia'}</p>
+                <p><strong>Fasilitas:</strong> ${record.fasilitas || 'Keterangan tidak tersedia'}</p>
+                </div>
                 `;
                 dataContainer.appendChild(recordElement);
             });
         }
 
-        // Panggil `fetchData` untuk menampilkan data setelah halaman dirender
         fetchData();
     },
 };
