@@ -127,7 +127,26 @@
   margin: 5px 0;
 }
 
- 
+.home-title {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.responsive-image {
+  width: 50%; /* Perkecil lebar gambar */
+  max-width: 300px; /* Atur batas maksimal agar tidak terlalu besar di layar lebar */
+  height: auto;
+  border-radius: 15px; /* Membuat sisi melengkung */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tambahan bayangan opsional */
+}
  
   /*
   Footer
