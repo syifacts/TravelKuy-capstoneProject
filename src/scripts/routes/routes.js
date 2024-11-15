@@ -1,11 +1,14 @@
-import LamanPertama from '../views/pages/laman-pertama';
-import LamanKedua from '../views/pages/laman-kedua';
- 
+import Agrowisata from "../views/pages/agrowisata";
+import Home from "../views/pages/home";
+import aboutus from "../views/pages/aboutus";
+import desawisata from "../views/pages/desawisata";
+
 const routes = {
-  '/': LamanPertama, // default page
-  '/laman-pertama': LamanPertama,
-  '/laman-kedua': LamanKedua,
-  
+    '/': Home,
+    '/home': Home,
+    '/agrowisata': Agrowisata, 
+    '/aboutus': aboutus,
+    '/desawisata': desawisata,
 };
- 
+
 export default routes;
