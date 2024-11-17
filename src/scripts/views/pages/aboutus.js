@@ -54,8 +54,8 @@ const aboutus = {
             </div>
           </article>
 
-          </section>
           </div>
+          </section>
         `;
     },
 
