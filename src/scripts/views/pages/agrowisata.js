@@ -22,7 +22,7 @@ const Agrowisata = {
         const dataContainer = document.getElementById('data-container');
         const filterWilayah = document.getElementById('filter-wilayah');
 
-        // Fetch data
+  
         const fetchData = async () => {
             try {
                 const [response1, response2] = await Promise.all([
@@ -46,7 +46,7 @@ const Agrowisata = {
             }
         };
 
-        // Pemetaan data API 2
+      
         function mapDataFromAPI2(records) {
             return records.map(record => ({
                 deskripsi: record.nama_lokasi || 'Nama tidak tersedia',
@@ -69,7 +69,7 @@ const Agrowisata = {
 
             const selectedWilayah = filterWilayah.value;
 
-            // Filter records berdasarkan wilayah yang dipilih
+ 
             const filteredRecords = selectedWilayah
                 ? records.filter(record => record.wilayah === selectedWilayah)
                 : records;
@@ -108,10 +108,10 @@ const Agrowisata = {
             });
         }
 
-        // Mengambil data ketika halaman pertama kali dimuat
+      
         fetchData();
 
-        // Menangani perubahan filter wilayah
+        
         filterWilayah.addEventListener('change', () => {
             fetchData();
         });
