@@ -1,5 +1,5 @@
-const API_URL_1 = 'https://katalog.data.go.id/api/3/action/datastore_search?resource_id=266e3b85-1c43-4a84-b864-a54d41c218b1';
-const API_URL_2 = 'https://katalog.data.go.id/api/3/action/datastore_search?resource_id=bfe834ff-1cb6-4c1c-ae75-4fbe6d62f1ae';
+const API_URL_1 = 'https://katalog.data.go.id/api/3/action/datastore_search?resource_id=266e3b85-1c43-4a84-b864-a54d41c218b1&limit=18';
+const API_URL_2 = 'https://katalog.data.go.id/api/3/action/datastore_search?resource_id=bfe834ff-1cb6-4c1c-ae75-4fbe6d62f1ae&limit=18';
 
 const Agrowisata = {
     async render() {
@@ -12,17 +12,18 @@ const Agrowisata = {
             <option value="Jakarta Timur">Jakarta Timur</option>
             <option value="Jakarta Utara">Jakarta Utara</option>
             <option value="Jakarta Selatan">Jakarta Selatan</option>
-            <option value="Kepulauan Seribu">Kepulauan Seribu</option>
         </select>
         <div id="data-container">Loading data...</div>
+        <button id="view-saved">Lihat Data Tersimpan</button>
         `;
     },
 
     async afterRender() {
         const dataContainer = document.getElementById('data-container');
         const filterWilayah = document.getElementById('filter-wilayah');
+        const viewSavedButton = document.getElementById('view-saved');
 
-  
+    
         const fetchData = async () => {
             try {
                 const [response1, response2] = await Promise.all([
@@ -46,7 +47,7 @@ const Agrowisata = {
             }
         };
 
-      
+       
         function mapDataFromAPI2(records) {
             return records.map(record => ({
                 deskripsi: record.nama_lokasi || 'Nama tidak tersedia',
@@ -69,7 +70,7 @@ const Agrowisata = {
 
             const selectedWilayah = filterWilayah.value;
 
- 
+            
             const filteredRecords = selectedWilayah
                 ? records.filter(record => record.wilayah === selectedWilayah)
                 : records;
@@ -89,6 +90,7 @@ const Agrowisata = {
                         <h3>${record.deskripsi || 'Nama tidak tersedia'}</h3>
                         <p><strong>Lokasi:</strong> ${record.alamat || 'Lokasi tidak tersedia'}</p>
                         <p><strong>Wilayah:</strong> ${record.wilayah || 'Wilayah tidak tersedia'}</p>
+                        <button class="save-btn">Simpan</button>
                     </div>
                     `;
                 } else {
@@ -100,15 +102,53 @@ const Agrowisata = {
                         <p><strong>Kecamatan:</strong> ${record.kecamatan || 'Kecamatan tidak tersedia'}</p>
                         <p><strong>Kelurahan:</strong> ${record.kelurahan || 'Kelurahan tidak tersedia'}</p>
                         <p><strong>Fasilitas:</strong> ${record.fasilitas || 'Fasilitas tidak tersedia'}</p>
+                        <button class="save-btn">Simpan</button>
                     </div>
                     `;
                 }
+
+                // Menambahkan event listener pada tombol simpan
+                const saveButton = recordElement.querySelector('.save-btn');
+                saveButton.addEventListener('click', () => {
+                    saveData(record);
+                });
 
                 dataContainer.appendChild(recordElement);
             });
         }
 
-      
+        // Menyimpan data ke localStorage
+        function saveData(record) {
+            let savedData = JSON.parse(localStorage.getItem('savedAgrowisata')) || [];
+            savedData.push(record);
+            localStorage.setItem('savedAgrowisata', JSON.stringify(savedData));
+            alert('Data berhasil disimpan!');
+        }
+
+        // Menampilkan data yang tersimpan
+        viewSavedButton.addEventListener('click', () => {
+            const savedData = JSON.parse(localStorage.getItem('savedAgrowisata')) || [];
+            dataContainer.innerHTML = '';
+            if (savedData.length === 0) {
+                dataContainer.innerHTML = 'Tidak ada data yang tersimpan.';
+                return;
+            }
+
+            savedData.forEach(record => {
+                const recordElement = document.createElement('div');
+                recordElement.classList.add('record');
+                recordElement.innerHTML = `
+                <div class="record">
+                    <h3>${record.deskripsi || 'Nama tidak tersedia'}</h3>
+                    <p><strong>Lokasi:</strong> ${record.alamat || 'Lokasi tidak tersedia'}</p>
+                    <p><strong>Wilayah:</strong> ${record.wilayah || 'Wilayah tidak tersedia'}</p>
+                </div>
+                `;
+                dataContainer.appendChild(recordElement);
+            });
+        });
+
+        
         fetchData();
 
         
