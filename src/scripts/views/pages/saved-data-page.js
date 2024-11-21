@@ -4,7 +4,7 @@ const SavedDataPage = {
         <nav>
             <ul>
                 <li><a href="#/agrowisata">Beranda</a></li>
-                <li><a href="#saved-data-page">Data Tersimpan</a></li>
+                <li><a href="#/saved-data-page">Data Tersimpan</a></li>
             </ul>
         </nav>
         <h2>Data Tersimpan</h2>
@@ -45,16 +45,16 @@ const SavedDataPage = {
             });
         }
 
-        // Fungsi untuk menghapus data yang tersimpan
+      
         function deleteData(index) {
             let savedData = JSON.parse(localStorage.getItem('savedAgrowisata')) || [];
             savedData.splice(index, 1); // Menghapus data berdasarkan index
             localStorage.setItem('savedAgrowisata', JSON.stringify(savedData));
             alert('Data berhasil dihapus!');
-            showSavedData(); // Menyegarkan tampilan data setelah dihapus
+            showSavedData(); 
         }
 
-        // Menampilkan data yang tersimpan
+
         showSavedData();
     }
 };
