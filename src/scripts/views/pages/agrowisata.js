@@ -15,7 +15,7 @@ const Agrowisata = {
                 <li><a href="#/saved-data-page" id="nav-saved">Data Tersimpan</a></li>
             </ul>
         </nav>
-        <h2>Lokasi Agrowisata di Jakarta dan Lokasi Agrowisata Lainnya</h2>
+        <h2>Lokasi Agrowisata di Jakarta</h2>
         <label for="filter-wilayah">Filter Wilayah:</label>
         <select id="filter-wilayah">
             <option value="">Semua Wilayah</option>
