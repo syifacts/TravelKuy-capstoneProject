@@ -29,10 +29,14 @@ const SavedDataPage = {
                 const recordElement = document.createElement('div');
                 recordElement.classList.add('record');
                 recordElement.innerHTML = `
-                    <h3>${record.deskripsi || 'Nama tidak tersedia'}</h3>
-                    <p><strong>Lokasi:</strong> ${record.alamat || 'Lokasi tidak tersedia'}</p>
-                    <p><strong>Wilayah:</strong> ${record.wilayah || 'Wilayah tidak tersedia'}</p>
-                    <button class="delete-btn">Hapus</button>
+                <h3>${record.deskripsi}</h3>
+                <p><strong>Lokasi:</strong> ${record.lokasi}</p>
+                <p><strong>Wilayah:</strong> ${record.wilayah}</p>
+                <p><strong>Kecamatan:</strong> ${record.kecamatan}</p>
+                <p><strong>Kelurahan:</strong> ${record.kelurahan}</p>
+                <p><strong>Fasilitas:</strong> ${record.fasilitas}</p>
+                ${record.googlemaps && record.googlemaps !== '#' ? `<p><a href="${record.googlemaps}" target="_blank">Lihat di Google Maps</a></p>` : ''}
+                <button class="delete-btn">Hapus</button>
                 `;
                 
                 // Event listener untuk menghapus data
