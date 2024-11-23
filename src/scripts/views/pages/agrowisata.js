@@ -5,6 +5,7 @@ const API_URLS = [
 
 const Agrowisata = {
     cachedData: [],
+    newData: [],
 
     async render() {
         return `
@@ -24,14 +25,34 @@ const Agrowisata = {
             <option value="Jakarta Selatan">Jakarta Selatan</option>
         </select>
         <div id="data-container">Loading data...</div>
+        
+        <!-- Tombol tambah data -->
+        <button id="add-data-btn" aria-label="Tambah Data Baru">+</button>
+    
+        <!-- Modal untuk tambah data -->
+        <div id="add-data-modal" class="modal hidden">
+            <div class="modal-content">
+                <h3>Tambahkan Data Baru</h3>
+                <form id="add-data-form">
+                    <input type="text" id="deskripsi" placeholder="Deskripsi" required>
+                    <input type="text" id="lokasi" placeholder="Lokasi" required>
+                    <input type="text" id="wilayah" placeholder="Wilayah" required>
+                    <input type="text" id="kecamatan" placeholder="Kecamatan">
+                    <input type="text" id="kelurahan" placeholder="Kelurahan">
+                    <input type="text" id="fasilitas" placeholder="Fasilitas">
+                    <input type="url" id="googlemaps" placeholder="Google Maps URL">
+                    <button type="submit">Tambahkan</button>
+                    <button type="button" id="cancel-btn">Batal</button>
+                </form>
+            </div>
+        </div>
         `;
     },
 
     async afterRender() {
         const dataContainer = document.getElementById('data-container');
         const filterWilayah = document.getElementById('filter-wilayah');
-        const navLinks = document.querySelectorAll('nav a');
-
+        
         const fetchData = async () => {
             if (this.cachedData.length === 0) {
                 try {
@@ -70,34 +91,45 @@ const Agrowisata = {
             const filteredRecords = selectedWilayah
                 ? records.filter(record => record.wilayah === selectedWilayah)
                 : records;
-
+            
+            // Bersihkan container data
             dataContainer.innerHTML = '';
-            if (filteredRecords.length === 0) {
-                dataContainer.innerHTML = 'No data available for the selected wilayah.';
-                return;
-            }
 
-            const savedData = JSON.parse(localStorage.getItem('savedAgrowisata')) || [];
-
+            // Tampilkan data
             filteredRecords.forEach(record => {
-                const isSaved = savedData.some(saved => saved.deskripsi === record.deskripsi);
-
-                const recordElement = document.createElement('div');
-                recordElement.classList.add('record');
-                recordElement.innerHTML = `
+                const recordElement = createRecordElement(record);
+                dataContainer.appendChild(recordElement);
+            });
+        };
+        
+        const createRecordElement = (record) => {
+            const recordElement = document.createElement('div');
+            recordElement.classList.add('record');
+            recordElement.innerHTML = `
                 <h3>${record.deskripsi}</h3>
                 <p><strong>Lokasi:</strong> ${record.alamat}</p>
                 <p><strong>Wilayah:</strong> ${record.wilayah}</p>
-                ${record.isApi2 ? '' : `<p><strong>Kecamatan:</strong> ${record.kecamatan || '-'}</p>
+                <p><strong>Kecamatan:</strong> ${record.kecamatan || '-'}</p>
                 <p><strong>Kelurahan:</strong> ${record.kelurahan || '-'}</p>
-                <p><strong>Fasilitas:</strong> ${record.fasilitas || '-'}</p>`}
-                <button class="save-btn">${isSaved ? 'Tersimpan' : 'Simpan'}</button>
-                `;
-                const saveButton = recordElement.querySelector('.save-btn');
-                saveButton.disabled = isSaved;
-                saveButton.addEventListener('click', () => saveData(record, saveButton));
-                dataContainer.appendChild(recordElement);
+                <p><strong>Fasilitas:</strong> ${record.fasilitas || '-'}</p>
+                ${record.googlemaps ? `<p><a href="${record.googlemaps}" target="_blank">Lihat di Google Maps</a></p>` : ''}
+                <button class="save-btn">Simpan</button>
+            `;
+
+            const saveBtn = recordElement.querySelector('.save-btn');
+            const savedData = JSON.parse(localStorage.getItem('savedAgrowisata')) || [];
+            const isSaved = savedData.some(saved => saved.deskripsi === record.deskripsi);
+
+            if (isSaved) {
+                saveBtn.textContent = 'Tersimpan';
+                saveBtn.disabled = true;
+            }
+
+            saveBtn.addEventListener('click', () => {
+                saveData(record, saveBtn);
             });
+
+            return recordElement;
         };
 
         const saveData = (record, button) => {
@@ -113,56 +145,46 @@ const Agrowisata = {
             alert('Data berhasil disimpan!');
         };
 
-        const showSavedData = () => {
-            const savedData = JSON.parse(localStorage.getItem('savedAgrowisata')) || [];
-            dataContainer.innerHTML = '';
-            if (savedData.length === 0) {
-                dataContainer.innerHTML = 'Tidak ada data yang tersimpan.';
-                return;
-            }
-            savedData.forEach((record, index) => {
-                const recordElement = document.createElement('div');
-                recordElement.classList.add('record');
-                recordElement.innerHTML = `
-                <h3>${record.deskripsi}</h3>
-                <p><strong>Lokasi:</strong> ${record.alamat}</p>
-                <p><strong>Wilayah:</strong> ${record.wilayah}</p>
-                <button class="delete-btn">Hapus</button>
-                `;
-                const deleteButton = recordElement.querySelector('.delete-btn');
-                deleteButton.addEventListener('click', () => deleteData(index));
-                dataContainer.appendChild(recordElement);
+        const handleAddData = () => {
+            const form = document.getElementById('add-data-form');
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                const newRecord = {
+                    deskripsi: document.getElementById('deskripsi').value || 'Deskripsi tidak tersedia',
+                    alamat: document.getElementById('lokasi').value || 'Lokasi tidak tersedia',
+                    wilayah: document.getElementById('wilayah').value || 'Wilayah tidak tersedia',
+                    kecamatan: document.getElementById('kecamatan').value || '-',
+                    kelurahan: document.getElementById('kelurahan').value || '-',
+                    fasilitas: document.getElementById('fasilitas').value || '-',
+                    googlemaps: document.getElementById('googlemaps').value || '#',
+                    isNew: true,
+                };
+
+                this.newData.push(newRecord);
+                displayData([...this.cachedData, ...this.newData]);
+
+                form.reset();
+                document.getElementById('add-data-modal').classList.add('hidden');
+                alert('Data baru berhasil ditambahkan!');
             });
         };
 
-        const deleteData = (index) => {
-            const savedData = JSON.parse(localStorage.getItem('savedAgrowisata')) || [];
-            savedData.splice(index, 1);
-            localStorage.setItem('savedAgrowisata', JSON.stringify(savedData));
-            alert('Data berhasil dihapus!');
-            showSavedData();
-        };
+        const addDataButton = document.getElementById('add-data-btn');
+        const modal = document.getElementById('add-data-modal');
+        const cancelButton = document.getElementById('cancel-btn');
 
-        const handleRouting = async () => {
-            const hash = window.location.hash;
-            if (hash === this.currentHash) return; 
+        addDataButton.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+        });
 
-            this.currentHash = hash; 
-            navLinks.forEach(link => link.classList.remove('active'));
-            document.querySelector(`nav a[href="${hash}"]`)?.classList.add('active');
+        cancelButton.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
 
-            if (hash === '#/saved-data-page') {
-                showSavedData();
-            } else {
-                await fetchData();
-                displayData(this.cachedData);
-            }
-        };
-
-        filterWilayah.addEventListener('change', () => displayData(this.cachedData));
-        window.addEventListener('hashchange', handleRouting);
-
-        await handleRouting();
+        await fetchData();
+        displayData([...this.cachedData, ...this.newData]);
+        handleAddData();
     },
 };
 
