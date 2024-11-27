@@ -113,7 +113,108 @@ nav a.active {
     width: 100%;
   }
 
-   
+/* Hero Section */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+  text-align: center;
+  background-image: url('../public/assets/agrowisata.jpeg');
+  background-position: center;
+  background-size: cover;
+}
+
+.hero_inner {
+  max-width: 1000px;
+  color: #fff;
+  padding: 2em;
+}
+
+.hero-title{
+  font-size: 40px;
+  color: green;
+  text-transform: uppercase;
+  text-shadow:0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hero-desc{
+  font-size: 20px;
+  color: #2c3e50;
+  text-transform: capitalize;
+  text-shadow:0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hero-button {
+  width: fit-content;
+  font-family: Raleway, sans-serif;
+  border-radius: 16px;
+  padding: 6px 17px;
+  border: 2px solid green;
+  font-size: 20px;
+  margin-top: auto;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.hero-button:hover {
+  background: green;
+  color: white;
+}
+
+.transparent-box{
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 35px 50px; 
+  border-radius: 30px;
+}
+
+/* travelkuy items */
+
+.travelkuy {
+  display: grid;
+  grid-template-columns: 1fr; 
+  gap: 40px; 
+  margin-top: 32px;
+}
+
+.travelkuy-item {
+  background-color: white;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex; 
+  flex-direction: column; 
+  width: 700px;
+}
+
+.travelkuy-item:hover {
+  transform: scale(1.05); 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+}
+
+.travelkuy-item_gambar {
+  width: 100%; /* Full width image */
+  height: 200px;/* Maintain aspect ratio */
+}
+
+.travelkuy-item_isi {
+  padding: 20px; /* Adjust padding for mobile */
+}
+
+
+.travelkuy-item_judul {
+  text-transform: uppercase;
+  font-size: 28px;
+  font-weight: 500;
+  margin: 8px 0;
+  color: green;
+}
+
+.travelkuy-item_penjelasan {
+  font-size: 19px;
+  color: black;
+}
+
   /*
     Main Content
   */
