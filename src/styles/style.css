@@ -339,18 +339,74 @@ nav a.active {
 footer {
     padding: 16px;
     background-color: green;
-  }
-   
-  footer p {
+}
+
+footer p {
     text-align: center;
     color: white;
-  }
-   
-  footer p a {
+}
+
+footer p a {
     color: #db0000;
     text-decoration: none;
-  }
+    font-size: 16px;
+}
 
+footer .footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+footer .active {
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+}
+
+footer .active:hover {
+    background-color: rgb(174, 227, 68);
+}
+
+footer .home {
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+}
+
+footer .home:hover {
+    background-color: rgb(174, 227, 68);
+}
+
+li {
+    list-style: none;
+}
+
+footer .footer-section {
+    flex: 1;
+    margin: 20px;
+}
+
+footer .footer-section h2 {
+    margin-bottom: 20px;
+}
+
+footer .footer-section p {
+    line-height: 1.6;
+}
+
+footer .footer-nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+footer .footer-nav a:hover {
+    color: #16a085;
+}
 h2 {
     text-align: center;
     margin-bottom: 1em;
