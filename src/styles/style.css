@@ -335,8 +335,7 @@ nav a.active {
   /*
   Footer
 */
- 
-footer {
+ footer {
     padding: 16px;
     background-color: green;
 }
@@ -407,6 +406,7 @@ footer .footer-nav a {
 footer .footer-nav a:hover {
     color: #16a085;
 }
+
 h2 {
     text-align: center;
     margin-bottom: 1em;
