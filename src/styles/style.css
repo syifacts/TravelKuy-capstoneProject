@@ -173,18 +173,19 @@ nav a.active {
 .travelkuy {
   display: grid;
   grid-template-columns: 1fr; 
-  gap: 40px; 
+  gap: 45x; 
   margin-top: 32px;
 }
 
 .travelkuy-item {
-  background-color: white;
+ background-color: white;
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex; 
   flex-direction: column; 
-  width: 700px;
+  width: 530px;
+  height: 250px;
 }
 
 .travelkuy-item:hover {
@@ -193,8 +194,9 @@ nav a.active {
 }
 
 .travelkuy-item_gambar {
+ object-fit: cover;
   width: 100%; /* Full width image */
-  height: 200px;/* Maintain aspect ratio */
+  height: auto;/* Maintain aspect ratio */
 }
 
 .travelkuy-item_isi {
@@ -203,14 +205,16 @@ nav a.active {
 
 
 .travelkuy-item_judul {
+font-family: 'Poppins', sans-serif;
   text-transform: uppercase;
-  font-size: 28px;
-  font-weight: 500;
-  margin: 8px 0;
+  font-size: 24px;
+  font-weight: 200;
+  margin: 5px 0;
   color: green;
 }
 
 .travelkuy-item_penjelasan {
+  font-family: 'Poppins', sans-serif;
   font-size: 19px;
   color: black;
 }
