@@ -350,3 +350,61 @@ footer {
     color: #db0000;
     text-decoration: none;
   }
+
+h2 {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 2em;
+    color: #333;
+}
+
+.team-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2em;
+}
+
+.team-member {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5em;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 250px;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.team-member img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 1em;
+}
+
+.team-member h3 {
+    margin: 0.5em 0 0.2em;
+    font-size: 1.25em;
+    color: #333;
+}
+
+.team-member p {
+    margin: 0.2em 0;
+    color: #666;
+}
+
+.team-member a {
+    margin: 0 0.2em;
+}
+
+.team-member a img {
+    width: 20px;
+    height: 20px;
+}
