@@ -173,19 +173,19 @@ nav a.active {
 .travelkuy {
   display: grid;
   grid-template-columns: 1fr; 
-  gap: 45x; 
+  gap: 45px; 
   margin-top: 32px;
 }
 
 .travelkuy-item {
- background-color: white;
+  background-color: white;
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   display: flex; 
   flex-direction: column; 
-  width: 530px;
-  height: 250px;
+  width: 100%; /* Adjust to take full width */
+  height: auto; /* Allow height to adjust based on content */
 }
 
 .travelkuy-item:hover {
@@ -194,31 +194,30 @@ nav a.active {
 }
 
 .travelkuy-item_gambar {
- object-fit: cover;
+  object-fit: cover;
   width: 100%; /* Full width image */
-  height: auto;/* Maintain aspect ratio */
+  height: auto; /* Maintain aspect ratio */
 }
 
 .travelkuy-item_isi {
-  padding: 20px; /* Adjust padding for mobile */
+  padding: 10px 15px; /* Adjust padding for mobile */
 }
 
-
 .travelkuy-item_judul {
-font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', sans-serif;
   text-transform: uppercase;
-  font-size: 24px;
-  font-weight: 200;
+  font-size: 1.5em; /* Use relative units */
+  font-weight: 400; /* Adjust weight for better readability */
   margin: 5px 0;
   color: green;
 }
 
 .travelkuy-item_penjelasan {
   font-family: 'Poppins', sans-serif;
-  font-size: 19px;
+  font-size: 1em; /* Base font size for mobile devices */
   color: black;
+  line-height: 1.5; /* Improved readability */
 }
-
   /*
     Main Content
   */

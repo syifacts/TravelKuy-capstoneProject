@@ -1,3 +1,17 @@
+@media screen and (min-width: 600px) {
+  .travelkuy {
+    grid-template-columns: repeat(2, 1fr); /* Two columns on small tablets */
+  }
+
+  .travelkuy-item_judul {
+    font-size: 1.75em; /* Increase font size for tablets */
+  }
+
+  .travelkuy-item_penjelasan {
+    font-size: 1.125em; /* Slightly larger for tablets */
+  }
+}
+
 @media screen and (min-width: 650px) {
   .app-bar {
     grid-template-columns: 1fr auto;
@@ -48,6 +62,20 @@
 @media screen and (min-width: 850px) {
   .wisata {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .travelkuy {
+    grid-template-columns: repeat(3, 1fr); /* Three columns on larger screens */
+  }
+
+  .travelkuy-item_judul {
+    font-size: 2em; /* Increase font size for larger screens */
+  }
+
+  .travelkuy-item_penjelasan {
+    font-size: 1.25em; /* Larger text for larger screens */
   }
 }
  

@@ -15,16 +15,16 @@ const Home = {
         <div class="travelkuy">
 
           <article class="travelkuy-item">
-            <img class="travelkuy-item_gambar" src="assets/DesaWisata.jpeg" alt="Syifa Chandra Tiffani Sumardi">
+            <img class="travelkuy-item_gambar" src="assets/DesaWisata.jpeg" alt="Gambar Desa Wisata">
             <div class="travelkuy-item_isi">
               <h1 class="travelkuy-item_judul">Apa itu Desa Wisata?</h1>
-              <p class="travelkuy-item_item_penjelasan">Desa wisata adalah desa yang dikembangkan untuk menarik wisatawan dengan menawarkan pengalaman budaya lokal, keindahan alam, serta kegiatan tradisional.
+              <p class="travelkuy-item_penjelasan">Desa wisata adalah desa yang dikembangkan untuk menarik wisatawan dengan menawarkan pengalaman budaya lokal, keindahan alam, serta kegiatan tradisional.
               </p>
             </div>
           </article>
 
          <article class="travelkuy-item">
-            <img class="travelkuy-item_gambar" src="assets/IniAgroWisata.jpg" alt="Syifa Chandra Tiffani Sumardi">
+            <img class="travelkuy-item_gambar" src="assets/IniAgroWisata.jpg" alt="Gambar Agrowisata">
             <div class="travelkuy-item_isi">
               <h1 class="travelkuy-item_judul">Apa itu AgroWisata</h1>
               <p class="travelkuy-item_penjelasan">Agrowisata adalah bentuk wisata yang mengedepankan kegiatan pertanian dan alam sebagai daya tarik utamanya.
