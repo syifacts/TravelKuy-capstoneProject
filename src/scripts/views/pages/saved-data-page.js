@@ -30,7 +30,7 @@ const SavedDataPage = {
                 recordElement.classList.add('record');
                 recordElement.innerHTML = `
                 <h3>${record.deskripsi}</h3>
-                <p><strong>Lokasi:</strong> ${record.lokasi}</p>
+                <p><strong>Lokasi:</strong> ${record.alamat}</p> <!-- Ganti lokasi dengan alamat -->
                 <p><strong>Wilayah:</strong> ${record.wilayah}</p>
                 <p><strong>Kecamatan:</strong> ${record.kecamatan}</p>
                 <p><strong>Kelurahan:</strong> ${record.kelurahan}</p>
@@ -49,7 +49,6 @@ const SavedDataPage = {
             });
         }
 
-      
         function deleteData(index) {
             let savedData = JSON.parse(localStorage.getItem('savedAgrowisata')) || [];
             savedData.splice(index, 1); // Menghapus data berdasarkan index
@@ -57,7 +56,6 @@ const SavedDataPage = {
             alert('Data berhasil dihapus!');
             showSavedData(); 
         }
-
 
         showSavedData();
     }

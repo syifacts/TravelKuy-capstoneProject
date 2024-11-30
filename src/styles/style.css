@@ -231,6 +231,35 @@ nav a.active {
   width: 90%;
 }
 
+#pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Gaya untuk tombol pagination */
+#pagination-container button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 0 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+/* Efek hover pada tombol pagination */
+#pagination-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Menyembunyikan pagination jika tidak diperlukan */
+#pagination-container[style="display: none;"] {
+  display: none;
+}
+
   /*
   Footer
 */

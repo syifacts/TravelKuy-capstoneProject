@@ -99,7 +99,13 @@ const Agrowisata = {
                 if (result.success) {
                     return index === 1
                         ? this.mapDataFromAPI2(result.result.records)
-                        : result.result.records;
+                        : result.result.records.map(record => ({
+                            ...record,
+                            foto: [
+                                "https://via.placeholder.com/150/0000FF/FFFFFF?text=Foto+1", // Contoh foto hardcoded
+                                "https://via.placeholder.com/150/FF0000/FFFFFF?text=Foto+2"  // Contoh foto hardcoded
+                            ]
+                        }));
                 }
                 return [];
             });
@@ -119,6 +125,10 @@ const Agrowisata = {
             kelurahan: '',
             fasilitas: '',
             googlemaps: '',
+            foto: [
+                "https://via.placeholder.com/150/0000FF/FFFFFF?text=Foto+1", // Contoh foto hardcoded
+                "https://via.placeholder.com/150/FF0000/FFFFFF?text=Foto+2"  // Contoh foto hardcoded
+            ],
             isApi2: true
         }));
     },
@@ -142,7 +152,7 @@ const Agrowisata = {
         // Filter data berdasarkan wilayah
         const filteredData = this.filterDataByWilayah(allRecords, selectedWilayah);
     
-        // Hilangkan duplikasi berdasarkan deskripsi atau id
+        // Hilangkan duplikasi berdasarkan deskripsi
         const uniqueData = this.removeDuplicateData(filteredData);
     
         // Validasi currentPage agar tidak melebihi total halaman
@@ -173,13 +183,12 @@ const Agrowisata = {
     
         // Render data lama (termasuk yang sudah disimpan)
         const oldDataList = document.getElementById('old-data-list');
-        const oldData = paginatedData.filter(record => !record.isNew);
+        const oldData = paginatedData.filter(record => !record .isNew);
         this.renderData(oldData, oldDataList);
     
         // Setup pagination hanya jika ada data yang ditampilkan
-        this.setupPagination(); // Memanggil setupPagination untuk memperbarui pagination
+        this.setupPagination();
     },
-    
 
     removeDuplicateData(records) {
         const seen = new Set();
@@ -219,7 +228,6 @@ const Agrowisata = {
         return filteredData.slice(startIndex, endIndex);
     },
 
-
     renderData(data, container) {
         container.innerHTML = '';
         data.forEach(record => {
@@ -239,6 +247,9 @@ const Agrowisata = {
             <p><strong>Kelurahan:</strong> ${record.kelurahan || '-'}</p>
             <p><strong>Fasilitas:</strong> ${record.fasilitas || '-'}</p>
             ${record.googlemaps && record.googlemaps.trim() !== '' ? `<p><a href="${record.googlemaps}" target="_blank">Lihat di Google Maps</a></p>` : ''}
+            <div class="foto-container">
+                ${record.foto.map(url => `<img src="${url}" alt="Foto Agrowisata" class="foto-agrowisata">`).join('')}
+            </div>
             <button class="save-btn">Simpan</button>
         `;
 
@@ -314,19 +325,6 @@ const Agrowisata = {
         }
     },
     
-    filterDataByWilayah(records, selectedWilayah) {
-        const validRecords = records.filter(record => record.deskripsi && record.deskripsi.trim() !== '');
-        
-        if (!selectedWilayah) return validRecords;
-    
-        return validRecords.filter(record => {
-            if (selectedWilayah === "Wilayah Lainnya") {
-                return !["Jakarta Barat", "Jakarta Timur", "Jakarta Utara", "Jakarta Selatan", "Jakarta Pusat"].includes(record.wilayah);
-            }
-            return record.wilayah === selectedWilayah;
-        });
-    },
-
     handleAddData() {
         const form = document.getElementById('add-data-form');
         form.addEventListener('submit', (event) => {
@@ -340,6 +338,10 @@ const Agrowisata = {
                 kelurahan: document.getElementById('input-kelurahan').value || '-',
                 fasilitas: document.getElementById('input-fasilitas').value || '-',
                 googlemaps: document.getElementById('input-googlemaps').value || '#',
+                foto: [
+                    "https://via.placeholder.com/150/0000FF/FFFFFF?text=Foto+1", // Contoh foto hardcoded
+                    "https://via.placeholder.com/150/FF0000/FFFFFF?text=Foto+2"  // Contoh foto hardcoded
+                ],
                 isNew: true,
             };
     
@@ -349,7 +351,7 @@ const Agrowisata = {
     
             // Tampilkan data dan setup pagination
             this.displayData([...this.cachedData, ...this.newData]);
-            this.setupPagination(); // Pastikan untuk memanggil ini
+            this.setupPagination();
     
             form.reset();
             document.getElementById('add-data-modal').classList.add('hidden');
@@ -369,6 +371,5 @@ const Agrowisata = {
         }
     }
 };
-
 
 export default Agrowisata;
