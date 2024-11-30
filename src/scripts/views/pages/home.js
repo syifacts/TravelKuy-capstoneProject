@@ -1,16 +1,39 @@
 const Home = {
   async render() {
       return `
-          <h2 style="text-align: center;">Selamat datang di aplikasi Agrowisata dan Desa Wisata</h2>
-          <div style="display: flex; justify-content: center; align-items: center;">
-              <img src="assets/agrowisata.jpeg" alt="Desa Wisata" style="max-width: 100%; height: auto; border-radius: 8px;">
+          <div class="hero">
+            <div class="hero_inner">
+            <div class="transparent-box">
+            <h1 class="hero-title">Welcome to TravelKuy</h1>
+            <p class="hero-desc">Explore Agricultural vacation with us</p>
+            <button class="hero-button"> <a href="#/agrowisata">Lets go</a></button>
+            </div>           
+            </div>
+        </div>
+
+        <section class="isi">
+        <div class="travelkuy">
+
+          <article class="travelkuy-item">
+            <img class="travelkuy-item_gambar" src="assets/DesaWisata.jpeg" alt="Syifa Chandra Tiffani Sumardi">
+            <div class="travelkuy-item_isi">
+              <h1 class="travelkuy-item_judul">Apa itu Desa Wisata?</h1>
+              <p class="travelkuy-item_item_penjelasan">Desa wisata adalah desa yang dikembangkan untuk menarik wisatawan dengan menawarkan pengalaman budaya lokal, keindahan alam, serta kegiatan tradisional.
+              </p>
+            </div>
+          </article>
+
+         <article class="travelkuy-item">
+            <img class="travelkuy-item_gambar" src="assets/IniAgroWisata.jpg" alt="Syifa Chandra Tiffani Sumardi">
+            <div class="travelkuy-item_isi">
+              <h1 class="travelkuy-item_judul">Apa itu AgroWisata</h1>
+              <p class="travelkuy-item_penjelasan">Agrowisata adalah bentuk wisata yang mengedepankan kegiatan pertanian dan alam sebagai daya tarik utamanya.
+              </p>
+            </div>
+          </article>
+
           </div>
-          
-          <h3>Apa itu Desa Wisata?</h3>
-          <p>Desa wisata adalah desa yang dikembangkan untuk menarik wisatawan dengan menawarkan pengalaman budaya lokal, keindahan alam, serta kegiatan tradisional.</p>
-          
-          <h3>Apa itu Agrowisata?</h3>
-          <p>Agrowisata adalah bentuk wisata yang mengedepankan kegiatan pertanian dan alam sebagai daya tarik utamanya.</p>
+          </section>
       `;
   },
   async afterRender() {},

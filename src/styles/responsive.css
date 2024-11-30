@@ -38,6 +38,11 @@
   .app-bar .app-bar__brand h1 {
     font-size: 2em;
   }
+  
+   .travelkuy {
+    grid-template-columns: repeat(2, 1fr); /* Two columns on tablets */
+    gap: 60px;
+  }
 }
  
 @media screen and (min-width: 850px) {
@@ -50,6 +55,20 @@
   .wisata {
     grid-template-columns: repeat(4, 1fr);
   }
+  .travelkuy {
+    grid-template-columns: repeat(3, 1fr); /* Three columns on larger screens */
+    gap: 80px;
+  }
+  .travelkuy-item {
+    flex-direction: row; /* Switch to horizontal layout on larger screens */
+  }
+  .travelkuy-item_gambar {
+    width: 40%; /* Adjust image width for horizontal layout */
+  }
+  .travelkuy-item_isi {
+    padding: 20px; /* Adjust padding for horizontal layout */
+  }
+
 }
  
 @media screen and (min-width: 1600px) {
