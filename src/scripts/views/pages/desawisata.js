@@ -1,4 +1,4 @@
-const desawisata = {
+/* const desawisata = {
   async render() {
     const proxyUrl = 'https://api.allorigins.win/get?url=';
     const apiUrl = 'https://katalogdata.kemenparekraf.go.id/api/3/action/datastore_search?resource_id=80461f76-2299-495b-bcba-e39205b9c0f1';
@@ -48,3 +48,4 @@ const desawisata = {
 };
 
 export default desawisata;
+*/

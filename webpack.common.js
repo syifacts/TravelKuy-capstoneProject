@@ -5,6 +5,7 @@ const path = require('path');
 module.exports = {
   entry: {
     app: path.resolve(__dirname, 'src/scripts/index.js'),
+    sw: path.resolve(__dirname, 'src/scripts/sw.js'),
   },
   output: {
     filename: '[name].bundle.js',
@@ -32,6 +33,14 @@ module.exports = {
         {
           from: path.resolve(__dirname, 'src/public/assets'),
           to: path.resolve(__dirname, 'dist/assets'),
+        },
+        {
+          from: path.resolve(__dirname, 'src/public/app.webmanifest'),
+          to: path.resolve(__dirname, 'dist/app.webmanifest'),
+        },
+        {
+          from: path.resolve(__dirname, 'src/public/icons'),
+          to: path.resolve(__dirname, 'dist/icons'),
         },
       ],
     }),
