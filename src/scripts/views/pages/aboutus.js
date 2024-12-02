@@ -15,8 +15,8 @@ const aboutus = {
                 </div>
                 <div class="team-member">
                     <img src="assets/fadil.jpg" alt="fadil">
-                    <h3>fadil</h3>
-                    <p>politeknik negeri jakarta </p>
+                    <h3>Ikhsan Fadillah</h3>
+                    <p>Politeknik Negeri Jakarta </p>
                     <p>
                         <a href="https://github.com/ikhsan111"><img src="assets/github.png" alt="Github"></a>
                         <a href="https://www.linkedin.com/in/parlaungan-siregar-1493322b9/"><img src="assets/linkedid.png" alt="Linkedid"></a>
@@ -26,7 +26,7 @@ const aboutus = {
                 <div class="team-member">
                     <img src="assets/sifa.jpg" alt="sifa">
                     <h3>Syifa Chandra Tiffani</h3>
-                    <p>politeknik negeri jakarta </p>
+                    <p>Politeknik Negeri Jakarta </p>
                     <p>
                         <a href="https://github.com/syifacts"><img src="assets/github.png" alt="Github"></a>
                         <a href="https://www.linkedin.com/in/syifa-chandra-tiffani-sumardi/"><img src="assets/linkedid.png" alt="Linkedid"></a>
@@ -36,7 +36,7 @@ const aboutus = {
                 <div class="team-member">
                     <img src="assets/yeudanta.jpg" alt="sifa">
                     <h3>Yeudanta Mahardika</h3>
-                    <p>universitas duta wacana </p>
+                    <p>Universitas Duta Wacana </p>
                     <p>
                         <a href="https://github.com/yuudantaa"><img src="/assets/github.png" alt="Github"></a>
                         <a href="https://id.linkedin.com/in/yeudanta-mahardika-aditya-wicaksana-87222733b"><img src="assets/linkedid.png" alt="Linkedid"></a>
