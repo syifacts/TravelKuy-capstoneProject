@@ -172,8 +172,8 @@ nav a.active {
 
 .travelkuy {
   display: grid;
-  grid-template-columns: 1fr; 
-  gap: 45px; 
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 60px;
   margin-top: 32px;
 }
 
@@ -182,10 +182,11 @@ nav a.active {
   border-radius: 5px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  display: flex; 
-  flex-direction: column; 
-  width: 100%; /* Adjust to take full width */
-  height: auto; /* Allow height to adjust based on content */
+}
+
+.travelkuy-item:hover {
+  transform: scale(1.05); 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
 }
 
 .travelkuy-item:hover {
