@@ -32,6 +32,16 @@ const Home = {
             </div>
           </article>
 
+         <article class="travelkuy-item">
+            <img class="travelkuy-item_gambar" src="assets/manfaatAgrowisata.jpg" alt="Gambar Agrowisata">
+            <div class="travelkuy-item_isi">
+              <h1 class="travelkuy-item_judul">Manfaat Desa Wisata Dan Agrowisata</h1>
+              <p class="travelkuy-item_penjelasan">
+              Mengunjungi agrowisata dan desa wisata adalah cara yang menyenangkan untuk belajar tentang pertanian, berlibur, dan berkontribusi pada pelestarian lingkungan.
+              </p>
+            </div>
+          </article>
+          
           </div>
           </section>
       `;
