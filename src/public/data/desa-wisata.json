@@ -1,0 +1,72 @@
+{
+    "1": {
+        "id": "1",
+        "name": "Desa Wisata Ngadas",
+        "location": "Malang, Jawa Timur",
+        "photo": "https://cdn.timesmedia.co.id/images/2020/12/19/Desa-Ngadas.jpg",
+        "description": "Desa yang terletak di kaki Gunung Bromo, menawarkan keindahan alam dan budaya lokal."
+    },
+    "2": {
+        "id": "2",
+        "name": "Desa Wisata Penglipuran",
+        "location": "Bangli, Bali",
+        "photo": "https://www.indonesia.travel/content/dam/indtravelrevamp/en/trip-ideas/intip-yuk-daya-tarik-yang-ditawarkan-desa-penglipuran-bali/1.jpg",
+        "description": "Desa wisata terkenal dengan tata ruang dan arsitektur tradisional Bali yang memukau."
+    },
+    "3": {
+        "id": "3",
+        "name": "Desa Wisata Sawarna",
+        "location": "Lebak, Banten",
+        "photo": "https://bekelsego.com/wp-content/uploads/2024/08/Black-Yellow-Eid-Al-Adha-Mubarak-Instagram-Post-27.png",
+        "description": "Destinasi wisata pantai dan goa yang eksotis di Banten."
+    },
+    "4": {
+        "id": "4",
+        "name": "Desa Wisata Sade",
+        "location": "Lombok Tengah, Nusa Tenggara Barat",
+        "photo": "https://cdn.idntimes.com/content-images/community/2024/01/thumb-2295-0-0-0-0-auto-9eeb43f947a305bf646299ee07143d03-3250a1dbceedc9f833a59830250501ec-443afad9baf2dff8748f253ef616be53.jpg",
+        "description": "Desa adat Suku Sasak dengan rumah tradisional dan budaya khas Lombok."
+    },
+    "5": {
+        "id": "5",
+        "name": "Desa Wisata Nglanggeran",
+        "location": "Gunungkidul, Yogyakarta",
+        "photo": "https://www.masterplandesa.com/wp-content/uploads/2020/03/nglanggeran.png",
+        "description": "Dikelilingi Gunung Api Purba, menawarkan suasana pedesaan dengan panorama luar biasa."
+    },
+    "6": {
+        "id": "6",
+        "name": "Desa Wisata Wae Rebo",
+        "location": "Manggarai, Nusa Tenggara Timur",
+        "photo": "https://asset.kompas.com/crops/zLNgnfRqp-AQSu1tQ-f6DvnviN4=/0x0:0x0/750x500/data/photo/2021/12/04/61aadb3a30e08.jpeg",
+        "description": "Desa tradisional dengan rumah adat unik berbentuk kerucut di atas bukit."
+    },
+    "7": {
+        "id": "7",
+        "name": "Desa Wisata Dieng",
+        "location": "Wonosobo, Jawa Tengah",
+        "photo": "https://asset.kompas.com/crops/1ZpIASq4MdOWcW_RF2_xereYun8=/0x0:1800x1200/750x500/data/photo/2021/09/25/614eba86bfd35.jpg",
+        "description": "Dataran tinggi dengan candi kuno dan pemandangan indah yang memukau."
+    },
+    "8": {
+        "id": "8",
+        "name": "Desa Wisata Batubulan",
+        "location": "Gianyar, Bali",
+        "photo": "https://wisato.id/wp-content/uploads/2022/04/Desa-Batubulan-1-scaled.jpg",
+        "description": "Pusat seni pertunjukan tradisional Bali, seperti Tari Barong dan kerajinan patung batu."
+    },
+    "9": {
+        "id": "9",
+        "name": "Desa Wisata Pentingsari",
+        "location": "Sleman, Yogyakarta",
+        "photo": "https://www.rumah123.com/seo-cms/assets/Desa_Wisata_Pentingsari_b77ec8eb2f/Desa_Wisata_Pentingsari_b77ec8eb2f.jpeg",
+        "description": "Desa dengan suasana alami, cocok untuk kegiatan wisata edukasi dan outbound."
+    },
+    "10": {
+        "id": "10",
+        "name": "Desa Wisata Tamansari",
+        "location": "Banyuwangi, Jawa Timur",
+        "photo": "https://asset.kompas.com/crops/prsaB951v0IKZLNGmHrs6SCDUMM=/0x112:1600x1179/750x500/data/photo/2023/08/18/64df3413c478d.jpeg",
+        "description": "Desa wisata dengan pemandangan Gunung Ijen dan aktivitas budaya masyarakat Osing."
+    }
+}
