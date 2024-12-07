@@ -570,3 +570,71 @@ h2 {
 #pagination-container button:hover {
   background-color: #0056b3;
 }
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.video-container {
+  margin-top: 20px;
+}
+
+#back-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.detail-link {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #3498db;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.detail-link:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+.detail-link:active {
+  background-color: #1e6f9f;
+  transform: scale(0.95);
+}
+
+.detail-link:focus {
+  outline: 3px solid #ffcc00;
+  outline-offset: 2px;
+}
+
+.card {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-content {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.card-content .detail-link {
+  margin-top: 10px;
+}
+.detail-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  max-width: 500px; /* Membatasi lebar gambar agar tidak terlalu besar */
+  max-height: 400px; /* Membatasi tinggi gambar agar tidak terlalu tinggi */
+  margin: 0 auto; /* Membuat gambar terpusat di dalam kontainer */
+}

@@ -104,3 +104,9 @@
       grid-template-columns: repeat(5, 1fr);
   }
 }
+
+@media (max-width: 600px) {
+  .video-container {
+    padding-bottom: 75%; /* Mengubah rasio menjadi 4:3 pada layar kecil */
+  }
+}
