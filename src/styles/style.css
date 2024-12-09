@@ -669,3 +669,12 @@ h2 {
   font-size: 14px;
   margin: 5px 0;
 }
+.agrowisata-img {
+  width: 100%; /* Membuat gambar responsif, mengikuti lebar kontainer */
+  max-width: 200px; /* Membatasi lebar gambar agar tidak terlalu besar */
+  height: auto; /* Menjaga rasio aspek gambar */
+  border-radius: 8px; /* Memberikan sudut gambar yang lebih lembut */
+  object-fit: cover; /* Memastikan gambar tetap terpotong dengan baik jika tidak sesuai dengan ukuran */
+  display: block;
+  margin: 0 auto 10px auto; /* Memusatkan gambar dan memberi jarak bawah */
+}

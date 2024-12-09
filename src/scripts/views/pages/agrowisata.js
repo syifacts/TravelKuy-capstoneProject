@@ -5,6 +5,12 @@ class AgrowisataPage {
 
     async render() {
         return `
+         <nav>
+                <ul>
+                    <li><a href="#/agrowisata" id="nav-home">Beranda</a></li>
+                    <li><a href="#/saved-data-page" id="nav-saved">Data Tersimpan</a></li>
+                </ul>
+            </nav>
             <h1>Daftar Agrowisata</h1>
             <div>
                 <label for="filter-location">Filter berdasarkan lokasi:</label>
@@ -19,22 +25,18 @@ class AgrowisataPage {
                </select>
             </div>
             <ul id="agrowisata-list" class="agrowisata-list"></ul>
-            <h2>Data Tersimpan</h2>
-            <ul id="saved-data-list"></ul>
         `;
     }
 
     async afterRender() {
         const agrowisataList = document.getElementById('agrowisata-list');
         const filterLocation = document.getElementById('filter-location');
-        const savedDataList = document.getElementById('saved-data-list');
 
         try {
             const data = await this.fetchData();
             console.log('Data dari API:', data);  // Log data API untuk debugging
 
             this.displayAgrowisata(data, agrowisataList);
-            this.renderSavedData(savedDataList);
 
             filterLocation.addEventListener('change', async (event) => {
                 const location = event.target.value;
@@ -72,6 +74,7 @@ class AgrowisataPage {
             listItem.className = 'agrowisata-item';
             listItem.innerHTML = `
                 <h2>${agrowisata.name}</h2>
+                <p><img src="${agrowisata.urlimg}" alt="${agrowisata.name}" class="agrowisata-img"></p>
                 <p><strong>Lokasi:</strong> ${agrowisata.location}</p>
                 <p><strong>URL Maps:</strong> <a href="${agrowisata.urlmaps}" target="_blank" rel="noopener noreferrer">Lihat di Maps</a></p>
                 <p><strong>Fasilitas:</strong> ${agrowisata.fasilitas}</p>
@@ -94,23 +97,7 @@ class AgrowisataPage {
         if (!savedData.includes(agrowisataId)) {
             savedData.push(agrowisataId);
             localStorage.setItem('savedAgrowisata', JSON.stringify(savedData));
-            this.renderSavedData(); // Render ulang data yang tersimpan
         }
-    }
-
-    renderSavedData(container) {
-        const savedData = JSON.parse(localStorage.getItem('savedAgrowisata')) || [];
-        container.innerHTML = ''; // Clear previous content
-        if (savedData.length === 0) {
-            container.innerHTML = `<li>No data saved.</li>`;
-            return;
-        }
-
-        savedData.forEach((id) => {
-            const listItem = document.createElement('li');
-            listItem.textContent = `Agrowisata ID: ${id}`; // Tampilkan hanya ID agrowisata
-            container.appendChild(listItem);
-        });
     }
 
     filterDataByLocation(records, selectedLocation) {
@@ -129,4 +116,4 @@ class AgrowisataPage {
     }
 }
 
-export default AgrowisataPage
+export default AgrowisataPage;
