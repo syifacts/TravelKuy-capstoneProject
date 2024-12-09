@@ -638,3 +638,34 @@ h2 {
   max-height: 400px; /* Membatasi tinggi gambar agar tidak terlalu tinggi */
   margin: 0 auto; /* Membuat gambar terpusat di dalam kontainer */
 }
+
+/* AGROWISATA */
+.agrowisata-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.agrowisata-item {
+  border: 1px solid #ddd;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 8px;
+  background: #fff;
+  width: 300px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.agrowisata-item h2 {
+  font-size: 20px;
+  margin: 0 0 10px;
+  color: black;
+}
+
+.agrowisata-item p {
+  font-size: 14px;
+  margin: 5px 0;
+}
