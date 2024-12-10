@@ -1,6 +1,6 @@
 const Agrowisata = {
     API_URL: 'https://agrowisataapi-1aaac8500e71.herokuapp.com/agrowisata',
-    itemsPerPage: 10,
+    itemsPerPage: 12,
     currentPage: 1,
     filteredData: [], // Menyimpan data yang sudah difilter
 
