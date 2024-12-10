@@ -803,3 +803,16 @@ const Agrowisata = {
 
 
 export default Agrowisata;
+
+
+INDEX.JS
+window.addEventListener('load', () => {
+    const currentHash = window.location.hash;
+    if (!currentHash) {
+        window.location.hash = '#/agrowisata'; // Arahkan ke halaman default
+    }
+
+    const route = window.location.hash.slice(1).toLowerCase();
+    const page = routes[route] || NotFoundPage; // Gunakan NotFoundPage jika route tidak ditemukan
+    page.render().then(() => page.afterRender());
+});

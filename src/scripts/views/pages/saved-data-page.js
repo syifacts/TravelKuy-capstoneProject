@@ -1,61 +1,60 @@
-class SavedDataPage {
-    constructor() {
-        this.API_URL = 'https://agrowisataapi-1aaac8500e71.herokuapp.com/agrowisata';
-    }
-
+const SavedDataPage = {
     async render() {
         return `
-            <h1>Data Tersimpan</h1>
-            <ul id="saved-data-list"></ul>
+            <nav>
+                <ul>
+                    <li><a href="#/agrowisata" id="nav-home">Beranda</a></li>
+                    <li><a href="#/saved-data-page" id="nav-saved">Data Tersimpan</a></li>
+                </ul>
+            </nav>
+            <h1>Data Agrowisata Tersimpan</h1>
+            <ul id="saved-agrowisata-list" class="saved-agrowisata-list"></ul>
         `;
-    }
+    },
 
     async afterRender() {
-        const savedDataList = document.getElementById('saved-data-list');
-        await this.renderSavedData(savedDataList);
-    }
-
-    async renderSavedData(container) {
+        const savedAgrowisataList = document.getElementById('saved-agrowisata-list');
         const savedData = JSON.parse(localStorage.getItem('savedAgrowisata')) || [];
-        container.innerHTML = ''; // Clear previous content
 
         if (savedData.length === 0) {
-            container.innerHTML = `<li>No data saved.</li>`;
+            savedAgrowisataList.innerHTML = `<li>Belum ada data tersimpan.</li>`;
             return;
         }
 
-        try {
-            const allData = await this.fetchData();
-            const filteredData = allData.filter(item => savedData.includes(item._id));
+        savedData.forEach((data) => {
+            const listItem = document.createElement('li');
+            listItem.className = 'saved-agrowisata-item';
+            listItem.innerHTML = `
+                <h2>${data.name}</h2>
+                <p><img src="${data.urlimg}" alt="${data.name}" class="saved-agrowisata-img"></p>
+                <p><strong>Lokasi:</strong> ${data.location}</p>
+                <p><strong>URL Maps:</strong> <a href="${data.urlmaps}" target="_blank" rel="noopener noreferrer">Lihat di Maps</a></p>
+                <p><strong>Fasilitas:</strong> ${data.fasilitas}</p>
+                <button class="delete-btn">Hapus</button>
+            `;
+            savedAgrowisataList.appendChild(listItem);
 
-            if (filteredData.length === 0) {
-                container.innerHTML = `<li>No data saved.</li>`;
-                return;
-            }
-
-            filteredData.forEach(agrowisata => {
-                const listItem = document.createElement('li');
-                listItem.innerHTML = `
-                    <h2>${agrowisata.name}</h2>
-                    <p><strong>Lokasi:</strong> ${agrowisata.location}</p>
-                    <p><strong>URL Maps:</strong> <a href="${agrowisata.urlmaps}" target="_blank" rel="noopener noreferrer">Lihat di Maps</a></p>
-                    <p><strong>Fasilitas:</strong> ${agrowisata.fasilitas}</p>
-                `;
-                container.appendChild(listItem);
+            // Tambahkan event listener untuk tombol hapus
+            const deleteButton = listItem.querySelector('.delete-btn');
+            deleteButton.addEventListener('click', () => {
+                this.deleteAgrowisata(data._id, savedAgrowisataList);
             });
-        } catch (error) {
-            console.error('Error fetching saved agrowisata data:', error);
-            container.innerHTML = `<li>Error fetching data. Please try again later.</li>`;
-        }
-    }
+        });
+    },
 
-    async fetchData() {
-        const response = await fetch(this.API_URL);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-    }
-}
+    deleteAgrowisata(id, container) {
+        let savedData = JSON.parse(localStorage.getItem('savedAgrowisata')) || [];
+        savedData = savedData.filter((item) => item._id !== id);
+
+        localStorage.setItem('savedAgrowisata', JSON.stringify(savedData));
+
+        // Refresh halaman setelah menghapus
+        container.innerHTML = '';
+        this.afterRender();
+
+        // Popup alert setelah data dihapus
+        alert("Data berhasil dihapus!");
+    },
+};
 
 export default SavedDataPage;

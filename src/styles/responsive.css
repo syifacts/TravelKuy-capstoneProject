@@ -110,3 +110,30 @@
     padding-bottom: 75%; /* Mengubah rasio menjadi 4:3 pada layar kecil */
   }
 }
+
+@media (max-width: 768px) {
+  nav ul {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  nav li {
+      margin: 10px 0;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  h1 {
+      font-size: 28px;
+  }
+
+  .agrowisata-list {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+
+  #filter-location {
+      width: 100%;
+      margin: 10px 0;
+  }
+}
