@@ -1,7 +1,7 @@
 import DrawerInitiator from '../utils/drawer-initiator';
 import UrlParser from '../routes/url-parser';
 import routes from '../routes/routes';
-import AgrowisataPage from './pages/agrowisata';
+import Agrowisata from './pages/agrowisata';
  
 class App {
   constructor({ button, drawer, content }) {
@@ -37,7 +37,7 @@ class App {
     } else {
       // Jika page tidak memiliki render(), coba buat instance halaman secara manual
       if (url === '/agrowisata') {
-        page = new AgrowisataPage();
+        page = new Agrowisata();
         this._content.innerHTML = await page.render();
         await page.afterRender();
       } else {
