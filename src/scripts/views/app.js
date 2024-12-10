@@ -21,7 +21,7 @@ class App {
     });
 
     // Menginisialisasi halaman AgrowisataPage dan merendernya ke dalam konten
-    const page = new AgrowisataPage(); // Buat instansi dari AgrowisataPage
+    const page = new Agrowisata(); // Buat instansi dari AgrowisataPage
     this._content.innerHTML = await page.render(); // Render halaman dan sisipkan ke dalam konten
     await page.afterRender(); // Jalankan afterRender setelah render selesai
   }
