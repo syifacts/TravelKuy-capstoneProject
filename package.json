@@ -25,6 +25,14 @@
     "webpack-merge": "^6.0.1"
   },
   "dependencies": {
+    "@hapi/hapi": "^21.3.12",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "idb": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
+    "mongoose": "^8.8.4",
     "node-fetch": "^3.3.2",
     "regenerator-runtime": "^0.14.1"
   }

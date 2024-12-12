@@ -202,7 +202,7 @@ body {
     flex: 1;
   }
    
-  .contentn {
+  .content {
     margin: 0 auto;
     min-height: 100%;
   }
@@ -292,98 +292,122 @@ body {
  
 /* Footer Styles */
 footer {
-  padding: 16px;
-  background-color: #03ab0f; /* Warna asli */
-  color: white;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); 
+  padding: 20px;
+  background: linear-gradient(135deg, #3ba55d, #a8e6a3);
+  color: #ffffff; /* White for main text */
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+  font-family: 'Poppins', sans-serif;
 }
 
 footer p {
   text-align: center;
   margin-top: 20px;
+  line-height: 1.6;
+  color: #333333; /* Dark grey for better readability */
 }
 
 footer p a {
-  color: #db0000; /* Warna asli */
+  color: #333333; /* Dark grey for link text */
   text-decoration: none;
   font-size: 16px;
-  transition: all 0.3s;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
 footer p a:hover {
   text-decoration: underline;
+  color: #3ba55d; /* Green for hover effect */
 }
 
 footer .footer-content {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 20px; /* Jarak antar bagian */
+  gap: 30px;
+  align-items: flex-start;
 }
 
 footer .footer-section {
-  flex: 1;
+  flex: 1 1 calc(33.333% - 30px);
   margin: 10px;
   text-align: center;
-  border-right: 1px solid rgba(255, 255, 255, 0.2); /* Garis pemisah */
-  transition: transform 0.3s ease-in-out;
-}
-
-footer .footer-section:last-child {
-  border-right: none; /* Hilangkan garis di bagian terakhir */
+  border-radius: 10px;
+  padding: 15px;
+  background: #A8E6A3; /* Light Green Pastel */
+  color: #3ba55d; /* Green text for footer section */
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 
 footer .footer-section:hover {
-  transform: scale(1.05); /* Efek zoom saat hover */
+  transform: translateY(-10px);
+  background: #e6ffe6; /* Lighter green on hover */
 }
 
 footer .footer-section h2 {
-  margin-bottom: 20px;
-  color: white; /* Warna asli */
+  margin-bottom: 15px;
+  color: #2e8b57; /* Darker green for section headers */
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 footer .footer-section p {
-  line-height: 1.6;
+  font-size: 14px;
+  color: #333333; /* Dark grey for paragraph text */
 }
 
 footer .footer-nav a {
-  color: white; /* Warna asli */
+  color: #3ba55d; /* Green for links */
   text-decoration: none;
   margin: 0 10px;
   font-size: 16px;
-  font-family: 'Times New Roman', Times, serif;
   display: inline-block;
   transition: transform 0.3s ease, color 0.3s;
 }
 
 footer .footer-nav a:hover {
-  transform: scale(1.1); /* Sedikit membesarkan tautan */
+  transform: scale(1.1);
+  color: #2e8b57; /* Darker green for hover effect */
 }
 
 footer .footer-nav a i {
-  margin-right: 5px; /* Jarak antara ikon dan teks */
+  margin-right: 5px;
 }
 
 footer .active {
-  text-decoration: none;
-  font-size: 16px;
-  font-family: 'Times New Roman', Times, serif;
-  color: white; /* Warna asli */
-}
-
-footer .active:hover {
-  background-color: rgba(255, 255, 255, 0.2); /* Latar belakang transparan */
-}
-
-footer .home {
-  text-decoration: none;
-  font-size: 16px;
-  font-family: 'Times New Roman', Times, serif;
-  color: white; /* Warna asli */
+  font-weight: bold;
+  color: #2e8b57; /* Darker green for active links */
 }
 
 footer .home:hover {
-  background-color: rgba(255, 255, 255, 0.2); /* Latar belakang transparan */
+  color: #3ba55d; /* Green hover effect for home link */
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+}
+
+footer ul li {
+  margin: 10px 0;
+}
+
+footer ul li a {
+  color: #3ba55d; /* Green for list links */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer ul li a:hover {
+  color: #2e8b57; /* Darker green on hover */
+}
+
+footer h2 {
+  font-size: 1rem;
+  margin-top: 30px;
+  text-align: center;
+  color: #333333; /* Dark grey for copyright text */
 }
 
 
@@ -809,7 +833,7 @@ iframe {
   display: inline-block;
   margin-top: 20px;
   padding: 10px 20px;
-  background-color: #007BFF;
+  background-color: #4CAF50;
   color: white;
   text-decoration: none;
   border-radius: 4px;
@@ -818,5 +842,235 @@ iframe {
 }
 
 .back-button:hover {
-  background-color: #0056b3;
+  background-color: #4CAF50;
+}
+/* Style khusus untuk Login Page */
+.login-page {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Mengatur agar elemen-elemen disusun secara vertikal */
+  height: 100vh;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+.login-page h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.login-page form {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-page input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.login-page button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.login-page button:hover {
+  background-color: #4CAF50;
+}
+
+.login-page p {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-page a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+/* Styles for the Register Page */
+.register-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f4f4f9;
+}
+
+.register-page h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.register-page form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.register-page form label {
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.register-page form input {
+  padding: 10px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.register-page form input:focus {
+  outline: none;
+  border-color: #4CAF50
+}
+
+.register-page form button {
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.register-page form button:hover {
+  background-color: #4CAF50;
+}
+
+.register-page p {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.register-page p a {
+  color: #4CAF50;
+  text-decoration: none;
+}
+
+.register-page p a:hover {
+  text-decoration: underline;
+}
+
+
+#login-restricted-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgba(0, 128, 0, 0.7); /* Latar belakang hijau semi-transparan */
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Efek bayangan untuk kedalaman */
+}
+
+#login-restricted-message h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+#login-restricted-message a {
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px 20px;
+  background-color: #28a745; /* Warna hijau terang */
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Efek bayangan pada tombol */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#login-restricted-message a:hover {
+  background-color: #218838; /* Warna hijau yang lebih gelap saat hover */
+  transform: translateY(-2px); /* Efek angkat tombol sedikit saat hover */
+}
+
+#login-restricted-message a:active {
+  background-color: #1e7e34; /* Warna hijau lebih gelap saat ditekan */
+  transform: translateY(0); /* Mengembalikan tombol ke posisi semula saat ditekan */
+}
+
+/* Styling dasar tombol logout */
+
+#logout-button {
+  background-color: #4CAF50; /* Warna latar belakang */
+  color: #ffffff; /* Warna teks */
+  font-size: 16px; /* Ukuran font */
+  padding: 10px 20px; /* Padding untuk memberi ruang di dalam tombol */
+  border: none; /* Menghapus border default */
+  border-radius: 5px; /* Membuat sudut tombol lebih bulat */
+  cursor: pointer; /* Menambahkan kursor pointer saat hover */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Efek transisi */
+  font-weight: bold; /* Menebalkan teks */
+  margin: 10px; /* Menambahkan margin di sekitar tombol */
+}
+
+/* Efek hover */
+#logout-button:hover {
+  background-color: #4CAF50; /* Ganti warna latar belakang saat hover */
+  transform: scale(1.05); /* Memberikan efek pembesaran tombol saat hover */
+}
+
+/* Efek focus */
+#logout-button:focus {
+  outline: none; /* Menghilangkan outline default */
+  box-shadow: 0 0 5px rgba(255, 99, 71, 0.8); /* Menambahkan efek fokus dengan shadow */
+}
+
+/* Efek saat tombol ditekan */
+#logout-button:active {
+  background-color: #4CAF50; /* Ganti warna latar belakang saat tombol ditekan */
+  transform: scale(0.98); /* Menyusutkan tombol sedikit saat ditekan */
+}
+
+/* Animasi tombol saat dimuat */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+#logout-button {
+  animation: fadeIn 0.5s ease-out;
 }

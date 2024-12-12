@@ -138,20 +138,36 @@
   }
 }
 
-/* Responsive Design */
+/* Media Queries for Responsiveness */
 @media (max-width: 768px) {
   footer .footer-content {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   footer .footer-section {
-      margin: 10px 0;
-      text-align: center;
-      border-right: none; /* Hilangkan garis di layar kecil */
+    flex: 1 1 100%;
+    margin: 10px 0;
   }
 }
 
+@media (max-width: 480px) {
+  footer {
+    padding: 15px;
+  }
+
+  footer .footer-section h2 {
+    font-size: 1.2rem;
+  }
+
+  footer .footer-section p {
+    font-size: 12px;
+  }
+
+  footer ul li a {
+    font-size: 14px;
+  }
+}
 /* DESA WISATA */
 @media (max-width: 768px) {
   .desawisata-list {
