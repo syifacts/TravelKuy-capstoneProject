@@ -18,74 +18,91 @@ const SavedDataPage = {
   async afterRender() {
     const agrowisataList = document.getElementById('agrowisata-list');
     const userId = this.getUserIdFromToken();
-  
+
     if (!userId) {
       agrowisataList.innerHTML = `<li>Anda belum login.</li>`;
       return;
     }
-  
+
     try {
       const savedData = await SavedAgrowisataIdb.getAllAgrowisata(userId);
-  
+
       if (savedData.length === 0) {
         agrowisataList.innerHTML = `<li>Belum ada agrowisata yang tersimpan.</li>`;
         return;
       }
-  
+
+      // Ambil daftar ID agrowisata yang sudah tersimpan di localStorage
+      const savedAgrowisataIds = JSON.parse(localStorage.getItem('savedAgrowisataIds')) || [];
+
       savedData.forEach((data) => {
         const listItem = document.createElement('li');
         listItem.className = 'agrowisata-item';
-  
-        // Pengecekan apakah data sudah tersimpan oleh user
+
         const isDataSavedByUser = data.userIds.includes(userId);
-  
+
         listItem.innerHTML = `
           <h2>${data.name}</h2>
           <p><img src="${data.urlimg}" alt="${data.name}" class="agrowisata-img"></p>
           <p><strong>Lokasi:</strong> ${data.location}</p>
           <p><strong>URL Maps:</strong> <a href="${data.urlmaps}" target="_blank" rel="noopener noreferrer">Lihat di Maps</a></p>
           <p><strong>Fasilitas:</strong> ${data.fasilitas}</p>
-          <button class="delete-btn">Hapus</button>
-          <button class="save-btn" ${isDataSavedByUser ? 'disabled' : ''}>
-            ${isDataSavedByUser ? 'Tersimpan' : 'Simpan Untuk Saya'}
-          </button>
         `;
-        agrowisataList.appendChild(listItem);
-  
-        const deleteButton = listItem.querySelector('.delete-btn');
+
+        // Tombol hanya ada di halaman Beranda
+        if (!window.location.hash.includes('saved-data-page')) {
+          const saveButton = document.createElement('button');
+          saveButton.className = 'save-btn';
+
+          // Periksa apakah agrowisata sudah tersimpan oleh user berdasarkan localStorage
+          if (savedAgrowisataIds.includes(data._id) || isDataSavedByUser) {
+            saveButton.disabled = true;
+            saveButton.textContent = 'Tersimpan';
+          } else {
+            saveButton.disabled = false;
+            saveButton.textContent = 'Simpan Untuk Saya';
+          }
+
+          listItem.appendChild(saveButton);
+
+          saveButton.addEventListener('click', () => {
+            this.saveAgrowisataForUser(data, userId, saveButton);
+          });
+        }
+
+        const deleteButton = document.createElement('button');
+        deleteButton.className = 'delete-btn';
+        deleteButton.textContent = 'Hapus';
+        listItem.appendChild(deleteButton);
+
         deleteButton.addEventListener('click', () => {
           this.deleteAgrowisata(data._id, agrowisataList);
         });
-  
-        const saveButton = listItem.querySelector('.save-btn');
-        saveButton.addEventListener('click', () => {
-          this.saveAgrowisataForUser(data, userId, saveButton);
-        });
+
+        agrowisataList.appendChild(listItem);
       });
     } catch (error) {
       console.error('Error fetching saved agrowisata data:', error);
       agrowisataList.innerHTML = `<li>Terjadi kesalahan saat mengambil data.</li>`;
     }
   },
-  
 
   // Menyimpan data untuk pengguna dan mengganti tombol
   async saveAgrowisataForUser(data, userId, saveButton) {
     try {
+      // Simpan data ke IndexedDB untuk user ini
       await SavedAgrowisataIdb.putAgrowisata(data, userId);
+
+      // Simpan ID agrowisata yang telah disimpan di localStorage
+      const savedAgrowisataIds = JSON.parse(localStorage.getItem('savedAgrowisataIds')) || [];
+      savedAgrowisataIds.push(data._id);
+      localStorage.setItem('savedAgrowisataIds', JSON.stringify(savedAgrowisataIds));
+
+      // Update status tombol menjadi "Tersimpan"
       saveButton.disabled = true;
       saveButton.textContent = 'Tersimpan';
+
       alert("Data berhasil disimpan untuk Anda!");
-      
-      // Pembaruan langsung tampilan tombol tanpa memanggil afterRender
-      const saveButtonParent = saveButton.closest('li');
-      if (saveButtonParent) {
-        const newButton = document.createElement('button');
-        newButton.classList.add('save-btn');
-        newButton.disabled = true;
-        newButton.textContent = 'Tersimpan';
-        saveButtonParent.replaceChild(newButton, saveButton); // Gantikan tombol lama dengan yang baru
-      }
     } catch (error) {
       console.error('Error saving agrowisata data for user:', error);
       alert("Gagal menyimpan data.");
@@ -95,7 +112,7 @@ const SavedDataPage = {
   getUserIdFromToken() {
     const token = localStorage.getItem('token');
     if (!token) return null;
-    
+
     try {
       const decodedToken = jwtDecode(token);
       return decodedToken?.userId || null;
@@ -108,6 +125,8 @@ const SavedDataPage = {
   async deleteAgrowisata(id, container) {
     try {
       await SavedAgrowisataIdb.deleteAgrowisata(id);
+
+      // Perbarui tampilan setelah penghapusan
       container.innerHTML = '';
       await this.afterRender();
       alert("Data berhasil dihapus!");
