@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start-dev": "webpack serve --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "start-dev": "webpack serve --config webpack.dev.js --open",
+    "build": "webpack --config webpack.prod.js",
+     "serve": "http-server dist --port 4000"
   },
   "keywords": [],
   "author": "",
@@ -18,12 +19,14 @@
     "css-loader": "^7.1.2",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.6.3",
+    "http-server": "^14.1.1",
     "mini-css-extract-plugin": "^2.9.2",
     "style-loader": "^4.0.0",
     "webpack": "^5.97.1",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.1.0",
-    "webpack-merge": "^6.0.1"
+    "webpack-merge": "^6.0.1",
+    "workbox-webpack-plugin": "^7.3.0"
   },
   "dependencies": {
     "@hapi/hapi": "^21.3.12",
@@ -35,6 +38,7 @@
     "jwt-decode": "^4.0.0",
     "mongoose": "^8.8.4",
     "node-fetch": "^3.3.2",
-    "regenerator-runtime": "^0.14.1"
+    "regenerator-runtime": "^0.14.1",
+    "workbox-window": "^7.3.0"
   }
 }
