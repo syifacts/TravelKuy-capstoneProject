@@ -1,5 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 
 module.exports = {
@@ -11,13 +12,14 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
+    publicPath: '/',
   },
   module: {
     rules: [
       {
         test: /\.css$/i,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader,
           'css-loader',
         ],
       },
@@ -37,6 +39,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, 'src/templates/index.html'),
+      inject: 'body',
+    }),
+    new MiniCssExtractPlugin({ // Tambahkan ini
+      filename: 'style.css', // Nama file CSS yang dihasilkan
     }),
     new CopyWebpackPlugin({
       patterns: [
