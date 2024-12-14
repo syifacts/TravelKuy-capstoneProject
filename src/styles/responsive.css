@@ -130,13 +130,8 @@
   }
 
   #filter-location {
-      width: 100%;
       margin: 10px 0;
   }
-}
-
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
   footer .footer-content {
     flex-direction: column;
     align-items: center;
@@ -146,27 +141,6 @@
     flex: 1 1 100%;
     margin: 10px 0;
   }
-}
-
-@media (max-width: 480px) {
-  footer {
-    padding: 15px;
-  }
-
-  footer .footer-section h2 {
-    font-size: 1.2rem;
-  }
-
-  footer .footer-section p {
-    font-size: 12px;
-  }
-
-  footer ul li a {
-    font-size: 14px;
-  }
-}
-/* DESA WISATA */
-@media (max-width: 768px) {
   .desawisata-list {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
@@ -191,6 +165,25 @@
     height: 200px;
   }
 }
+
+@media (max-width: 480px) {
+  footer {
+    padding: 15px;
+  }
+
+  footer .footer-section h2 {
+    font-size: 1.2rem;
+  }
+
+  footer .footer-section p {
+    font-size: 12px;
+  }
+
+  footer ul li a {
+    font-size: 14px;
+  }
+}
+
 
 /* Responsif */
 @media (max-width: 600px) {

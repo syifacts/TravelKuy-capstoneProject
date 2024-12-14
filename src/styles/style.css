@@ -539,6 +539,12 @@ h2 {
   border-radius: 5px;
 }
 
+label[for="filter-location"] {
+  font-size: 14px; /* Ukuran font label lebih kecil di layar kecil */
+  display: block; /* Pastikan label ada di atas dropdown */
+  margin-bottom: 5px; /* Beri jarak kecil antara label dan dropdown */
+}
+
 /* Agrowisata List */
 .agrowisata-list {
   list-style-type: none;
