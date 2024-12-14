@@ -914,6 +914,49 @@ iframe {
   text-decoration: none;
 }
 
+/* Popup container */
+.popup {
+  display: none; /* Popup tidak terlihat saat dimuat */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.8); /* Latar belakang gelap */
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 80%;
+  z-index: 1000;
+}
+
+/* Popup sukses */
+.popup-success {
+  background-color: #4caf50; /* Hijau untuk sukses */
+}
+
+/* Popup error */
+.popup-error {
+  background-color: #f44336; /* Merah untuk error */
+}
+
+/* Tombol tutup */
+.popup button {
+  background-color: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 10px;
+  margin-top: 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.popup button:hover {
+  background-color: white;
+  color: black;
+}
+
+
 /* Styles for the Register Page */
 .register-page {
   display: flex;

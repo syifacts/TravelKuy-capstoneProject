@@ -10,6 +10,18 @@ const LoginPage = {
         </form>
         <p>Belum punya akun? <a href="#/register">Register</a></p>
       </div>
+      
+      <!-- Popup Success -->
+      <div class="popup popup-success" id="popup-success" style="display:none;">
+        <p id="popup-message"></p>
+        <button id="close-success-popup">Tutup</button>
+      </div>
+
+      <!-- Popup Error -->
+      <div class="popup popup-error" id="popup-error" style="display:none;">
+        <p id="popup-message-error"></p>
+        <button id="close-error-popup">Tutup</button>
+      </div>
     `;
   },
 
@@ -17,7 +29,6 @@ const LoginPage = {
     const token = localStorage.getItem('token');
 
     if (token) {
-      // Jika pengguna sudah login, arahkan langsung ke halaman home
       window.location.hash = '/';
       return;
     }
@@ -29,7 +40,7 @@ const LoginPage = {
       const password = document.getElementById('login-password')?.value;
 
       if (!username || !password) {
-        alert('Harap isi semua kolom!');
+        this.showPopup('error', 'Harap isi semua kolom!');
         return;
       }
 
@@ -40,24 +51,47 @@ const LoginPage = {
           body: JSON.stringify({ username, password }),
         });
 
-        const data = await response.json(); // Parse respons
+        const data = await response.json();
 
         if (response.ok && data.accessToken) {
-          // Validasi bahwa `accessToken` ada
-          alert(`Login sukses! Selamat datang, ${data.username}`);
-          localStorage.setItem('token', data.accessToken); // Simpan token
-          localStorage.setItem('refreshToken', data.refreshToken); // Simpan refresh token
+          this.showPopup('success', `Login sukses! Selamat datang, ${data.username}`);
+          localStorage.setItem('token', data.accessToken);
+          localStorage.setItem('refreshToken', data.refreshToken);
           localStorage.setItem('userId', data.userId);
-          localStorage.setItem('userName', data.username); // Simpan nama pengguna
-          window.location.hash = '/'; // Redirect ke halaman utama setelah login
+          localStorage.setItem('userName', data.username);
+
+          // Menambahkan delay sebelum redirect ke halaman home
+          setTimeout(() => {
+            window.location.hash = '/';
+          }, 2000); // 2000 ms = 2 detik
         } else {
-          alert(`Login gagal: ${data.message || 'Periksa username dan password Anda.'}`);
+          this.showPopup('error', `Login failed: error in username or password. Please try again.`);
         }
       } catch (error) {
-        alert('Terjadi kesalahan saat login. Coba lagi nanti.');
+        this.showPopup('error', 'Terjadi kesalahan saat login. Coba lagi nanti.');
         console.error('Login error:', error);
       }
     });
+
+    // Attach global functions for popup close
+    window.closePopup = this.closePopup;
+
+    // Event listener untuk menutup popup saat tombol "Tutup" diklik
+    document.getElementById('close-success-popup')?.addEventListener('click', this.closePopup);
+    document.getElementById('close-error-popup')?.addEventListener('click', this.closePopup);
+  },
+
+  showPopup(type, message) {
+    const popup = type === 'success' ? document.getElementById('popup-success') : document.getElementById('popup-error');
+    const popupMessage = type === 'success' ? document.getElementById('popup-message') : document.getElementById('popup-message-error');
+    
+    popupMessage.textContent = message;
+    popup.style.display = 'block'; // Show the popup
+  },
+
+  closePopup() {
+    const popups = document.querySelectorAll('.popup');
+    popups.forEach(popup => popup.style.display = 'none');
   },
 };
 
