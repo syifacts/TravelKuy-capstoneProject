@@ -11,6 +11,18 @@ const RegisterPage = {
         </form>
         <p>Sudah punya akun? <a href="#/login">Login</a></p>
       </div>
+
+      <!-- Popup Success -->
+      <div class="popup popup-registration-success" id="popup-registration-success" style="display:none;">
+        <p id="popup-message-success"></p>
+        <button id="close-registration-success-popup">Tutup</button>
+      </div>
+
+      <!-- Popup Error -->
+      <div class="popup popup-registration-error" id="popup-registration-error" style="display:none;">
+        <p id="popup-message-error"></p>
+        <button id="close-registration-error-popup">Tutup</button>
+      </div>
     `;
   },
 
@@ -29,12 +41,31 @@ const RegisterPage = {
       });
 
       if (response.ok) {
-        alert('Register sukses! Silakan login.');
-        window.location.hash = '/login'; // Redirect ke halaman login
+        this.showPopup('success', 'Registration successful! Please login.');
+        setTimeout(() => {
+          window.location.hash = '/login'; // Redirect ke halaman login setelah 3 detik
+        }, 3000);
       } else {
-        alert('Register gagal, coba lagi.');
+        this.showPopup('error', 'Registration failed, please try again with another new username.');
       }
     });
+
+    // Event listener untuk menutup popup saat tombol "Tutup" diklik
+    document.getElementById('close-registration-success-popup')?.addEventListener('click', this.closePopup);
+    document.getElementById('close-registration-error-popup')?.addEventListener('click', this.closePopup);
+  },
+
+  showPopup(type, message) {
+    const popup = type === 'success' ? document.getElementById('popup-registration-success') : document.getElementById('popup-registration-error');
+    const popupMessage = type === 'success' ? document.getElementById('popup-message-success') : document.getElementById('popup-message-error');
+    
+    popupMessage.textContent = message;
+    popup.style.display = 'block'; // Show the popup
+  },
+
+  closePopup() {
+    const popups = document.querySelectorAll('.popup');
+    popups.forEach(popup => popup.style.display = 'none');
   },
 };
 

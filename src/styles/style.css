@@ -1034,6 +1034,66 @@ iframe {
   text-decoration: underline;
 }
 
+/* Pop-up registration success */
+.popup-registration-success {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #28a745;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  z-index: 9999;
+  width: 80%;
+  max-width: 400px;
+}
+
+.popup-registration-success > p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.popup-registration-success button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Pop-up registration error */
+.popup-registration-error {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #dc3545;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  z-index: 9999;
+  width: 80%;
+  max-width: 400px;
+}
+
+.popup-registration-error > p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.popup-registration-error button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 
 #login-restricted-message {
   display: flex;
