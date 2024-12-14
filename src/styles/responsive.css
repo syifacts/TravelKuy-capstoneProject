@@ -152,18 +152,40 @@
   .desawisata-item p {
     font-size: 0.9rem;
   }
-
-  .video-container iframe {
-    height: 200px;
+  .detail-container {
+    padding: 15px;
   }
 
-  .detail-image {
-    height: 250px;
+  .detail-container h2 {
+    font-size: 1.5rem;
   }
 
-  iframe {
-    height: 200px;
+  .detail-container p {
+    font-size: 0.9rem;
   }
+
+  .back-button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+
+  /* Memperkecil ukuran gambar pada perangkat lebih kecil */
+  .detail-container img {
+    max-width: 90%; /* Mengurangi ukuran gambar pada perangkat kecil */
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* Mengatur ukuran video pada perangkat lebih kecil */
+  .detail-container .video-container iframe {
+    height: 300px;  /* Menyesuaikan tinggi video pada layar yang lebih kecil */
+  }
+  .detail-container img {
+    max-width: 80%; /* Mengatur lebar gambar di desktop */
+    max-height: 500px; /* Membatasi tinggi gambar */
+    object-fit: contain; /* Memastikan gambar tetap proporsional */
+  }
+
 }
 
 @media (max-width: 480px) {
@@ -181,6 +203,30 @@
 
   footer ul li a {
     font-size: 14px;
+  }
+  .detail-container h2 {
+    font-size: 1.25rem;
+  }
+
+  .detail-container p {
+    font-size: 0.85rem;
+  }
+
+  .back-button {
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
+
+  /* Mengatur gambar lebih responsif pada layar kecil */
+  .detail-container img {
+    max-width: 100%;  /* Membuat gambar lebih lebar pada layar kecil */
+    height: auto;
+    object-fit: contain;
+  }
+
+  /* Mengatur ukuran video lebih kecil pada layar kecil */
+  .detail-container .video-container iframe {
+    height: 250px;  /* Ukuran video lebih kecil */
   }
 }
 
@@ -204,5 +250,3 @@
     width: 80%; /* Modal akan mengisi 80% dari lebar layar pada perangkat kecil */
   }
 }
-
-
