@@ -86,14 +86,18 @@ class App {
     const token = localStorage.getItem('token');
     const userName = localStorage.getItem('userName');
 
+  // Jika pengguna mencoba mengakses halaman yang dilindungi dan belum login atau token tidak valid
     if (restrictedPages.includes(url) && (!token || !userName || !this.isTokenValid(token))) {
-      this._content.innerHTML = `
-        <h2>Anda harus login untuk mengakses halaman ini.</h2>
-        <a href="#/login">Login</a>
-      `;
+      this._content.innerHTML = ` 
+        <div id="login-restricted-message">
+          <div>
+            <h2>Anda harus login untuk mengakses halaman ini.</h2>
+            <a href="#/login">Login</a>
+          </div>
+        </div>`;
       return;
     }
-
+    
     if (page && typeof page.render === 'function') {
       this._content.innerHTML = await page.render();
       await page.afterRender();
