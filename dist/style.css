@@ -992,7 +992,7 @@ iframe {
   align-items: center;
   height: 50vh;
   width: 100%; /* Pastikan lebar sesuai dengan layar */
-  background-image: url(/assets/images/agrowisata.jpeg);
+  background-image: url(/assets/images/agro.jpg);
   background-size: cover; /* Membuat gambar menutupi seluruh area tanpa distorsi */
   background-position: center; /* Memastikan gambar tetap terpusat */
   color: #fff;
@@ -1015,7 +1015,7 @@ iframe {
 
 #login-restricted-message a {
   display: inline-block;
-  background: #f39c12;
+  background: #4CAF50;
   color: #fff;
   font-size: 18px;
   padding: 12px 20px;
@@ -1079,6 +1079,7 @@ iframe {
   animation: fadeIn 0.5s ease-out;
 }
 
+
 @media screen and (min-width: 600px) {
   .travelkuy {
     grid-template-columns: repeat(2, 1fr); /* Two columns on small tablets */
@@ -1090,6 +1091,9 @@ iframe {
 
   .travelkuy-item_penjelasan {
     font-size: 1.125em; /* Slightly larger for tablets */
+  }
+  .video-container {
+    padding-bottom: 75%; /* Mengubah rasio menjadi 4:3 pada layar kecil */
   }
 }
 
@@ -1183,12 +1187,6 @@ iframe {
 @media screen and (min-width: 1600px) {
   .wisata {
       grid-template-columns: repeat(5, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .video-container {
-    padding-bottom: 75%; /* Mengubah rasio menjadi 4:3 pada layar kecil */
   }
 }
 
@@ -1291,7 +1289,12 @@ iframe {
     font-size: 16px;
     padding: 10px 18px;
   }
+  .modal-content {
+    width: 80%; /* Modal akan mengisi 80% dari lebar layar pada perangkat kecil */
+  }
 }
+
+
 
 
 /*# sourceMappingURL=style.css.map*/
