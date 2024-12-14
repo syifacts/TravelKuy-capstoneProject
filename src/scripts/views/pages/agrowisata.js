@@ -21,6 +21,30 @@ const Agrowisata = {
         }
     },
 
+    // Menampilkan pop-up dengan pesan
+    showPopupAgrowisata(message) {
+        const popupAgrowisata = document.createElement('div');
+        popupAgrowisata.className = 'popup-agrowisata';
+        popupAgrowisata.innerHTML = `
+            <div class="popup-content">${message}</div>
+            <button class="close-btn">Tutup</button>
+        `;
+        
+        document.body.appendChild(popupAgrowisata);
+
+        const closePopupAgrowisata = () => {
+            popupAgrowisata.classList.remove('show');
+            popupAgrowisata.remove();
+        };
+
+        popupAgrowisata.querySelector('.close-btn').addEventListener('click', closePopupAgrowisata);
+        
+        popupAgrowisata.classList.add('show');
+        
+        // Menutup pop-up secara otomatis setelah 3 detik
+        setTimeout(closePopupAgrowisata, 3000);
+    },
+
     async render() {
         return `
             <nav>
@@ -154,36 +178,45 @@ const Agrowisata = {
     async saveAgrowisata(agrowisata, button) {
         const userId = this.getUserIdFromToken(); // Mendapatkan userId dari token
         if (!userId) {
-            alert('Anda belum login. Tidak dapat menyimpan data.');
+            this.showPopupAgrowisata('Anda belum login. Tidak dapat menyimpan data.');
             return;
         }
       
         try {
-          // Simpan ke IndexedDB dengan menambahkan userId
-          await SavedAgrowisataIdb.putAgrowisata(agrowisata, userId); 
-          
-          alert(`Data "${agrowisata.name}" berhasil disimpan!`);
-          button.textContent = 'Tersimpan';
-          button.disabled = true;
+            // Simpan ke IndexedDB dengan menambahkan userId
+            await SavedAgrowisataIdb.putAgrowisata(agrowisata, userId); 
+            
+            this.showPopupAgrowisata(`Data "${agrowisata.name}" berhasil disimpan!`);
+            button.textContent = 'Tersimpan';
+            button.disabled = true;
         } catch (error) {
-          console.error("Error saving agrowisata:", error);
+            console.error("Error saving agrowisata:", error);
         }
     },
-      
-    filterDataByLocation(records, selectedLocation) {
-        if (!selectedLocation) return records;
 
-        const normalizedLocation = selectedLocation.trim().toLowerCase();
-
-        if (normalizedLocation === "wilayah lainnya") {
-            return records.filter(record => {
-                const excludedLocations = ["jakarta timur", "jakarta barat", "jakarta utara", "jakarta selatan", "jakarta pusat"];
-                return !excludedLocations.some(location => record.location.toLowerCase().includes(location));
-            });
+    async removeAgrowisata(agrowisata, button) {
+        const userId = this.getUserIdFromToken(); // Mendapatkan userId dari token
+        if (!userId) {
+            this.showPopupAgrowisata('Anda belum login. Tidak dapat menghapus data.');
+            return;
         }
 
-        return records.filter(record => record.location.toLowerCase().includes(normalizedLocation));
+        try {
+            // Menghapus dari IndexedDB berdasarkan userId
+            await SavedAgrowisataIdb.deleteAgrowisata(agrowisata._id, userId);
+
+            this.showPopupAgrowisata(`Data "${agrowisata.name}" berhasil dihapus!`);
+            button.textContent = 'Simpan';
+            button.disabled = false;
+        } catch (error) {
+            console.error("Error removing agrowisata:", error);
+        }
     },
+
+    filterDataByLocation(data, location) {
+        if (!location) return data;
+        return data.filter(item => item.location === location);
+    }
 };
 
 export default Agrowisata;
