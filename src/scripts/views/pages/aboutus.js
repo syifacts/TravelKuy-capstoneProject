@@ -4,7 +4,7 @@ const aboutus = {
         <h2>About Us</h2>
         <div class="aboutus-description">
             <img src="icons/icon.png" alt="TravelKuy Logo" class="aboutus-logo">
-            <p><strong>TravelKuy</strong> adalah platform yang menghubungkan wisatawan dengan destinasi agrowisata dan desa wisata, memberikan informasi lengkap mengenai tempat wisata, dan memudahkan pengunjung untuk menemukan lokasi wisata yang sesuai dengan preferensi mereka. Kami menyediakan berbagai fitur untuk membantu wisatawan merencanakan perjalanan mereka dengan lebih mudah dan menyenankan.</p>
+            <p><strong>TravelKuy</strong> adalah platform yang menghubungkan wisatawan dengan destinasi agrowisata dan desa wisata, memberikan informasi lengkap mengenai tempat wisata, dan memudahkan pengunjung untuk menemukan lokasi wisata yang sesuai dengan preferensi mereka. Kami menyediakan berbagai fitur untuk membantu wisatawan merencanakan perjalanan mereka dengan lebih mudah dan menyenangkan.</p>
         </div>
         <div class="team-container">
             <div class="team-member">
