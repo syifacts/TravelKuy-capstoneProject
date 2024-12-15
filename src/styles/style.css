@@ -668,7 +668,7 @@ label[for="filter-location"] {
 }
 
 .agrowisata-item h2 {
-  font-size: 4px;
+  font-size: 18px;
   color: #333;
   margin-bottom: 10px;
 }
@@ -996,7 +996,7 @@ nav a.active {
 
 /* Judul dan teks dalam card */
 .desawisata-item h2 {
-  font-size: 12px;
+  font-size: 20px;
   padding: 16px;
   color: #333;
 }
