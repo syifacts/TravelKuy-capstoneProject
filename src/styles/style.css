@@ -668,7 +668,11 @@ label[for="filter-location"] {
 }
 
 .agrowisata-item h2 {
+<<<<<<< HEAD
   font-size: 18px;
+=======
+  font-size: 16px;
+>>>>>>> 1d7adb10c31f48a00fd8d3e93e3daf43ffe59a63
   color: #333;
   margin-bottom: 10px;
 }
