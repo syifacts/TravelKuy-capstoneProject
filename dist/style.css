@@ -2,21 +2,20 @@
   padding: 0;
   margin: 0;
 }
- 
+
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background-color: white;
   font-size: large;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
- 
- 
+
 /*
   AppBar
 */
- 
+
 .app-bar {
   padding: 8px 16px;
   background-color: white;
@@ -28,12 +27,12 @@ body {
   z-index: 99;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
- 
+
 .app-bar .app-bar__menu {
   display: flex;
   align-items: center;
 }
- 
+
 .app-bar .app-bar__menu button {
   background-color: transparent;
   border: none;
@@ -41,19 +40,19 @@ body {
   padding: 8px;
   cursor: pointer;
 }
- 
+
 .app-bar .app-bar__brand {
   display: flex;
   align-items: center;
 }
- 
+
 .app-bar .app-bar__brand h1 {
   color: green;
   text-transform: uppercase;
   font-size: 22px;
   user-select: none;
 }
- 
+
 .app-bar .app-bar__navigation {
   position: absolute;
   top: 50px;
@@ -65,11 +64,11 @@ body {
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
- 
+
 .app-bar .app-bar__navigation.open {
   left: 0;
 }
- 
+
 .app-bar .app-bar__navigation ul li a {
   display: inline-block;
   text-decoration: none;
@@ -83,11 +82,12 @@ body {
   background: gray;
   color: white;
   border-radius: 10px;
-  transform: scale(1.05); 
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Hero Section */
+
 .hero {
   display: flex;
   align-items: center;
@@ -105,18 +105,18 @@ body {
   padding: 2em;
 }
 
-.hero-title{
+.hero-title {
   font-size: 40px;
   color: #03ab0f;
   text-transform: uppercase;
-  text-shadow:0 2px 4px rgba(0, 0, 0, 0.158);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.158);
 }
 
-.hero-desc{
+.hero-desc {
   font-size: 20px;
   color: #2c3e50;
   text-transform: capitalize;
-  text-shadow:0 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .hero-button {
@@ -136,9 +136,9 @@ body {
   color: white;
 }
 
-.transparent-box{
+.transparent-box {
   background-color: rgba(255, 255, 255, 0.5);
-  padding: 35px 50px; 
+  padding: 35px 50px;
   border-radius: 30px;
 }
 
@@ -159,62 +159,70 @@ body {
 }
 
 .travelkuy-item:hover {
-  transform: scale(1.05); 
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .travelkuy-item:hover {
-  transform: scale(1.05); 
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .travelkuy-item_gambar {
   object-fit: cover;
-  width: 100%; /* Full width image */
-  height: 200px; /* Maintain aspect ratio */
+  width: 100%;
+  /* Full width image */
+  height: 200px;
+  /* Maintain aspect ratio */
 }
 
 .travelkuy-item_isi {
-  padding: 10px 15px; /* Adjust padding for mobile */
+  padding: 10px 15px;
+  /* Adjust padding for mobile */
 }
 
 .travelkuy-item_judul {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   text-transform: uppercase;
-  font-size: 1.5em; /* Use relative units */
-  font-weight: 400; /* Adjust weight for better readability */
+  font-size: 1.5em;
+  /* Use relative units */
+  font-weight: 400;
+  /* Adjust weight for better readability */
   margin: 5px 0;
   color: #03ab0f;
 }
 
 .travelkuy-item_penjelasan {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1em; /* Base font size for mobile devices */
+  font-family: "Poppins", sans-serif;
+  font-size: 1em;
+  /* Base font size for mobile devices */
   color: black;
-  line-height: 1.5; /* Improved readability */
+  line-height: 1.5;
+  /* Improved readability */
 }
-  /*
+
+/*
     Main Content
   */
-   
-  main {
-    padding: 32px;
-    flex: 1;
-  }
-   
-  .content {
-    margin: 0 auto;
-    min-height: 100%;
-  }
-   
-  .content .content__heading {
-    font-weight: normal;
-  }
 
-  /*
+main {
+  padding: 32px;
+  flex: 1;
+}
+
+.content {
+  margin: 0 auto;
+  min-height: 100%;
+}
+
+.content .content__heading {
+  font-weight: normal;
+}
+
+/*
   wisata
 */
- 
+
 .wisata {
   display: grid;
   grid-template-columns: 1fr;
@@ -256,15 +264,19 @@ body {
 }
 
 .responsive-image {
-  width: 50%; /* Perkecil lebar gambar */
-  max-width: 300px; /* Atur batas maksimal agar tidak terlalu besar di layar lebar */
+  width: 50%;
+  /* Perkecil lebar gambar */
+  max-width: 300px;
+  /* Atur batas maksimal agar tidak terlalu besar di layar lebar */
   height: auto;
-  border-radius: 15px; /* Membuat sisi melengkung */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tambahan bayangan opsional */
+  border-radius: 15px;
+  /* Membuat sisi melengkung */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Tambahan bayangan opsional */
 }
- 
 
 /* Gaya untuk tombol pagination */
+
 #pagination-container button {
   background-color: #007bff;
   color: white;
@@ -277,37 +289,43 @@ body {
 }
 
 /* Efek hover pada tombol pagination */
+
 #pagination-container button:hover {
   background-color: #0056b3;
 }
 
 /* Menyembunyikan pagination jika tidak diperlukan */
+
 #pagination-container[style="display: none;"] {
   display: none;
 }
 
-  /*
+/*
   Footer
 */
- 
+
 /* Footer Styles */
+
 footer {
   padding: 20px;
   background: linear-gradient(135deg, #3ba55d, #a8e6a3);
-  color: #ffffff; /* White for main text */
+  color: #ffffff;
+  /* White for main text */
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 footer p {
   text-align: center;
   margin-top: 20px;
   line-height: 1.6;
-  color: #333333; /* Dark grey for better readability */
+  color: #333333;
+  /* Dark grey for better readability */
 }
 
 footer p a {
-  color: #333333; /* Dark grey for link text */
+  color: #333333;
+  /* Dark grey for link text */
   text-decoration: none;
   font-size: 16px;
   transition: color 0.3s ease, text-decoration 0.3s ease;
@@ -315,7 +333,8 @@ footer p a {
 
 footer p a:hover {
   text-decoration: underline;
-  color: #3ba55d; /* Green for hover effect */
+  color: #3ba55d;
+  /* Green for hover effect */
 }
 
 footer .footer-content {
@@ -332,20 +351,24 @@ footer .footer-section {
   text-align: center;
   border-radius: 10px;
   padding: 15px;
-  background: #A8E6A3; /* Light Green Pastel */
-  color: #3ba55d; /* Green text for footer section */
+  background: #a8e6a3;
+  /* Light Green Pastel */
+  color: #3ba55d;
+  /* Green text for footer section */
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, background 0.3s ease;
 }
 
 footer .footer-section:hover {
   transform: translateY(-10px);
-  background: #e6ffe6; /* Lighter green on hover */
+  background: #e6ffe6;
+  /* Lighter green on hover */
 }
 
 footer .footer-section h2 {
   margin-bottom: 15px;
-  color: #2e8b57; /* Darker green for section headers */
+  color: #2e8b57;
+  /* Darker green for section headers */
   font-size: 1.5rem;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -353,11 +376,13 @@ footer .footer-section h2 {
 
 footer .footer-section p {
   font-size: 14px;
-  color: #333333; /* Dark grey for paragraph text */
+  color: #333333;
+  /* Dark grey for paragraph text */
 }
 
 footer .footer-nav a {
-  color: #3ba55d; /* Green for links */
+  color: #3ba55d;
+  /* Green for links */
   text-decoration: none;
   margin: 0 10px;
   font-size: 16px;
@@ -367,7 +392,8 @@ footer .footer-nav a {
 
 footer .footer-nav a:hover {
   transform: scale(1.1);
-  color: #2e8b57; /* Darker green for hover effect */
+  color: #2e8b57;
+  /* Darker green for hover effect */
 }
 
 footer .footer-nav a i {
@@ -376,11 +402,13 @@ footer .footer-nav a i {
 
 footer .active {
   font-weight: bold;
-  color: #2e8b57; /* Darker green for active links */
+  color: #2e8b57;
+  /* Darker green for active links */
 }
 
 footer .home:hover {
-  color: #3ba55d; /* Green hover effect for home link */
+  color: #3ba55d;
+  /* Green hover effect for home link */
 }
 
 footer ul {
@@ -394,82 +422,85 @@ footer ul li {
 }
 
 footer ul li a {
-  color: #3ba55d; /* Green for list links */
+  color: #3ba55d;
+  /* Green for list links */
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 footer ul li a:hover {
-  color: #2e8b57; /* Darker green on hover */
+  color: #2e8b57;
+  /* Darker green on hover */
 }
 
 footer h2 {
   font-size: 1rem;
   margin-top: 30px;
   text-align: center;
-  color: #333333; /* Dark grey for copyright text */
+  color: #333333;
+  /* Dark grey for copyright text */
 }
 
-
 h2 {
-    text-align: center;
-    margin-bottom: 1em;
-    font-size: 2em;
-    color: #ffffff;
+  text-align: center;
+  margin-bottom: 1em;
+  font-size: 2em;
+  color: #ffffff;
 }
 
 .team-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2em;
 }
 
 .team-member {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 1.5em;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 250px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1.5em;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 250px;
 }
 
 .team-member:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .team-member img {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    margin-bottom: 1em;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-bottom: 1em;
 }
 
 .team-member h3 {
-    margin: 0.5em 0 0.2em;
-    font-size: 1.25em;
-    color: #333;
+  margin: 0.5em 0 0.2em;
+  font-size: 1.25em;
+  color: #333;
 }
 
 .team-member p {
-    margin: 0.2em 0;
-    color: #666;
+  margin: 0.2em 0;
+  color: #666;
 }
 
 .team-member a {
-    margin: 0 0.2em;
+  margin: 0 0.2em;
 }
 
 .team-member a img {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 /* desa wisata */
+
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -529,8 +560,8 @@ h2 {
   background-color: #0056b3;
 }
 
-
 /* Filter section */
+
 #filter-location {
   width: 200px;
   padding: 8px;
@@ -540,30 +571,44 @@ h2 {
 }
 
 label[for="filter-location"] {
-  font-size: 14px; /* Ukuran font label lebih kecil di layar kecil */
-  display: block; /* Pastikan label ada di atas dropdown */
-  margin-bottom: 5px; /* Beri jarak kecil antara label dan dropdown */
+  font-size: 14px;
+  /* Ukuran font label lebih kecil di layar kecil */
+  display: block;
+  /* Pastikan label ada di atas dropdown */
+  margin-bottom: 5px;
+  /* Beri jarak kecil antara label dan dropdown */
 }
+
 /* Tambahkan class untuk container filter */
+
 .filter-container {
   display: flex;
-  justify-content: space-between; /* Menempatkan elemen filter di sisi kiri dan kanan */
-  align-items: center; /* Untuk memastikan keduanya sejajar secara vertikal */
-  margin: 20px 0; /* Jarak antara filter dan daftar */
+  justify-content: space-between;
+  /* Menempatkan elemen filter di sisi kiri dan kanan */
+  align-items: center;
+  /* Untuk memastikan keduanya sejajar secara vertikal */
+  margin: 20px 0;
+  /* Jarak antara filter dan daftar */
 }
 
 /* Posisi filter lokasi di kiri */
+
 #filter-location {
-  order: 1; /* Menempatkan filter lokasi di kiri */
+  order: 1;
+  /* Menempatkan filter lokasi di kiri */
   margin-right: 10px;
 }
 
 /* Posisi search input di kanan */
+
 #search-input {
-  order: 2; /* Menempatkan search di kanan */
+  order: 2;
+  /* Menempatkan search di kanan */
   margin-left: 10px;
 }
+
 /* Filter section */
+
 #filter-location {
   width: 200px;
   padding: 8px;
@@ -573,26 +618,36 @@ label[for="filter-location"] {
 }
 
 label[for="filter-location"] {
-  font-size: 14px; /* Ukuran font label lebih kecil di layar kecil */
-  display: block; /* Pastikan label ada di atas dropdown */
-  margin-bottom: 5px; /* Beri jarak kecil antara label dan dropdown */
+  font-size: 14px;
+  /* Ukuran font label lebih kecil di layar kecil */
+  display: block;
+  /* Pastikan label ada di atas dropdown */
+  margin-bottom: 5px;
+  /* Beri jarak kecil antara label dan dropdown */
 }
 
 /* Container Utama Search */
+
 .search-container {
-  position: absolute; /* Posisi absolut relatif terhadap parent */
-  top: 20px; /* Jarak dari atas */
-  right: 20px; /* Jarak dari kanan */
+  position: absolute;
+  /* Posisi absolut relatif terhadap parent */
+  top: 20px;
+  /* Jarak dari atas */
+  right: 20px;
+  /* Jarak dari kanan */
   display: flex;
   align-items: center;
-  gap: 10px; /* Jarak antar elemen */
+  gap: 10px;
+  /* Jarak antar elemen */
 }
 
 /* Input Search */
+
 #search-input {
-  width: 250px; /* Lebar input */
+  width: 250px;
+  /* Lebar input */
   padding: 10px 15px;
-  border: 2px solid #4CAF50;
+  border: 2px solid #4caf50;
   border-radius: 8px;
   font-size: 1rem;
   outline: none;
@@ -601,10 +656,12 @@ label[for="filter-location"] {
 }
 
 #search-input:focus {
-  border-color: #388E3C;
+  border-color: #388e3c;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
 }
+
 /* Agrowisata List */
+
 .agrowisata-list {
   list-style-type: none;
   padding: 0;
@@ -628,7 +685,7 @@ label[for="filter-location"] {
 }
 
 .agrowisata-item h2 {
-  font-size: 24px;
+  font-size: 1.4rem;
   color: #333;
   margin-bottom: 10px;
 }
@@ -644,11 +701,13 @@ label[for="filter-location"] {
   height: auto;
   border-radius: 5px;
   margin-bottom: 15px;
+  aspect-ratio: 16/9;
+  object-fit: cover;
 }
 
 .agrowisata-item button {
   padding: 10px 15px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
@@ -667,6 +726,7 @@ label[for="filter-location"] {
 }
 
 /* CSS untuk Pop-up */
+
 .popup-agrowisata {
   display: none;
   position: fixed;
@@ -705,8 +765,8 @@ label[for="filter-location"] {
   background-color: #e53935;
 }
 
-
 /* Pagination */
+
 #pagination-controls {
   text-align: center;
   margin-top: 20px;
@@ -715,7 +775,7 @@ label[for="filter-location"] {
 .page-btn {
   padding: 10px 20px;
   margin: 0 5px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
@@ -735,7 +795,9 @@ label[for="filter-location"] {
 .page-btn:focus {
   outline: none;
 }
+
 /* Styling untuk daftar agrowisata tersimpan */
+
 .saved-agrowisata-list {
   list-style-type: none;
   padding: 0;
@@ -766,7 +828,7 @@ label[for="filter-location"] {
 }
 
 .saved-agrowisata-item h2 {
-  font-family: 'Merriweather', serif;
+  font-family: "Merriweather", serif;
   font-size: 1.5rem;
   color: #333;
 }
@@ -798,8 +860,10 @@ label[for="filter-location"] {
 }
 
 /* Popup Styles */
+
 .popup-savedpage {
-  display: none; /* Default: hidden */
+  display: none;
+  /* Default: hidden */
   position: fixed;
   top: 0;
   left: 0;
@@ -822,7 +886,7 @@ label[for="filter-location"] {
 .popup-savedpage button {
   margin-top: 10px;
   padding: 10px 15px;
-  background-color: #007BFF;
+  background-color: #007bff;
   color: white;
   border: none;
   cursor: pointer;
@@ -842,8 +906,10 @@ label[for="filter-location"] {
 }
 
 /* Popup Berhasil Menghapus Data */
+
 .popup-delete-success {
-  display: none; /* Default: hidden */
+  display: none;
+  /* Default: hidden */
   position: fixed;
   top: 0;
   left: 0;
@@ -866,7 +932,7 @@ label[for="filter-location"] {
 .popup-delete-success button {
   margin-top: 10px;
   padding: 10px 15px;
-  background-color: #007BFF;
+  background-color: #007bff;
   color: white;
   border: none;
   cursor: pointer;
@@ -877,8 +943,8 @@ label[for="filter-location"] {
   background-color: #0056b3;
 }
 
-
 /* Styling untuk navigasi */
+
 nav {
   background-color: #333;
   padding: 10px;
@@ -918,11 +984,12 @@ nav a:focus {
 }
 
 nav a.active {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
 
 /* DESA WISATA */
+
 .desawisata-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -932,6 +999,7 @@ nav a.active {
 }
 
 /* Styling untuk setiap card desa wisata */
+
 .desawisata-item {
   background-color: #ffffff;
   border-radius: 8px;
@@ -945,6 +1013,7 @@ nav a.active {
 }
 
 /* Gambar desa dalam card */
+
 .desawisata-img {
   width: 100%;
   height: 200px;
@@ -953,6 +1022,7 @@ nav a.active {
 }
 
 /* Judul dan teks dalam card */
+
 .desawisata-item h2 {
   font-size: 1.6rem;
   padding: 16px;
@@ -970,7 +1040,7 @@ nav a.active {
   display: inline-block;
   margin: 0 16px 16px;
   padding: 8px 16px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: #ffffff;
   text-decoration: none;
   border-radius: 4px;
@@ -986,7 +1056,7 @@ nav a.active {
 
 .detail-desa {
   padding: 20px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .detail-container {
@@ -997,18 +1067,25 @@ nav a.active {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   animation: fadeIn 1s ease-in-out;
-  text-align: center; /* Membuat konten dalam container di tengah */
+  text-align: center;
+  /* Membuat konten dalam container di tengah */
 }
 
 .detail-container img {
-  max-width: 80%; /* Menetapkan lebar maksimal gambar agar tidak memenuhi seluruh konten */
-  max-height: 500px; /* Menetapkan tinggi maksimal gambar */
-  width: auto;      /* Menjaga proporsi gambar */
-  height: auto;     /* Menjaga proporsi gambar */
+  max-width: 80%;
+  /* Menetapkan lebar maksimal gambar agar tidak memenuhi seluruh konten */
+  max-height: 500px;
+  /* Menetapkan tinggi maksimal gambar */
+  width: auto;
+  /* Menjaga proporsi gambar */
+  height: auto;
+  /* Menjaga proporsi gambar */
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  object-fit: contain; /* Mengatur gambar agar tetap proporsional dalam kontainer */
-  margin: 0 auto; /* Memastikan gambar berada di tengah */
+  object-fit: contain;
+  /* Mengatur gambar agar tetap proporsional dalam kontainer */
+  margin: 0 auto;
+  /* Memastikan gambar berada di tengah */
   transition: transform 0.3s ease;
 }
 
@@ -1033,41 +1110,50 @@ nav a.active {
 }
 
 .detail-container .video-container {
-  margin: 0; /* Menghilangkan margin pada video container */
-  padding: 0; /* Menghilangkan padding */
+  margin: 0;
+  /* Menghilangkan margin pada video container */
+  padding: 0;
+  /* Menghilangkan padding */
   text-align: center;
 }
 
 .detail-container .video-container iframe {
   width: 100%;
-  max-width: 900px;  /* Membatasi ukuran video agar tidak terlalu besar */
-  height: 500px;     /* Menetapkan tinggi video yang sesuai */
+  max-width: 900px;
+  /* Membatasi ukuran video agar tidak terlalu besar */
+  height: 500px;
+  /* Menetapkan tinggi video yang sesuai */
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin: 0 auto; /* Memastikan video berada di tengah */
+  margin: 0 auto;
+  /* Memastikan video berada di tengah */
 }
 
 /* Tombol kembali */
+
 .back-button {
   display: inline-block;
-  margin-top: 10px; /* Memberikan jarak kecil agar tombol tidak langsung menempel */
+  margin-top: 10px;
+  /* Memberikan jarak kecil agar tombol tidak langsung menempel */
   padding: 10px 20px;
   font-size: 1rem;
   color: #fff;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   border-radius: 5px;
   text-decoration: none;
   text-align: center;
   transition: background-color 0.3s ease;
   position: relative;
-  left: 0; /* Memastikan tombol berada di kiri */
+  left: 0;
+  /* Memastikan tombol berada di kiri */
 }
 
 .back-button:hover {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
 
 /* Animations */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -1080,12 +1166,14 @@ nav a.active {
 }
 
 /* Style khusus untuk Login Page */
+
 .login-page {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; /* Mengatur agar elemen-elemen disusun secara vertikal */
+  flex-direction: column;
+  /* Mengatur agar elemen-elemen disusun secara vertikal */
   height: 100vh;
   background-color: #f4f4f4;
   padding: 20px;
@@ -1120,7 +1208,7 @@ nav a.active {
 .login-page button {
   width: 100%;
   padding: 12px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   border: none;
   border-radius: 5px;
   color: white;
@@ -1130,7 +1218,7 @@ nav a.active {
 }
 
 .login-page button:hover {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
 
 .login-page p {
@@ -1139,18 +1227,21 @@ nav a.active {
 }
 
 .login-page a {
-  color: #4CAF50;
+  color: #4caf50;
   text-decoration: none;
 }
 
 /* Popup container */
+
 .popup {
-  display: none; /* Popup tidak terlihat saat dimuat */
+  display: none;
+  /* Popup tidak terlihat saat dimuat */
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.8); /* Latar belakang gelap */
+  background-color: rgba(0, 0, 0, 0.8);
+  /* Latar belakang gelap */
   color: white;
   padding: 20px;
   border-radius: 10px;
@@ -1160,16 +1251,21 @@ nav a.active {
 }
 
 /* Popup sukses */
+
 .popup-success {
-  background-color: #4caf50; /* Hijau untuk sukses */
+  background-color: #4caf50;
+  /* Hijau untuk sukses */
 }
 
 /* Popup error */
+
 .popup-error {
-  background-color: #f44336; /* Merah untuk error */
+  background-color: #f44336;
+  /* Merah untuk error */
 }
 
 /* Tombol tutup */
+
 .popup button {
   background-color: transparent;
   color: white;
@@ -1185,8 +1281,8 @@ nav a.active {
   color: black;
 }
 
-
 /* Styles for the Register Page */
+
 .register-page {
   display: flex;
   flex-direction: column;
@@ -1230,13 +1326,13 @@ nav a.active {
 
 .register-page form input:focus {
   outline: none;
-  border-color: #4CAF50
+  border-color: #4caf50;
 }
 
 .register-page form button {
   padding: 12px;
   font-size: 1rem;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 4px;
@@ -1244,7 +1340,7 @@ nav a.active {
 }
 
 .register-page form button:hover {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
 
 .register-page p {
@@ -1255,7 +1351,7 @@ nav a.active {
 }
 
 .register-page p a {
-  color: #4CAF50;
+  color: #4caf50;
   text-decoration: none;
 }
 
@@ -1264,6 +1360,7 @@ nav a.active {
 }
 
 /* Pop-up registration success */
+
 .popup-registration-success {
   position: fixed;
   top: 20%;
@@ -1294,6 +1391,7 @@ nav a.active {
 }
 
 /* Pop-up registration error */
+
 .popup-registration-error {
   position: fixed;
   top: 20%;
@@ -1323,18 +1421,20 @@ nav a.active {
   cursor: pointer;
 }
 
-
 #login-restricted-message {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 50vh;
-  width: 100%; /* Pastikan lebar sesuai dengan layar */
+  width: 100%;
+  /* Pastikan lebar sesuai dengan layar */
   background-image: url(/assets/images/agro.jpg);
-  background-size: cover; /* Membuat gambar menutupi seluruh area tanpa distorsi */
-  background-position: center; /* Memastikan gambar tetap terpusat */
+  background-size: cover;
+  /* Membuat gambar menutupi seluruh area tanpa distorsi */
+  background-position: center;
+  /* Memastikan gambar tetap terpusat */
   color: #fff;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 #login-restricted-message div {
@@ -1353,7 +1453,7 @@ nav a.active {
 
 #login-restricted-message a {
   display: inline-block;
-  background: #4CAF50;
+  background: #4caf50;
   color: #fff;
   font-size: 18px;
   padding: 12px 20px;
@@ -1366,42 +1466,60 @@ nav a.active {
   background: #e67e22;
 }
 
-
-
 /* Styling dasar tombol logout */
 
 #logout-button {
-  background-color: #4CAF50; /* Warna latar belakang */
-  color: #ffffff; /* Warna teks */
-  font-size: 16px; /* Ukuran font */
-  padding: 10px 20px; /* Padding untuk memberi ruang di dalam tombol */
-  border: none; /* Menghapus border default */
-  border-radius: 5px; /* Membuat sudut tombol lebih bulat */
-  cursor: pointer; /* Menambahkan kursor pointer saat hover */
-  transition: background-color 0.3s ease, transform 0.2s ease; /* Efek transisi */
-  font-weight: bold; /* Menebalkan teks */
-  margin: 10px; /* Menambahkan margin di sekitar tombol */
+  background-color: #4caf50;
+  /* Warna latar belakang */
+  color: #ffffff;
+  /* Warna teks */
+  font-size: 16px;
+  /* Ukuran font */
+  padding: 10px 20px;
+  /* Padding untuk memberi ruang di dalam tombol */
+  border: none;
+  /* Menghapus border default */
+  border-radius: 5px;
+  /* Membuat sudut tombol lebih bulat */
+  cursor: pointer;
+  /* Menambahkan kursor pointer saat hover */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  /* Efek transisi */
+  font-weight: bold;
+  /* Menebalkan teks */
+  margin: 10px;
+  /* Menambahkan margin di sekitar tombol */
 }
 
 /* Efek hover */
+
 #logout-button:hover {
-  background-color: #4CAF50; /* Ganti warna latar belakang saat hover */
-  transform: scale(1.05); /* Memberikan efek pembesaran tombol saat hover */
+  background-color: #4caf50;
+  /* Ganti warna latar belakang saat hover */
+  transform: scale(1.05);
+  /* Memberikan efek pembesaran tombol saat hover */
 }
 
 /* Efek focus */
+
 #logout-button:focus {
-  outline: none; /* Menghilangkan outline default */
-  box-shadow: 0 0 5px rgba(255, 99, 71, 0.8); /* Menambahkan efek fokus dengan shadow */
+  outline: none;
+  /* Menghilangkan outline default */
+  box-shadow: 0 0 5px rgba(255, 99, 71, 0.8);
+  /* Menambahkan efek fokus dengan shadow */
 }
 
 /* Efek saat tombol ditekan */
+
 #logout-button:active {
-  background-color: #4CAF50; /* Ganti warna latar belakang saat tombol ditekan */
-  transform: scale(0.98); /* Menyusutkan tombol sedikit saat ditekan */
+  background-color: #4caf50;
+  /* Ganti warna latar belakang saat tombol ditekan */
+  transform: scale(0.98);
+  /* Menyusutkan tombol sedikit saat ditekan */
 }
 
 /* Animasi tombol saat dimuat */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -1417,71 +1535,65 @@ nav a.active {
   animation: fadeIn 0.5s ease-out;
 }
 
-
 @media screen and (min-width: 600px) {
   .travelkuy {
-    grid-template-columns: repeat(2, 1fr); /* Two columns on small tablets */
+    grid-template-columns: repeat(2, 1fr);
+    /* Two columns on small tablets */
   }
-
   .travelkuy-item_judul {
-    font-size: 1.75em; /* Increase font size for tablets */
+    font-size: 1.75em;
+    /* Increase font size for tablets */
   }
-
   .travelkuy-item_penjelasan {
-    font-size: 1.125em; /* Slightly larger for tablets */
+    font-size: 1.125em;
+    /* Slightly larger for tablets */
   }
   .video-container {
-    padding-bottom: 75%; /* Mengubah rasio menjadi 4:3 pada layar kecil */
+    padding-bottom: 75%;
+    /* Mengubah rasio menjadi 4:3 pada layar kecil */
   }
 }
 
 @media screen and (min-width: 650px) {
- .app-bar {
+  .app-bar {
     grid-template-columns: 1fr auto;
     padding: 8px 32px;
   }
- 
   .app-bar .app-bar__brand h1 {
     font-size: 1.5em;
   }
- 
   .app-bar .app-bar__menu {
     display: none;
   }
- 
   .app-bar .app-bar__navigation {
     position: static;
     width: 100%;
   }
- 
   .app-bar .app-bar__navigation ul li {
     display: inline-block;
   }
- 
   .app-bar .app-bar__navigation ul li a {
     display: inline-block;
     width: 120px;
     text-align: center;
     margin: 0;
   }
- 
   .wisata {
     grid-template-columns: 1fr 1fr;
   }
- 
 }
- 
+
 @media screen and (min-width: 800px) {
- .app-bar .app-bar__brand h1 {
+  .app-bar .app-bar__brand h1 {
     font-size: 2em;
   }
-  
-   .travelkuy {
-    grid-template-columns: repeat(2, 1fr); /* Two columns on tablets */
+  .travelkuy {
+    grid-template-columns: repeat(2, 1fr);
+    /* Two columns on tablets */
     gap: 60px;
   }
 }
- 
+
 @media screen and (min-width: 850px) {
   .wisata {
     grid-template-columns: repeat(3, 1fr);
@@ -1490,73 +1602,74 @@ nav a.active {
 
 @media screen and (min-width: 900px) {
   .travelkuy {
-    grid-template-columns: repeat(3, 1fr); /* Three columns on larger screens */
+    grid-template-columns: repeat(3, 1fr);
+    /* Three columns on larger screens */
   }
-
   .travelkuy-item_judul {
-    font-size: 2em; /* Increase font size for larger screens */
+    font-size: 2em;
+    /* Increase font size for larger screens */
   }
-
   .travelkuy-item_penjelasan {
-    font-size: 1.25em; /* Larger text for larger screens */
+    font-size: 1.25em;
+    /* Larger text for larger screens */
   }
 }
- 
+
 @media screen and (min-width: 1200px) {
   .wisata {
     grid-template-columns: repeat(4, 1fr);
   }
   .travelkuy {
-    grid-template-columns: repeat(3, 1fr); /* Three columns on larger screens */
+    grid-template-columns: repeat(3, 1fr);
+    /* Three columns on larger screens */
     gap: 80px;
   }
   .travelkuy-item {
-    flex-direction: row; /* Switch to horizontal layout on larger screens */
+    flex-direction: row;
+    /* Switch to horizontal layout on larger screens */
   }
   .travelkuy-item_gambar {
-    width: 100%; /* Adjust image width for horizontal layout */
+    width: 100%;
+    /* Adjust image width for horizontal layout */
   }
   .travelkuy-item_isi {
-    padding: 20px; /* Adjust padding for horizontal layout */
+    padding: 20px;
+    /* Adjust padding for horizontal layout */
   }
-
 }
- 
+
 @media screen and (min-width: 1600px) {
   .wisata {
-      grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 }
 
 @media (max-width: 768px) {
   nav ul {
-      flex-direction: column;
-      align-items: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
   }
-
   nav li {
-      margin: 10px 0;
+    margin: 10px 0;
   }
 }
 
 /* Responsive Design */
+
 @media (max-width: 768px) {
   h1 {
-      font-size: 28px;
+    font-size: 28px;
   }
-
   .agrowisata-list {
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
-
   #filter-location {
-      margin: 10px 0;
+    margin: 10px 0;
   }
   footer .footer-content {
     flex-direction: column;
     align-items: center;
   }
-
   footer .footer-section {
     flex: 1 1 100%;
     margin: 10px 0;
@@ -1564,122 +1677,117 @@ nav a.active {
   .desawisata-list {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
-
   .desawisata-item h2 {
     font-size: 1.4rem;
   }
-
   .desawisata-item p {
     font-size: 0.9rem;
   }
   .detail-container {
     padding: 15px;
   }
-
   .detail-container h2 {
     font-size: 1.5rem;
   }
-
   .detail-container p {
     font-size: 0.9rem;
   }
-
   .back-button {
     font-size: 0.9rem;
     padding: 8px 16px;
   }
-
   /* Memperkecil ukuran gambar pada perangkat lebih kecil */
   .detail-container img {
-    max-width: 90%; /* Mengurangi ukuran gambar pada perangkat kecil */
+    max-width: 90%;
+    /* Mengurangi ukuran gambar pada perangkat kecil */
     height: auto;
     object-fit: contain;
   }
-
   /* Mengatur ukuran video pada perangkat lebih kecil */
   .detail-container .video-container iframe {
-    height: 300px;  /* Menyesuaikan tinggi video pada layar yang lebih kecil */
+    height: 300px;
+    /* Menyesuaikan tinggi video pada layar yang lebih kecil */
   }
   .detail-container img {
-    max-width: 80%; /* Mengatur lebar gambar di desktop */
-    max-height: 500px; /* Membatasi tinggi gambar */
-    object-fit: contain; /* Memastikan gambar tetap proporsional */
+    max-width: 80%;
+    /* Mengatur lebar gambar di desktop */
+    max-height: 500px;
+    /* Membatasi tinggi gambar */
+    object-fit: contain;
+    /* Memastikan gambar tetap proporsional */
   }
   #search-input {
-    width: 50%; /* Lebar input lebih besar pada tablet */
+    width: 50%;
+    /* Lebar input lebih besar pada tablet */
     margin-top: 15px;
   }
-
 }
 
 @media (max-width: 480px) {
   footer {
     padding: 15px;
   }
-
   footer .footer-section h2 {
     font-size: 1.2rem;
   }
-
   footer .footer-section p {
     font-size: 12px;
   }
-
   footer ul li a {
     font-size: 14px;
   }
   .detail-container h2 {
     font-size: 1.25rem;
   }
-
   .detail-container p {
     font-size: 0.85rem;
   }
-
   .back-button {
     font-size: 0.85rem;
     padding: 8px 12px;
   }
-
   /* Mengatur gambar lebih responsif pada layar kecil */
   .detail-container img {
-    max-width: 100%;  /* Membuat gambar lebih lebar pada layar kecil */
+    max-width: 100%;
+    /* Membuat gambar lebih lebar pada layar kecil */
     height: auto;
     object-fit: contain;
   }
-
   /* Mengatur ukuran video lebih kecil pada layar kecil */
   .detail-container .video-container iframe {
-    height: 250px;  /* Ukuran video lebih kecil */
+    height: 250px;
+    /* Ukuran video lebih kecil */
   }
 }
 
-
 /* Responsif */
+
 @media (max-width: 600px) {
   #login-restricted-message div {
     padding: 20px;
     width: 80%;
   }
-
   #login-restricted-message h2 {
     font-size: 20px;
   }
-
   #login-restricted-message a {
     font-size: 16px;
     padding: 10px 18px;
   }
   .modal-content {
-    width: 80%; /* Modal akan mengisi 80% dari lebar layar pada perangkat kecil */
+    width: 80%;
+    /* Modal akan mengisi 80% dari lebar layar pada perangkat kecil */
   }
   #search-input {
-    width: 100%; /* Lebar penuh pada layar kecil */
-    margin-top: 10px; /* Menyesuaikan margin atas pada layar kecil */
-    margin-bottom: 15px; /* Memberikan ruang lebih kecil di bawah pada layar kecil */
-    float: none; /* Menghilangkan float pada layar kecil */
+    width: 100%;
+    /* Lebar penuh pada layar kecil */
+    margin-top: 10px;
+    /* Menyesuaikan margin atas pada layar kecil */
+    margin-bottom: 15px;
+    /* Memberikan ruang lebih kecil di bawah pada layar kecil */
+    float: none;
+    /* Menghilangkan float pada layar kecil */
   }
 }
-
 
 /*# sourceMappingURL=style.css.map*/
