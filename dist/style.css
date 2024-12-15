@@ -544,7 +544,66 @@ label[for="filter-location"] {
   display: block; /* Pastikan label ada di atas dropdown */
   margin-bottom: 5px; /* Beri jarak kecil antara label dan dropdown */
 }
+/* Tambahkan class untuk container filter */
+.filter-container {
+  display: flex;
+  justify-content: space-between; /* Menempatkan elemen filter di sisi kiri dan kanan */
+  align-items: center; /* Untuk memastikan keduanya sejajar secara vertikal */
+  margin: 20px 0; /* Jarak antara filter dan daftar */
+}
 
+/* Posisi filter lokasi di kiri */
+#filter-location {
+  order: 1; /* Menempatkan filter lokasi di kiri */
+  margin-right: 10px;
+}
+
+/* Posisi search input di kanan */
+#search-input {
+  order: 2; /* Menempatkan search di kanan */
+  margin-left: 10px;
+}
+/* Filter section */
+#filter-location {
+  width: 200px;
+  padding: 8px;
+  margin: 20px 0;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+label[for="filter-location"] {
+  font-size: 14px; /* Ukuran font label lebih kecil di layar kecil */
+  display: block; /* Pastikan label ada di atas dropdown */
+  margin-bottom: 5px; /* Beri jarak kecil antara label dan dropdown */
+}
+
+/* Container Utama Search */
+.search-container {
+  position: absolute; /* Posisi absolut relatif terhadap parent */
+  top: 20px; /* Jarak dari atas */
+  right: 20px; /* Jarak dari kanan */
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Jarak antar elemen */
+}
+
+/* Input Search */
+#search-input {
+  width: 250px; /* Lebar input */
+  padding: 10px 15px;
+  border: 2px solid #4CAF50;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#search-input:focus {
+  border-color: #388E3C;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+}
 /* Agrowisata List */
 .agrowisata-list {
   list-style-type: none;
@@ -1546,6 +1605,10 @@ nav a.active {
     max-height: 500px; /* Membatasi tinggi gambar */
     object-fit: contain; /* Memastikan gambar tetap proporsional */
   }
+  #search-input {
+    width: 50%; /* Lebar input lebih besar pada tablet */
+    margin-top: 15px;
+  }
 
 }
 
@@ -1609,6 +1672,12 @@ nav a.active {
   }
   .modal-content {
     width: 80%; /* Modal akan mengisi 80% dari lebar layar pada perangkat kecil */
+  }
+  #search-input {
+    width: 100%; /* Lebar penuh pada layar kecil */
+    margin-top: 10px; /* Menyesuaikan margin atas pada layar kecil */
+    margin-bottom: 15px; /* Memberikan ruang lebih kecil di bawah pada layar kecil */
+    float: none; /* Menghilangkan float pada layar kecil */
   }
 }
 

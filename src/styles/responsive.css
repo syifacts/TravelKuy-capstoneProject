@@ -185,6 +185,10 @@
     max-height: 500px; /* Membatasi tinggi gambar */
     object-fit: contain; /* Memastikan gambar tetap proporsional */
   }
+  #search-input {
+    width: 50%; /* Lebar input lebih besar pada tablet */
+    margin-top: 15px;
+  }
 
 }
 
@@ -248,5 +252,11 @@
   }
   .modal-content {
     width: 80%; /* Modal akan mengisi 80% dari lebar layar pada perangkat kecil */
+  }
+  #search-input {
+    width: 100%; /* Lebar penuh pada layar kecil */
+    margin-top: 10px; /* Menyesuaikan margin atas pada layar kecil */
+    margin-bottom: 15px; /* Memberikan ruang lebih kecil di bawah pada layar kecil */
+    float: none; /* Menghilangkan float pada layar kecil */
   }
 }

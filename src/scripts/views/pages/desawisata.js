@@ -6,26 +6,40 @@ const Desawisata = {
   async render() {
     return `
       <h1>Daftar Desa Wisata</h1>
+      <input type="text" id="search-input" placeholder="Cari desa wisata..." />
       <ul id="desawisata-list" class="desawisata-list"></ul>
       <div id="pagination-controls"></div>
     `;
   },
+  
 
   async afterRender() {
     const desawisataList = document.getElementById('desawisata-list');
     const paginationControls = document.getElementById('pagination-controls');
-
+    const searchInput = document.getElementById('search-input');
+  
     try {
       const data = await this.fetchData();
       console.log('Data dari API:', data);
-
+  
       this.displayDesawisata(data, desawisataList);
       this.createPaginationControls(data.length, paginationControls);
+  
+      // Event listener untuk pencarian
+      searchInput.addEventListener('input', () => {
+        const query = searchInput.value.toLowerCase();
+        const filteredData = data.filter(desawisata =>
+          desawisata.name.toLowerCase().includes(query)
+        );
+        this.displayDesawisata(filteredData, desawisataList);
+        this.createPaginationControls(filteredData.length, paginationControls);
+      });
     } catch (error) {
       console.error('Error fetching desawisata data:', error);
       desawisataList.innerHTML = `<li>Error fetching data. Please try again later.</li>`;
     }
   },
+  
 
   async fetchData() {
     const response = await fetch(this.API_URL);
