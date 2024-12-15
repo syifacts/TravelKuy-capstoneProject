@@ -2,6 +2,7 @@ const Desawisata = {
   API_URL: 'https://apidesawisata-353b9a2a7d66.herokuapp.com/desawisata',
   itemsPerPage: 12,
   currentPage: 1,
+  data: [], // Properti untuk menyimpan data dari API
 
   async render() {
     return `
@@ -11,24 +12,23 @@ const Desawisata = {
       <div id="pagination-controls"></div>
     `;
   },
-  
 
   async afterRender() {
     const desawisataList = document.getElementById('desawisata-list');
     const paginationControls = document.getElementById('pagination-controls');
     const searchInput = document.getElementById('search-input');
-  
+
     try {
-      const data = await this.fetchData();
-      console.log('Data dari API:', data);
-  
-      this.displayDesawisata(data, desawisataList);
-      this.createPaginationControls(data.length, paginationControls);
-  
+      this.data = await this.fetchData(); // Simpan data di this.data
+      console.log('Data dari API:', this.data);
+
+      this.displayDesawisata(this.data, desawisataList);
+      this.createPaginationControls(this.data.length, paginationControls);
+
       // Event listener untuk pencarian
       searchInput.addEventListener('input', () => {
         const query = searchInput.value.toLowerCase();
-        const filteredData = data.filter(desawisata =>
+        const filteredData = this.data.filter(desawisata =>
           desawisata.name.toLowerCase().includes(query)
         );
         this.displayDesawisata(filteredData, desawisataList);
@@ -39,7 +39,6 @@ const Desawisata = {
       desawisataList.innerHTML = `<li>Error fetching data. Please try again later.</li>`;
     }
   },
-  
 
   async fetchData() {
     const response = await fetch(this.API_URL);
@@ -75,7 +74,7 @@ const Desawisata = {
 
       const detailButton = listItem.querySelector('.detail-btn');
       detailButton.addEventListener('click', () => {
-        window.location.hash = `#/detail/${desawisata._id}`;  // Arahkan ke halaman detail desa wisata
+        window.location.hash = `#/detail/${desawisata._id}`; // Arahkan ke halaman detail desa wisata
       });
 
       container.appendChild(listItem);
@@ -99,10 +98,10 @@ const Desawisata = {
     pageButtons.forEach(button => {
       button.addEventListener('click', (event) => {
         this.currentPage = Number(event.target.dataset.page);
-        this.displayDesawisata(data, document.getElementById('desawisata-list'));
+        this.displayDesawisata(this.data, document.getElementById('desawisata-list')); // Gunakan this.data
       });
     });
-  }
+  },
 };
 
 export default Desawisata;
