@@ -28,8 +28,8 @@ const Detail = {
 
       detailContainer.innerHTML = `
         <div class="detail-container">
+        <h2>${desa.name}</h2>
           <img src="${desa.photo}" alt="${desa.name}" class="detail-image">
-          <h2>${desa.name}</h2>
           <p><strong>Lokasi:</strong> ${desa.location}</p>
           <p><strong>Deskripsi:</strong> ${desa.description}</p>
           <p><strong>Detail:</strong> ${desa.longdesc}</p>
