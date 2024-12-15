@@ -134,7 +134,7 @@ body {
 }
 
 .hero-button:hover {
-  background: green;
+  background: rgb(59, 246, 59);
   color: white;
 }
 
