@@ -29,8 +29,7 @@ const LoginPage = {
     const token = localStorage.getItem('token');
 
     if (token) {
-      window.location.hash = '/';
-      return;
+      this.setupAutoLogout();
     }
 
     // Event listener untuk form login
@@ -59,11 +58,13 @@ const LoginPage = {
           localStorage.setItem('refreshToken', data.refreshToken);
           localStorage.setItem('userId', data.userId);
           localStorage.setItem('userName', data.username);
+          localStorage.setItem('lastActivity', Date.now());
 
-          // Menambahkan delay sebelum redirect ke halaman home
+          this.setupAutoLogout();
+
           setTimeout(() => {
             window.location.hash = '/';
-          }, 2000); // 2000 ms = 2 detik
+          }, 2000);
         } else {
           this.showPopup('error', `Login failed: error in username or password. Please try again.`);
         }
@@ -76,9 +77,50 @@ const LoginPage = {
     // Attach global functions for popup close
     window.closePopup = this.closePopup;
 
-    // Event listener untuk menutup popup saat tombol "Tutup" diklik
     document.getElementById('close-success-popup')?.addEventListener('click', this.closePopup);
     document.getElementById('close-error-popup')?.addEventListener('click', this.closePopup);
+
+    // Setup event listeners for session tracking
+    this.setupAutoLogout();
+  },
+
+  setupAutoLogout() {
+    // Update last activity timestamp
+    const updateActivity = () => {
+      localStorage.setItem('lastActivity', Date.now());
+    };
+
+    // Event listeners to track activity
+    ['mousemove', 'keydown', 'scroll', 'click'].forEach(event => {
+      document.addEventListener(event, updateActivity);
+    });
+
+    // Check session timeout every second
+    setInterval(() => {
+      const lastActivity = localStorage.getItem('lastActivity');
+      const now = Date.now();
+
+      // Jika lebih dari 5 menit (300,000 ms)
+      if (lastActivity && now - lastActivity > 5 * 60 * 1000) {
+        this.logoutUser();
+      }
+    }, 1000);
+  },
+
+  logoutUser() {
+    // Hapus data session
+    localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('lastActivity');
+
+    this.showPopup('error', 'Sesi berakhir. Harap login kembali.');
+
+    setTimeout(() => {
+      window.location.hash = '/login';
+      window.location.reload();
+    }, 2000);
   },
 
   showPopup(type, message) {
@@ -86,7 +128,7 @@ const LoginPage = {
     const popupMessage = type === 'success' ? document.getElementById('popup-message') : document.getElementById('popup-message-error');
     
     popupMessage.textContent = message;
-    popup.style.display = 'block'; // Show the popup
+    popup.style.display = 'block';
   },
 
   closePopup() {
