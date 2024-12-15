@@ -996,7 +996,7 @@ nav a.active {
 
 /* Judul dan teks dalam card */
 .desawisata-item h2 {
-  font-size: 1.6rem;
+  font-size: 12px;
   padding: 16px;
   color: #333;
 }
