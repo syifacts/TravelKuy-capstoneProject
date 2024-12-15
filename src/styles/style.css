@@ -83,7 +83,7 @@ nav a.active {
   }
    
   .app-bar .app-bar__brand h1 {
-    color: #03ab0f;
+    color: green;
     text-transform: uppercase;
     font-size: 22px;
     user-select: none;
@@ -113,6 +113,14 @@ nav a.active {
     width: 100%;
   }
 
+.app-bar .app-bar__navigation ul li a:hover {
+  background: gray;
+  color: white;
+  border-radius: 10px;
+  transform: scale(1.05); 
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+}
+
 /* Hero Section */
 .hero {
   display: flex;
@@ -120,7 +128,7 @@ nav a.active {
   justify-content: center;
   min-height: 300px;
   text-align: center;
-  background-image: url('../public/assets/agrowisata.jpeg');
+  background-image: url('/dist/assets/images/agrowisata.jpeg');
   background-position: center;
   background-size: cover;
 }
@@ -133,9 +141,9 @@ nav a.active {
 
 .hero-title{
   font-size: 40px;
-  color: #2d2d2d;
+  color: green;
   text-transform: uppercase;
-  text-shadow:0 2px 4px rgba(0, 0, 0, 0.034);
+  text-shadow:0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .hero-desc{
@@ -156,9 +164,12 @@ nav a.active {
   align-self: flex-end;
   cursor: pointer;
 }
+.hero-button a {
+  text-decoration: none;
+}
 
 .hero-button:hover {
-  background: #05f515;
+  background: green;
   color: white;
 }
 
@@ -238,7 +249,7 @@ nav a.active {
   }
 
   /*
-  Movies
+  wisata
 */
  
 .wisata {
@@ -289,59 +300,6 @@ nav a.active {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tambahan bayangan opsional */
 }
  
-/* Tombol tambah data */
-#add-data-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  border: none;
-  border-radius: 50%;
-  background-color: #4CAF50;
-  color: white;
-  font-size: 24px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  z-index: 1000;
-}
-
-/* Modal untuk tambah data */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal.hidden {
-  display: none;
-}
-
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  max-width: 400px;
-  width: 90%;
-}
-
-#pagination-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
 
 /* Gaya untuk tombol pagination */
 #pagination-container button {
@@ -371,119 +329,81 @@ nav a.active {
  
 /* Footer Styles */
 footer {
-  padding: 16px;
-  background-color: #03ab0f; 
-  color: white;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); 
+    padding: 16px;
+    background-color: green;
 }
 
 footer p {
-  text-align: center;
-  margin-top: 20px;
+    text-align: center;
+    color: white;
 }
 
 footer p a {
-  color: #db0000; 
-  text-decoration: none;
-  font-size: 16px;
-  transition: all 0.3s;
-}
-
-footer p a:hover {
-  text-decoration: underline;
+    color: #db0000;
+    text-decoration: none;
+    font-size: 16px;
 }
 
 footer .footer-content {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 20px; 
-}
-
-footer .footer-section {
-  flex: 1;
-  margin: 10px;
-  text-align: center;
-  border-right: 1px solid rgba(255, 255, 255, 0.2); 
-  transition: transform 0.3s ease-in-out;
-}
-
-footer .footer-section:last-child {
-  border-right: none; 
-}
-
-footer .footer-section:hover {
-  transform: scale(1.05); 
-}
-
-footer .footer-section h2 {
-  margin-bottom: 20px;
-  color: white; 
-}
-
-footer .footer-section p {
-  line-height: 1.6;
-}
-
-footer .footer-nav a {
-  color: white; 
-  text-decoration: none;
-  margin: 0 10px;
-  font-size: 16px;
-  font-family: 'Times New Roman', Times, serif;
-  display: inline-block;
-  transition: transform 0.3s ease, color 0.3s;
-}
-
-footer .footer-nav a:hover {
-  transform: scale(1.1); 
-}
-
-footer .footer-nav a i {
-  margin-right: 5px; 
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 footer .active {
-  text-decoration: none;
-  font-size: 16px;
-  font-family: 'Times New Roman', Times, serif;
-  color: white; 
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
 }
 
 footer .active:hover {
-  background-color: rgba(255, 255, 255, 0.2); 
+    background-color: rgb(174, 227, 68);
 }
 
 footer .home {
-  text-decoration: none;
-  font-size: 16px;
-  font-family: 'Times New Roman', Times, serif;
-  color: white; 
+    text-decoration: none;
+    font-size: 16px;
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
 }
 
 footer .home:hover {
-  background-color: rgba(255, 255, 255, 0.2); 
+    background-color: rgb(174, 227, 68);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  footer .footer-content {
-      flex-direction: column;
-      align-items: center;
-  }
-
-  footer .footer-section {
-      margin: 10px 0;
-      text-align: center;
-      border-right: none; 
-  }
+li {
+    list-style: none;
 }
 
+footer .footer-section {
+    flex: 1;
+    margin: 20px;
+}
+
+footer .footer-section h2 {
+    margin-bottom: 20px;
+}
+
+footer .footer-section p {
+    line-height: 1.6;
+}
+
+footer .footer-nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+footer .footer-nav a:hover {
+    color: #16a085;
+}
 h2 {
     text-align: center;
     margin-bottom: 1em;
     font-size: 2em;
-    color: #ffffff;
+    color: #333;
 }
 
 .team-container {
@@ -491,6 +411,7 @@ h2 {
     flex-wrap: wrap;
     justify-content: center;
     gap: 2em;
+    margin-top: 2em;
 }
 
 .team-member {
@@ -538,3 +459,125 @@ h2 {
 }
 
 
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+}
+
+/* Login Container */
+.login-container {
+  background-color: white;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.login-title {
+  font-size: 2em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 1em;
+  background-color: #fafafa;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #03ab0f;
+}
+
+.login-button {
+  width: 80%;
+  padding: 14px;
+  border-radius: 6px;
+  background-color: #03ab0f;
+  color: white;
+  font-size: 1.2em;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #028e07;
+}
+
+.register-link {
+  margin-top: 20px;
+  font-size: 0.9em;
+}
+
+.register-link a {
+  color: #03ab0f;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* Popup Styles */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  z-index: 1000;
+}
+
+.popup p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.popup-button {
+  padding: 8px 16px;
+  background-color: #03ab0f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.popup-button:hover {
+  background-color: #028e07;
+}
+
+/* Success Popup */
+.popup-success {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+}
+
+.popup-error {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+}
+
+input[type="text"], input[type="password"] {
+  width: 80%;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box; /* Agar padding tidak menambah ukuran input */
+  font-size: 1em;
+  transition: border-color 0.3s ease;
+}

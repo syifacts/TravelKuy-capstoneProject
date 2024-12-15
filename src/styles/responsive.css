@@ -10,10 +10,13 @@
   .travelkuy-item_penjelasan {
     font-size: 1.125em; /* Slightly larger for tablets */
   }
+  .video-container {
+    padding-bottom: 75%; /* Mengubah rasio menjadi 4:3 pada layar kecil */
+  }
 }
 
 @media screen and (min-width: 650px) {
-  .app-bar {
+ .app-bar {
     grid-template-columns: 1fr auto;
     padding: 8px 32px;
   }
@@ -49,7 +52,7 @@
 }
  
 @media screen and (min-width: 800px) {
-  .app-bar .app-bar__brand h1 {
+ .app-bar .app-bar__brand h1 {
     font-size: 2em;
   }
   
@@ -102,21 +105,5 @@
 @media screen and (min-width: 1600px) {
   .wisata {
       grid-template-columns: repeat(5, 1fr);
-  }
-  
-}
-
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  footer .footer-content {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  footer .footer-section {
-    margin: 10px 0;
-    text-align: center;
-    border-right: none;
   }
 }

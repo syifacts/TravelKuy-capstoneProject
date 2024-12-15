@@ -1,13 +1,50 @@
-const API_URLS = [
-    'https://katalog.data.go.id/api/3/action/datastore_search?resource_id=266e3b85-1c43-4a84-b864-a54d41c218b1',
-    'https://katalog.data.go.id/api/3/action/datastore_search?resource_id=bfe834ff-1cb6-4c1c-ae75-4fbe6d62f1ae'
-];
+import SavedAgrowisataIdb from "../../data/saved-agrowisata";  // Import modul untuk IndexedDB
+import { jwtDecode } from 'jwt-decode';
 
 const Agrowisata = {
-    cachedData: [],
-    newData: [],
+    API_URL: 'https://agrowisataapi-1aaac8500e71.herokuapp.com/agrowisata',
+    itemsPerPage: 12,
     currentPage: 1,
-    dataPerPage: 10,
+    filteredData: [],
+    searchQuery: '',
+
+    // Fungsi untuk mendapatkan userId dari token
+    getUserIdFromToken() {
+        const token = localStorage.getItem('token');
+        if (!token) return null;
+
+        try {
+            const decodedToken = jwtDecode(token);
+            return decodedToken?.userId || null; // Mengembalikan userId atau null jika tidak ada
+        } catch (error) {
+            console.error('Error decoding token:', error);
+            return null;
+        }
+    },
+
+    // Menampilkan pop-up dengan pesan
+    showPopupAgrowisata(message) {
+        const popupAgrowisata = document.createElement('div');
+        popupAgrowisata.className = 'popup-agrowisata';
+        popupAgrowisata.innerHTML = ` 
+            <div class="popup-content">${message}</div>
+            <button class="close-btn">Tutup</button>
+        `;
+        
+        document.body.appendChild(popupAgrowisata);
+
+        const closePopupAgrowisata = () => {
+            popupAgrowisata.classList.remove('show');
+            popupAgrowisata.remove();
+        };
+
+        popupAgrowisata.querySelector('.close-btn').addEventListener('click', closePopupAgrowisata);
+        
+        popupAgrowisata.classList.add('show');
+        
+        // Menutup pop-up secara otomatis setelah 3 detik
+        setTimeout(closePopupAgrowisata, 3000);
+    },
 
     async render() {
         return `
@@ -17,358 +54,181 @@ const Agrowisata = {
                     <li><a href="#/saved-data-page" id="nav-saved">Data Tersimpan</a></li>
                 </ul>
             </nav>
-            <h2>Lokasi Agrowisata</h2>
-            <label for="filter-wilayah">Filter Wilayah:</label>
-            <select id="filter-wilayah">
-                <option value="">Semua Wilayah</option>
-                <option value="Jakarta Barat">Jakarta Barat</option>
-                <option value="Jakarta Timur">Jakarta Timur</option>
-                <option value="Jakarta Utara">Jakarta Utara</option>
-                <option value="Jakarta Selatan">Jakarta Selatan</option>
-                <option value="Wilayah Lainnya">Wilayah Lainnya</option>
-            </select>
-            <div id="data-container">Loading data...</div>
-            
-            <button id="add-data-btn" aria-label="Tambah Data Baru">+</button>
-        
-            <div id="add-data-modal" class="modal hidden">
-                <div class="modal-content">
-                    <h3>Tambahkan Data Baru</h3>
-                    <form id="add-data-form">
-                        <input type="text" id="input-deskripsi" placeholder="Deskripsi" required>
-                        <input type="text" id="input-lokasi" placeholder="Lokasi" required>
-                        <input type="text" id="input-wilayah" placeholder="Wilayah" required>
-                        <input type="text" id="input-kecamatan" placeholder="Kecamatan">
-                        <input type="text" id="input-kelurahan" placeholder="Kelurahan">
-                        <input type="text" id="input-fasilitas" placeholder="Fasilitas">
-                        <input type="url" id="input-googlemaps" placeholder="Google Maps URL">
-                        <button type="submit">Tambahkan</button>
-                        <button type="button" id="cancel-btn">Batal</button>
-                    </form>
+            <h1>Daftar Agrowisata</h1>
+            <div class="filter-container">
+                <div>
+                    <label for="filter-location">Filter berdasarkan lokasi:</label>
+                    <select id="filter-location">
+                        <option value="">Pilih lokasi</option>
+                        <option value="Jakarta Timur">Jakarta Timur</option>
+                        <option value="Jakarta Barat">Jakarta Barat</option>
+                        <option value="Jakarta Utara">Jakarta Utara</option>
+                        <option value="Jakarta Selatan">Jakarta Selatan</option>
+                        <option value="Jakarta Pusat">Jakarta Pusat</option>
+                        <option value="Wilayah Lainnya">Wilayah Lainnya</option>
+                    </select>
                 </div>
+                <input type="text" id="search-input" placeholder="Cari berdasarkan nama..." />
             </div>
-            <div id="pagination-container"></div>
+
+            <ul id="agrowisata-list" class="agrowisata-list"></ul>
+            <div id="pagination-controls"></div>
         `;
     },
 
     async afterRender() {
-        const dataContainer = document.getElementById('data-container');
-        const filterWilayah = document.getElementById('filter-wilayah');
-        const addDataButton = document.getElementById('add-data-btn');
-        const modal = document.getElementById('add-data-modal');
-        const cancelButton = document.getElementById('cancel-btn');
-        const paginationContainer = document.getElementById('pagination-container');
+        const agrowisataList = document.getElementById('agrowisata-list');
+        const filterLocation = document.getElementById('filter-location');
+        const searchInput = document.getElementById('search-input');
+        const paginationControls = document.getElementById('pagination-controls');
 
-        this.loadLocalData();
-        // Filter data saat filter berubah
-        filterWilayah.addEventListener('change', () => {
-            this.displayData([...this.cachedData, ...this.newData]);
-            this.setupPagination();
-        });
+        try {
+            const data = await this.fetchData();
+            console.log('Data dari API:', data);
 
-        // Load data baru dari localStorage
-        const savedData = this.loadSavedData(); 
+            this.filteredData = data;
+            this.displayAgrowisata(this.filteredData, agrowisataList);
 
-        // Ambil data dari API
-        await this.fetchData();
+            filterLocation.addEventListener('change', (event) => {
+                const location = event.target.value;
+                this.filteredData = this.filterDataByLocation(data, location);
+                this.currentPage = 1;
 
-        // Tampilkan data
-        this.displayData([...this.cachedData, ...this.newData]);
+                this.displayAgrowisata(this.filteredData, agrowisataList);
+                this.createPaginationControls(this.filteredData.length, paginationControls);
+            });
 
-        // Event handler untuk tombol tambah data
-        addDataButton.addEventListener('click', () => {
-            modal.classList.remove('hidden');
-        });
+            searchInput.addEventListener('input', (event) => {
+                this.searchQuery = event.target.value.toLowerCase();
+                this.filteredData = this.searchData(data, this.searchQuery);
+                this.currentPage = 1;
 
-        cancelButton.addEventListener('click', () => {
-            modal.classList.add('hidden');
-        });
+                this.displayAgrowisata(this.filteredData, agrowisataList);
+                this.createPaginationControls(this.filteredData.length, paginationControls);
+            });
 
-        this.handleAddData();
-        this.setupPagination();
+            this.createPaginationControls(this.filteredData.length, paginationControls);
+        } catch (error) {
+            console.error('Error fetching agrowisata data:', error);
+            agrowisataList.innerHTML = `<li>Error fetching data. Please try again later.</li>`;
+        }
     },
 
     async fetchData() {
-        if (this.cachedData.length > 0) return;
-
-        try {
-            const responses = await Promise.all(API_URLS.map(url => fetch(url)));
-            const results = await Promise.all(responses.map(res => res.json()));
-
-            this.cachedData = results.flatMap((result, index) => {
-                if (result.success) {
-                    return index === 1
-                        ? this.mapDataFromAPI2(result.result.records)
-                        : result.result.records;
-                }
-                return [];
-            });
-        } catch (error) {
-            console.error('Error fetching data:', error);
-            const dataContainer = document.getElementById('data-container');
-            dataContainer.innerHTML = '<p>Error loading data. Please try again later.</p>';
+        const response = await fetch(this.API_URL);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
+        return response.json();
     },
 
-    mapDataFromAPI2(records) {
-        return records.map(record => ({
-            deskripsi: record.nama_lokasi || 'Nama tidak tersedia',
-            alamat: record.lokasi || 'Lokasi tidak tersedia',
-            wilayah: record.wilayah || 'Wilayah tidak tersedia',
-            kecamatan: '',
-            kelurahan: '',
-            fasilitas: '',
-            googlemaps: '',
-            isApi2: true
-        }));
-    },
+    async displayAgrowisata(data, container) {
+        const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+        const endIndex = startIndex + this.itemsPerPage;
+        const currentPageData = data.slice(startIndex, endIndex);
 
-    loadSavedData() {
-        try {
-            const savedData = JSON.parse(localStorage.getItem('savedAgrowisata')) || [];
-            return savedData;
-        } catch (error) {
-            console.error('Error loading saved data:', error);
-            return [];
-        }
-    },
-
-    displayData(records) {
-        const dataContainer = document.getElementById('data-container');
-        const selectedWilayah = document.getElementById('filter-wilayah').value;
-        const savedData = this.loadSavedData();
-        const allRecords = [...records, ...savedData];
-    
-        // Filter data berdasarkan wilayah
-        const filteredData = this.filterDataByWilayah(allRecords, selectedWilayah);
-    
-        // Hilangkan duplikasi berdasarkan deskripsi atau id
-        const uniqueData = this.removeDuplicateData(filteredData);
-    
-        // Validasi currentPage agar tidak melebihi total halaman
-        const totalPages = Math.ceil(uniqueData.length / this.dataPerPage);
-        if (this.currentPage > totalPages && totalPages > 0) {
-            this.currentPage = totalPages; // Set currentPage ke halaman terakhir jika lebih besar dari total
-        }
-    
-        // Paginate data
-        const paginatedData = this.paginateData(uniqueData, this.currentPage);
-    
-        // Tampilkan data
-        dataContainer.innerHTML = `
-            <div id="new-data-section">
-                <h3>Data Baru yang Ditambahkan</h3>
-                <div id="new-data-list"></div>
-            </div>
-            <div id="old-data-section">
-                <h3>Data Agrowisata</h3>
-                <div id="old-data-list"></div>
-            </div>
-        `;
-    
-        // Render data baru
-        const newDataList = document.getElementById('new-data-list');
-        const newData = paginatedData.filter(record => record.isNew);
-        this.renderData(newData, newDataList);
-    
-        // Render data lama (termasuk yang sudah disimpan)
-        const oldDataList = document.getElementById('old-data-list');
-        const oldData = paginatedData.filter(record => !record.isNew);
-        this.renderData(oldData, oldDataList);
-    
-        // Setup pagination hanya jika ada data yang ditampilkan
-        this.setupPagination(); // Memanggil setupPagination untuk memperbarui pagination
-    },
-    
-
-    removeDuplicateData(records) {
-        const seen = new Set();
-        return records.filter(record => {
-            const identifier = record.deskripsi; 
-            if (seen.has(identifier)) {
-                return false;
-            }
-            seen.add(identifier);
-            return true;
-        });
-    },
-    
-    filterDataByWilayah(records, selectedWilayah) {
-        if (!selectedWilayah) return records;
-
-        return records.filter(record => {
-            if (selectedWilayah === "Wilayah Lainnya") {
-                return !["Jakarta Barat", "Jakarta Timur", "Jakarta Utara", "Jakarta Selatan", "Jakarta Pusat"].includes(record.wilayah);
-            }
-            return record.wilayah === selectedWilayah;
-        });
-    },
-
-    paginateData(records, currentPage) {
-        const filteredData = records.filter(record => record.deskripsi && record.deskripsi.trim() !== '');
-        const totalPages = Math.ceil(filteredData.length / this.dataPerPage);
-        const startIndex = (currentPage - 1) * this.dataPerPage;
-        const endIndex = startIndex + this.dataPerPage;
-    
-        // Jika halaman kosong, kembali ke halaman pertama
-        if (startIndex >= filteredData.length) {
-            this.currentPage = totalPages; // Pastikan currentPage tidak lebih besar dari totalPages
-            return filteredData.slice(0, this.dataPerPage);
-        }
-    
-        return filteredData.slice(startIndex, endIndex);
-    },
-
-
-    renderData(data, container) {
-        container.innerHTML = '';
-        data.forEach(record => {
-            const recordElement = this.createRecordElement(record);
-            container.appendChild(recordElement);
-        });
-    },
-
-    createRecordElement(record) {
-        const recordElement = document.createElement('div');
-        recordElement.classList.add('record');
-        recordElement.innerHTML = `
-            <h3>${record.deskripsi}</h3>
-            <p><strong>Lokasi:</strong> ${record.alamat}</p>
-            <p><strong>Wilayah:</strong> ${record.wilayah}</p>
-            <p><strong>Kecamatan:</strong> ${record.kecamatan || '-'}</p>
-            <p><strong>Kelurahan:</strong> ${record.kelurahan || '-'}</p>
-            <p><strong>Fasilitas:</strong> ${record.fasilitas || '-'}</p>
-            ${record.googlemaps && record.googlemaps.trim() !== '' ? `<p><a href="${record.googlemaps}" target="_blank">Lihat di Google Maps</a></p>` : ''}
-            <button class="save-btn">Simpan</button>
-        `;
-
-        const saveBtn = recordElement.querySelector('.save-btn');
-        const savedData = JSON.parse(localStorage.getItem('savedAgrowisata')) || [];
-        const isSaved = savedData.some(saved => saved.deskripsi === record.deskripsi);
-
-        // Update tombol jika data sudah tersimpan
-        if (isSaved) {
-            saveBtn.textContent = 'Tersimpan';
-            saveBtn.disabled = true;
+        if (currentPageData.length === 0) {
+            container.innerHTML = `<li>No agrowisata found.</li>`;
+            return;
         }
 
-        saveBtn.addEventListener('click', () => {
-            this.saveData(record);
-            saveBtn.textContent = 'Tersimpan';
-            saveBtn.disabled = true;
-        });
+        container.innerHTML = ''; // Clear previous content
+        const savedData = await SavedAgrowisataIdb.getAllAgrowisata();
 
-        return recordElement;
-    },
+        currentPageData.forEach((agrowisata) => {
+            const listItem = document.createElement('li');
+            listItem.className = 'agrowisata-item';
+            listItem.dataset.id = agrowisata._id;
+            listItem.innerHTML = `
+                <h2>${agrowisata.name}</h2>
+                <p><img src="${agrowisata.urlimg}" alt="${agrowisata.name}" class="agrowisata-img"></p>
+                <p><strong>Lokasi:</strong> ${agrowisata.location}</p>
+                <p><strong>URL Maps:</strong> <a href="${agrowisata.urlmaps}" target="_blank" rel="noopener noreferrer">Lihat di Maps</a></p>
+                <p><strong>Fasilitas:</strong> ${agrowisata.fasilitas}</p>
+                <button class="save-btn">Simpan</button>
+            `;
 
-    saveData(record) {
-        const savedData = JSON.parse(localStorage.getItem('savedAgrowisata')) || [];
-        
-        // Cek apakah data sudah ada di dalam savedData berdasarkan deskripsi
-        const isAlreadySaved = savedData.some(saved => saved.deskripsi === record.deskripsi);
-        
-        if (!isAlreadySaved) {
-            savedData.push(record);
-            localStorage.setItem('savedAgrowisata', JSON.stringify(savedData));
-        }
-    },
- 
-    setupPagination() {
-        const allData = [...this.cachedData, ...this.newData];
-        const filterValue = document.getElementById('filter-wilayah').value;
-        const filteredData = this.filterDataByWilayah(allData, filterValue).filter(record => record.deskripsi && record.deskripsi.trim() !== '');
-    
-        // Hitung total halaman yang diperlukan berdasarkan data yang difilter
-        const totalPages = Math.ceil(filteredData.length / this.dataPerPage);
-        const paginationContainer = document.getElementById('pagination-container');
-    
-        // Reset halaman jika currentPage lebih besar dari totalPages
-        if (this.currentPage > totalPages && totalPages > 0) {
-            this.currentPage = totalPages; // Set halaman ke halaman terakhir jika currentPage lebih besar dari totalPages
-        }
-    
-        paginationContainer.innerHTML = ''; // Kosongkan kontainer pagination sebelumnya
-    
-        // Menampilkan pagination hanya jika ada halaman
-        if (totalPages > 0) {
-            paginationContainer.style.display = 'block';
-    
-            // Loop untuk menambahkan tombol halaman sesuai dengan totalPages
-            for (let i = 1; i <= totalPages; i++) {
-                const pageLink = document.createElement('button');
-                pageLink.textContent = i;
-    
-                if (i === this.currentPage) {
-                    pageLink.classList.add('active');
-                }
-    
-                pageLink.addEventListener('click', () => {
-                    this.currentPage = i;
-                    this.displayData(filteredData); // Pastikan untuk memanggil displayData dengan filteredData
+            const saveButton = listItem.querySelector('.save-btn');
+            const isAlreadySaved = savedData.some(item => item._id === agrowisata._id);
+
+            if (isAlreadySaved) {
+                saveButton.textContent = 'Tersimpan';
+                saveButton.disabled = true;
+            } else {
+                saveButton.addEventListener('click', () => {
+                    this.saveAgrowisata(agrowisata, saveButton);
                 });
-    
-                paginationContainer.appendChild(pageLink);
             }
-        } else {
-            paginationContainer.style.display = 'none'; // Jika tidak ada halaman, sembunyikan pagination
+
+            container.appendChild(listItem);
+        });
+    },
+
+    createPaginationControls(totalItems, container) {
+        const totalPages = Math.ceil(totalItems / this.itemsPerPage);
+        let paginationHTML = '';
+
+        if (totalItems === 0) {
+            this.currentPage = 1;
         }
-    },
-    
-    filterDataByWilayah(records, selectedWilayah) {
-        const validRecords = records.filter(record => record.deskripsi && record.deskripsi.trim() !== '');
-        
-        if (!selectedWilayah) return validRecords;
-    
-        return validRecords.filter(record => {
-            if (selectedWilayah === "Wilayah Lainnya") {
-                return !["Jakarta Barat", "Jakarta Timur", "Jakarta Utara", "Jakarta Selatan", "Jakarta Pusat"].includes(record.wilayah);
-            }
-            return record.wilayah === selectedWilayah;
+
+        for (let i = 1; i <= totalPages; i++) {
+            paginationHTML += `<button class="page-btn" data-page="${i}">${i}</button>`;
+        }
+        container.innerHTML = paginationHTML;
+
+        const pageButtons = container.querySelectorAll('.page-btn');
+        pageButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                this.currentPage = Number(event.target.dataset.page);
+                this.displayAgrowisata(this.filteredData, document.getElementById('agrowisata-list'));
+            });
         });
     },
 
-    handleAddData() {
-        const form = document.getElementById('add-data-form');
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
-    
-            const newRecord = {
-                deskripsi: document.getElementById('input-deskripsi').value || 'Deskripsi tidak tersedia',
-                alamat: document.getElementById('input-lokasi').value || 'Lokasi tidak tersedia',
-                wilayah: document.getElementById('input-wilayah').value || 'Wilayah tidak tersedia',
-                kecamatan: document.getElementById('input-kecamatan').value || '-',
-                kelurahan: document.getElementById('input-kelurahan').value || '-',
-                fasilitas: document.getElementById('input-fasilitas').value || '-',
-                googlemaps: document.getElementById('input-googlemaps').value || '#',
-                isNew: true,
-            };
-    
-            // Tambahkan data baru ke newData
-            this.newData.push(newRecord);
-            localStorage.setItem('newAgrowisataData', JSON.stringify(this.newData));
-    
-            // Tampilkan data dan setup pagination
-            this.displayData([...this.cachedData, ...this.newData]);
-            this.setupPagination(); // Pastikan untuk memanggil ini
-    
-            form.reset();
-            document.getElementById('add-data-modal').classList.add('hidden');
-            alert('Data baru berhasil ditambahkan!');
-        });
-    },
-
-    loadLocalData() {
+    async saveAgrowisata(agrowisata, button) {
+        const userId = this.getUserIdFromToken();
+        if (!userId) {
+            this.showPopupAgrowisata('Anda belum login. Tidak dapat menyimpan data.');
+            return;
+        }
+      
         try {
-            const storedData = JSON.parse(localStorage.getItem('newAgrowisataData'));
-            if (Array.isArray(storedData)) {
-                this.newData = storedData;
-            }
+            await SavedAgrowisataIdb.putAgrowisata(agrowisata, userId);
+            this.showPopupAgrowisata(`Data "${agrowisata.name}" berhasil disimpan!`);
+            button.textContent = 'Tersimpan';
+            button.disabled = true;
         } catch (error) {
-            console.error('Error loading local data:', error);
-            this.newData = [];
+            console.error("Error saving agrowisata:", error);
         }
+    },
+
+    filterDataByLocation(records, selectedLocation) {
+        if (!selectedLocation) return records;
+    
+        // Jika "Wilayah Lainnya" dipilih, tampilkan lokasi yang tidak termasuk dalam daftar standar Jakarta
+        if (selectedLocation === "Wilayah Lainnya") {
+            return records.filter(record => {
+                // Daftar lokasi yang harus dikecualikan (Jakarta)
+                const excludedLocations = ["Jakarta Timur", "Jakarta Barat", "Jakarta Utara", "Jakarta Selatan", "Jakarta Pusat"];
+                // Menampilkan agrowisata yang lokasinya tidak ada dalam daftar excludedLocations
+                return !excludedLocations.some(location => record.location.toLowerCase().includes(location.toLowerCase()));
+            });
+        }
+        
+        // Jika lokasi yang dipilih adalah salah satu Jakarta, tampilkan lokasi yang sesuai
+        if (["Jakarta Timur", "Jakarta Barat", "Jakarta Utara", "Jakarta Selatan", "Jakarta Pusat"].includes(selectedLocation)) {
+            return records.filter(record => record.location.toLowerCase().includes(selectedLocation.toLowerCase()));
+        }
+        
+        // Jika lokasi selain Jakarta dipilih, tampilkan data sesuai dengan lokasi yang dipilih
+        return records.filter(record => record.location.toLowerCase().includes(selectedLocation.toLowerCase()));
+    },
+
+    searchData(data, query) {
+        if (!query) return data;
+        return data.filter(item => item.name.toLowerCase().includes(query));
     }
 };
-
 
 export default Agrowisata;

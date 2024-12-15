@@ -1,51 +1,107 @@
-/* const desawisata = {
+const Desawisata = {
+  API_URL: 'https://apidesawisata-353b9a2a7d66.herokuapp.com/desawisata',
+  itemsPerPage: 12,
+  currentPage: 1,
+  data: [], // Properti untuk menyimpan data dari API
+
   async render() {
-    const proxyUrl = 'https://api.allorigins.win/get?url=';
-    const apiUrl = 'https://katalogdata.kemenparekraf.go.id/api/3/action/datastore_search?resource_id=80461f76-2299-495b-bcba-e39205b9c0f1';
-
-    const data = await this.fetchData(apiUrl);
-
-    const container = document.getElementById('desawisata-list');
-    if (container) {
-      if (data.length > 0) {
-        container.innerHTML = data.map(record => `
-          <div class="desawisata-item">
-            <h3>${record.Destinasi || 'Nama desa tidak tersedia'}</h3>
-            <p><strong>Kabupaten/Kota:</strong> ${record['Kabupaten/Kota'] || 'Kabupaten tidak tersedia'}</p>
-            <p><strong>Provinsi:</strong> ${record.Provinsi || 'Provinsi tidak tersedia'}</p>
-            <p><strong>Tahun Sertifikasi:</strong> ${record['Tahun Sertifikasi'] || 'Tahun tidak tersedia'}</p>
-          </div>
-        `).join('');
-      } else {
-        container.innerHTML = '<p>Data desa wisata tidak ditemukan.</p>';
-      }
-    } else {
-      console.error('Elemen dengan ID "desawisata-list" tidak ditemukan');
-    }
-  },
-
-  async fetchData(url) {
-    try {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-      const result = await response.json();
-      return result.result?.records || [];
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      return [];
-    }
+    return `
+      <h1>Daftar Desa Wisata</h1>
+      <input type="text" id="search-input" placeholder="Cari desa wisata..." />
+      <ul id="desawisata-list" class="desawisata-list"></ul>
+      <div id="pagination-controls"></div>
+    `;
   },
 
   async afterRender() {
-    // Logika tambahan setelah render, misalnya menambahkan event listener
-    const items = document.querySelectorAll('.desawisata-item h3');
-    items.forEach(item => {
-      item.addEventListener('click', () => {
-        alert(`Anda mengklik: ${item.textContent}`);
+    const desawisataList = document.getElementById('desawisata-list');
+    const paginationControls = document.getElementById('pagination-controls');
+    const searchInput = document.getElementById('search-input');
+
+    try {
+      this.data = await this.fetchData(); // Simpan data di this.data
+      console.log('Data dari API:', this.data);
+
+      this.displayDesawisata(this.data, desawisataList);
+      this.createPaginationControls(this.data.length, paginationControls);
+
+      // Event listener untuk pencarian
+      searchInput.addEventListener('input', () => {
+        const query = searchInput.value.toLowerCase();
+        const filteredData = this.data.filter(desawisata =>
+          desawisata.name.toLowerCase().includes(query)
+        );
+        this.displayDesawisata(filteredData, desawisataList);
+        this.createPaginationControls(filteredData.length, paginationControls);
+      });
+    } catch (error) {
+      console.error('Error fetching desawisata data:', error);
+      desawisataList.innerHTML = `<li>Error fetching data. Please try again later.</li>`;
+    }
+  },
+
+  async fetchData() {
+    const response = await fetch(this.API_URL);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+  },
+
+  displayDesawisata(data, container) {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    const currentPageData = data.slice(startIndex, endIndex);
+
+    if (currentPageData.length === 0) {
+      container.innerHTML = `<li>No desawisata found.</li>`;
+      return;
+    }
+
+    container.innerHTML = ''; // Clear previous content
+
+    currentPageData.forEach((desawisata) => {
+      const listItem = document.createElement('li');
+      listItem.className = 'desawisata-item';
+      listItem.dataset.id = desawisata._id;
+      listItem.innerHTML = `
+        <h2>${desawisata.name}</h2>
+        <p><img src="${desawisata.photo}" alt="${desawisata.name}" class="desawisata-img"></p>
+        <p><strong>Lokasi:</strong> ${desawisata.location}</p>
+        <p><strong>Deskripsi:</strong> ${desawisata.description}</p>
+        <button class="detail-btn">Detail</button>
+      `;
+
+      const detailButton = listItem.querySelector('.detail-btn');
+      detailButton.addEventListener('click', () => {
+        window.location.hash = `#/detail/${desawisata._id}`; // Arahkan ke halaman detail desa wisata
+      });
+
+      container.appendChild(listItem);
+    });
+  },
+
+  createPaginationControls(totalItems, container) {
+    const totalPages = Math.ceil(totalItems / this.itemsPerPage);
+    let paginationHTML = '';
+
+    if (totalItems === 0) {
+      this.currentPage = 1;
+    }
+
+    for (let i = 1; i <= totalPages; i++) {
+      paginationHTML += `<button class="page-btn" data-page="${i}">${i}</button>`;
+    }
+    container.innerHTML = paginationHTML;
+
+    const pageButtons = container.querySelectorAll('.page-btn');
+    pageButtons.forEach(button => {
+      button.addEventListener('click', (event) => {
+        this.currentPage = Number(event.target.dataset.page);
+        this.displayDesawisata(this.data, document.getElementById('desawisata-list')); // Gunakan this.data
       });
     });
-  }
+  },
 };
 
-export default desawisata;
-*/
+export default Desawisata;
