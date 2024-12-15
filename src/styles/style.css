@@ -666,7 +666,7 @@ label[for="filter-location"] {
 }
 
 .agrowisata-item h2 {
-  font-size: 24px;
+  font-size: 1.40rem;
   color: #333;
   margin-bottom: 10px;
 }
@@ -682,6 +682,8 @@ label[for="filter-location"] {
   height: auto;
   border-radius: 5px;
   margin-bottom: 15px;
+  aspect-ratio: 16/9;
+  object-fit: cover;
 }
 
 .agrowisata-item button {
