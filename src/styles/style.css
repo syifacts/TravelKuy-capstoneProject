@@ -129,6 +129,9 @@ body {
   align-self: flex-end;
   cursor: pointer;
 }
+.hero-button a {
+  text-decoration: none;
+}
 
 .hero-button:hover {
   background: green;
