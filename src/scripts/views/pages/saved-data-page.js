@@ -49,6 +49,8 @@ const SavedDataPage = {
         return;
       }
 
+      agrowisataList.innerHTML = ''; // Reset daftar untuk mencegah duplikasi
+
       savedData.forEach((data) => {
         const listItem = document.createElement('li');
         listItem.className = 'agrowisata-item';
@@ -100,8 +102,8 @@ const SavedDataPage = {
       await SavedAgrowisataIdb.deleteAgrowisata(id);
 
       // Perbarui tampilan setelah penghapusan
-      container.innerHTML = '';
-      await this.afterRender();
+      container.innerHTML = ''; // Reset daftar
+      await this.afterRender(); // Render ulang daftar setelah penghapusan
       this.showDeleteSuccessPopup(); // Menampilkan popup sukses
     } catch (error) {
       console.error('Error deleting agrowisata data:', error);
