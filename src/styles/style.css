@@ -297,6 +297,7 @@ footer {
   color: #ffffff; /* White for main text */
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
   font-family: 'Poppins', sans-serif;
+  font-weight: bolder;
 }
 
 footer p {
@@ -418,11 +419,48 @@ h2 {
     color: #ffffff;
 }
 
+/* ABOUT US */
+.aboutus-description {
+  margin-bottom: 2em;  /* Menambahkan jarak bawah */
+  padding: 1.5em;      /* Memberikan padding pada konten */
+  background-color: #f9f9f9; /* Warna latar belakang terang */
+  border-radius: 8px;  /* Sudut yang melengkung */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Menambahkan shadow ringan */
+  text-align: center;  /* Menyelaraskan teks dan gambar ke tengah */
+}
+
+/* Menambahkan animasi pada gambar */
+.aboutus-description img {
+  width: 250px;            /* Ukuran gambar */
+  height: auto;            /* Mempertahankan rasio gambar */
+  margin-bottom: 1.5em;    /* Jarak antara gambar dan teks */
+  border-radius: 10px;     /* Sudut melengkung pada gambar */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Menambahkan transisi */
+}
+
+/* Efek animasi ketika kursor mengarah ke gambar */
+.aboutus-description img:hover {
+  transform: scale(1.1);    /* Memperbesar gambar sedikit */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Memberikan efek bayangan */
+}
+
+.aboutus-description p {
+  transition: transform 0.3s ease, letter-spacing 0.3s ease; /* Transisi untuk pergerakan dan jarak huruf */
+}
+
+/* Efek animasi ketika kursor mengarah ke deskripsi */
+.aboutus-description p:hover {
+  transform: translateY(-5px); /* Menggerakkan teks ke atas sedikit */
+  letter-spacing: 1px;          /* Memberikan jarak antar huruf sedikit lebih lebar */
+}
+
+
 .team-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 2em;
+    margin-top: 2em;
 }
 
 .team-member {
