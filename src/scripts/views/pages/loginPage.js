@@ -79,9 +79,6 @@ const LoginPage = {
     // Event listener untuk menutup popup saat tombol "Tutup" diklik
     document.getElementById('close-success-popup')?.addEventListener('click', this.closePopup);
     document.getElementById('close-error-popup')?.addEventListener('click', this.closePopup);
-
-    // Event listener untuk logout otomatis saat halaman tidak aktif
-    document.addEventListener('visibilitychange', this.autoLogout);
   },
 
   showPopup(type, message) {
@@ -95,17 +92,6 @@ const LoginPage = {
   closePopup() {
     const popups = document.querySelectorAll('.popup');
     popups.forEach(popup => popup.style.display = 'none');
-  },
-
-  autoLogout() {
-    // Jika halaman menjadi tidak terlihat (background/tab berpindah), lakukan logout
-    if (document.visibilityState === 'hidden') {
-      localStorage.removeItem('token');
-      localStorage.removeItem('refreshToken');
-      localStorage.removeItem('userId');
-      localStorage.removeItem('userName');
-      console.log('User otomatis logout karena meninggalkan halaman.');
-    }
   },
 };
 
