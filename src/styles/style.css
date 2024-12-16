@@ -928,8 +928,9 @@ label[for="filter-location"] {
 
 /* Styling untuk navigasi */
 nav {
-  background-color: rgb(48, 192, 48);
+  background-color: #2c3e50;
   padding: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 
 }
 
@@ -956,13 +957,13 @@ nav a {
 }
 
 nav a:hover {
-  background-color: rgb(25, 25, 227);
+  background-color: #55555593;
   color: #f1f1f1;
 }
 
 nav a:focus {
   outline: none;
-  background-color: rgb(25, 25, 227);
+  background-color: #55555593;
 }
 
 nav a.active {
