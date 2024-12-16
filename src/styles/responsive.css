@@ -74,11 +74,11 @@
   }
 
   .travelkuy-item_judul {
-    font-size: 2em; /* Increase font size for larger screens */
+    font-size: 1.6em; /* Increase font size for larger screens */
   }
 
   .travelkuy-item_penjelasan {
-    font-size: 1.25em; /* Larger text for larger screens */
+    font-size: 1.1em; /* Larger text for larger screens */
   }
 }
  
