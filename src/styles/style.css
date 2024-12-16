@@ -106,9 +106,8 @@ body {
 
 .hero-title{
   font-size: 40px;
-  color: #03ab0f;
+  color: green;
   text-transform: uppercase;
-  text-shadow:0 2px 4px rgba(0, 0, 0, 0.158);
 }
 
 .hero-desc{
@@ -121,21 +120,28 @@ body {
 .hero-button {
   width: fit-content;
   font-family: Raleway, sans-serif;
-  border-radius: 16px;
-  padding: 6px 17px;
-  border: 2px solid #03ab0f;
-  font-size: 20px;
+  border-radius: 30px; 
+  padding: 10px 20px; 
+  border: 2px solid green;
+  font-size: 18px; 
   margin-top: auto;
   align-self: flex-end;
   cursor: pointer;
+  background-color: white; 
+  transition: all 0.3s ease-in-out; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
+
 .hero-button a {
   text-decoration: none;
+  color: green;
 }
 
 .hero-button:hover {
   background: rgb(59, 246, 59);
   color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15); 
 }
 
 .transparent-box{
