@@ -260,3 +260,55 @@
     float: none; /* Menghilangkan float pada layar kecil */
   }
 }
+
+/* Responsif untuk tablet dan perangkat dengan lebar layar lebih kecil */
+@media (max-width: 768px) {
+  .login-page form {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .login-page h1 {
+    font-size: 20px;
+  }
+
+  .login-page input {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .login-page button {
+    font-size: 18px;
+    padding: 14px;
+  }
+
+  .login-page p {
+    font-size: 14px;
+  }
+}
+
+/* Responsif untuk perangkat mobile dengan lebar layar lebih kecil */
+@media (max-width: 480px) {
+  .login-page form {
+    width: 95%;
+    padding: 15px;
+  }
+
+  .login-page h1 {
+    font-size: 18px;
+  }
+
+  .login-page input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .login-page button {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .login-page p {
+    font-size: 12px;
+  }
+}
