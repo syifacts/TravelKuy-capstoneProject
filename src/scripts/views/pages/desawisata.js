@@ -31,6 +31,8 @@ const Desawisata = {
         const filteredData = this.data.filter(desawisata =>
           desawisata.name.toLowerCase().includes(query)
         );
+
+        this.currentPage = 1; // Reset ke halaman pertama saat pencarian
         this.displayDesawisata(filteredData, desawisataList);
         this.createPaginationControls(filteredData.length, paginationControls);
       });
