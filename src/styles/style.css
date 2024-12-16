@@ -700,7 +700,7 @@ label[for="filter-location"] {
 }
 
 .agrowisata-item button:hover {
-  background-color: #45a049;
+  background-color: blue;
 }
 
 .agrowisata-item button:disabled {
