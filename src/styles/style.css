@@ -956,13 +956,13 @@ nav a {
 }
 
 nav a:hover {
-  background-color: #575757;
+  background-color: rgb(25, 25, 227);
   color: #f1f1f1;
 }
 
 nav a:focus {
   outline: none;
-  background-color: #575757;
+  background-color: rgb(25, 25, 227);
 }
 
 nav a.active {
