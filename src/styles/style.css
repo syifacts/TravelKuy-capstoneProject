@@ -618,12 +618,6 @@ label[for="filter-location"] {
   border-radius: 5px;
 }
 
-label[for="filter-location"] {
-  font-size: 14px; /* Ukuran font label lebih kecil di layar kecil */
-  display: block; /* Pastikan label ada di atas dropdown */
-  margin-bottom: 5px; /* Beri jarak kecil antara label dan dropdown */
-}
-
 /* Container Utama Search */
 .search-container {
   position: absolute; /* Posisi absolut relatif terhadap parent */
@@ -1470,106 +1464,356 @@ nav a.active {
     background: #215f25;
 }
 
-/* Styling untuk form pengisian ulasan */
+/* Styling untuk form ulasan */
 #review-form {
   background-color: #f9f9f9;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 20px auto;
 }
 
+/* Label dan input */
 #review-form label {
-  font-size: 16px;
-  margin-bottom: 5px;
   display: block;
+  font-size: 16px;
+  margin-bottom: 8px;
   color: #333;
 }
 
-#review-form input,
-#review-form textarea,
-#review-form select {
+#review-form input, #review-form textarea, #review-form select {
   width: 100%;
   padding: 10px;
-  margin: 10px 0;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-  font-size: 14px;
-  background-color: #fff;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
 }
 
+/* Memberikan fokus pada input dan textarea */
+#review-form input:focus, #review-form textarea:focus, #review-form select:focus {
+  border-color: #4CAF50;
+  outline: none;
+}
+
+/* Styling untuk tombol submit */
 #review-form button {
   background-color: #4CAF50;
   color: white;
-  padding: 10px 20px;
+  padding: 12px 20px;
   border: none;
   border-radius: 4px;
-  cursor: pointer;
   font-size: 16px;
+  cursor: pointer;
   width: 100%;
 }
 
+/* Hover efek untuk tombol submit */
 #review-form button:hover {
   background-color: #45a049;
 }
 
+/* Status ulasan */
 #review-status {
   font-size: 14px;
-  color: #f44336;
-  margin-top: 10px;
+  font-weight: bold;
+  color: #888;
   text-align: center;
 }
 
-/* Styling untuk tampilan ulasan */
+/* Styling untuk ulasan */
 .review {
-  background-color: #ffffff;
-  padding: 15px;
-  margin: 10px 0;
+  background-color: #fafafa;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .review p {
-  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
 }
 
 .review strong {
-  font-size: 16px;
-  color: #333;
+  font-weight: bold;
+}
+
+.review .delete-review {
+  background-color: #f44336;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 10px;
+  border: none;
+}
+
+
+/* Hover efek untuk tombol delete */
+.review .delete-review:hover {
+  background-color: #d32f2f;
+}
+
+.review .delete-review.disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
 }
 
 .review small {
-  color: #777;
+  display: block;
+  font-size: 12px;
+  color: #aaa;
 }
-/* Tombol hapus ulasan */
-.delete-review.disabled {
-  pointer-events: none; /* Menonaktifkan interaksi dengan tombol */
-  cursor: not-allowed;  /* Mengubah kursor menjadi tanda silang atau tanda larangan */
-  opacity: 0.5;         /* Mengurangi opasitas untuk menunjukkan tombol tidak aktif */
+#review-text {
+  resize: none;
 }
 
 
-/* Styling untuk popup pesan */
-.popup-message {
+/* Account Page Container */
+.account-page {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.8s ease-out;
+  background: linear-gradient(to right, #f9f9f9, #fff);
+  padding: 30px;
+  border-radius: 15px;
+}
+
+/* User Info Container */
+#user-info {
+  margin-bottom: 40px;
+  background-color: #fafafa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 1s ease-out;
+  transition: box-shadow 0.3s ease;
+}
+
+#user-info:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+#user-info p {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+#user-info strong {
+  color: #333;
+  font-weight: 500;
+}
+
+#user-info span {
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+button {
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* Edit Password Form */
+#edit-password-form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: none;
+  opacity: 0;
+  animation: slideInUp 0.5s forwards;
+}
+
+#edit-password-form input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+#edit-password-form input:focus {
+  border-color: #4CAF50;
+}
+
+#edit-password-form button {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#edit-password-form button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* Cancel Button */
+#cancel-edit-password {
+  background-color: #f44336;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#cancel-edit-password:hover {
+  background-color: #e53935;
+  transform: scale(1.05);
+}
+
+
+/* Pop-up Account Styles */
+.pop-up-account {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #333;
+  background-color: rgba(0, 0, 0, 0.7);
   color: white;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  display: none;
+  border-radius: 10px;
   text-align: center;
-  z-index: 9999;
-  min-width: 250px;
+  display: none;
+  z-index: 999;
+  opacity: 0;
+  animation: fadeInPopup 0.6s forwards;
 }
 
-.popup-message.success {
-  background-color: #4CAF50;
+.pop-up-account p {
+  font-size: 18px;
+  margin-bottom: 15px;
 }
 
-.popup-message.error {
+#close-popup {
   background-color: #f44336;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#close-popup:hover {
+  background-color: #e53935;
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInPopup {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Gaya untuk Drawer */
+#drawer {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: -250px; /* Mulai posisi keluar dari layar */
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: black;
+  transition: transform 0.3s ease;
+}
+
+#drawer.open {
+  display: block;
+  transform: translateX(250px); /* Posisi Drawer ketika dibuka */
+}
+
+/* Gaya Tombol Hamburger */
+#hamburgerButton {
+  cursor: pointer;
+  font-size: 24px;  /* Ukuran font lebih kecil untuk tombol */
+  color: white;  /* Warna kontras agar tombol terlihat jelas */
+  background: transparent;  /* Menghapus latar belakang tombol */
+  border: none;  /* Menghapus border jika ada */
+  position: absolute;  /* Menempatkan tombol di posisi yang sesuai */
+  top: 20px;  /* Posisi atas tombol */
+  left: 20px;  /* Posisi kiri tombol */
+  z-index: 1000;  /* Memastikan tombol berada di atas elemen lainnya */
+  padding: 10px;  /* Memberikan padding di sekitar ikon */
+  border-radius: 5px;  /* Memberikan radius border agar lebih terlihat rapi */
+}
+
+#hamburgerButton:hover {
+  color: #f44336;  /* Warna saat tombol di-hover */
+}
+
+
+/* Responsif untuk layar kecil */
+@media (max-width: 600px) {
+  #drawer {
+    width: 200px;
+  }
 }

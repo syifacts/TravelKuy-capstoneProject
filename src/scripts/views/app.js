@@ -15,11 +15,6 @@ class App {
     this._initDrawer();
     this._updateNavigation(); 
     await this.renderPage();
-
-    const logoutButton = document.getElementById('logout-button');
-    if (logoutButton) {
-      logoutButton.addEventListener('click', () => this.handleLogout());
-    }
   }
 
   _initDrawer() {
@@ -35,7 +30,6 @@ class App {
     const userName = localStorage.getItem('userName');
     const navigationDrawer = document.querySelector('#navigationDrawer');
 
-    // Perbarui navigasi berdasarkan status login
     if (token && userName && this.isTokenValid(token)) {
       navigationDrawer.innerHTML = `
         <ul>
@@ -43,8 +37,7 @@ class App {
           <li><a href="#/agrowisata" id="agrowisata-link">Agrowisata</a></li>
           <li><a href="#/desawisata" id="desaWisata-link">Desa Wisata</a></li>
           <li><a href="#/aboutus" id="aboutUs-link">About Us</a></li>
-          <li id="username-display" style="font-weight: bold;">${userName}</li>
-          <li><a href="#" id="logout-button">Logout</a></li>
+          <li><a href="#/account" id="account-link">Account</a></li>
         </ul>
       `;
     } else {
@@ -55,20 +48,8 @@ class App {
         </ul>
       `;
     }
+  }
 
-    // Re-inisialisasi DrawerInitiator
-    const hamburgerButton = document.querySelector('#hamburgerButton');
-    this._initDrawer();
-
-    // Tambahkan event listener logout jika tombol logout ada
-    const logoutButton = document.getElementById('logout-button');
-    if (logoutButton) {
-      logoutButton.addEventListener('click', () => this.handleLogout());
-    }
-}
-
-
-  // Fungsi validasi token
   isTokenValid(token) {
     try {
       const decodedToken = JSON.parse(atob(token.split('.')[1]));
@@ -86,7 +67,6 @@ class App {
     const token = localStorage.getItem('token');
     const userName = localStorage.getItem('userName');
 
-  // Jika pengguna mencoba mengakses halaman yang dilindungi dan belum login atau token tidak valid
     if (restrictedPages.includes(url) && (!token || !userName || !this.isTokenValid(token))) {
       this._content.innerHTML = ` 
         <div id="login-restricted-message">
@@ -106,13 +86,6 @@ class App {
     }
 
     this._updateNavigation();
-  }
-
-  handleLogout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('userName');
-    this._updateNavigation();
-    window.location.href = '#/home';
   }
 }
 

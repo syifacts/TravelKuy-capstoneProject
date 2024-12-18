@@ -58,6 +58,7 @@ const LoginPage = {
           localStorage.setItem('refreshToken', data.refreshToken);
           localStorage.setItem('userId', data.userId);  // Simpan userId
           localStorage.setItem('userName', data.username);
+          localStorage.setItem('name', data.name); // Simpan name ke localStorage
           localStorage.setItem('lastActivity', Date.now());
 
           this.setupAutoLogout();

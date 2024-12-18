@@ -6,6 +6,7 @@ import Detail from "../views/pages/detailPage";
 import Agrowisata from "../views/pages/agrowisata";
 import LoginPage from "../views/pages/loginPage";
 import RegisterPage from "../views/pages/register"; // Impor halaman Register
+import AccountPage from "../views/pages/account";
 
 const routes = {
     '/': Home,
@@ -17,6 +18,7 @@ const routes = {
     '/saved-data-page': SavedDataPage,
     '/login': LoginPage, // Rute untuk Login
     '/register': RegisterPage, // Rute untuk Register
+    '/account': AccountPage,
 };
 
 export default routes;

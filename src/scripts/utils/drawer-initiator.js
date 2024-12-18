@@ -1,12 +1,17 @@
 const DrawerInitiator = {
   init({ button, drawer, content }) {
-    // Hapus event listener lama jika ada
-    button.replaceWith(button.cloneNode(true));
-    button = document.querySelector('#hamburgerButton'); // Ambil elemen baru
+    if (!button) {
+      console.error('Tombol hamburger tidak ditemukan');
+      return;
+    }
 
-    button.addEventListener('click', (event) => {
-      this._toggleDrawer(event, drawer);
-    });
+    // Pastikan tombol hanya memiliki satu event listener
+    if (!button._hasEventListener) {
+      button.addEventListener('click', (event) => {
+        this._toggleDrawer(event, drawer);
+      });
+      button._hasEventListener = true;
+    }
 
     content.addEventListener('click', (event) => {
       this._closeDrawer(event, drawer);
