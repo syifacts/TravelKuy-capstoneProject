@@ -1659,273 +1659,172 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* Edit Password Form */
-#edit-password-form {
-  background-color: #f9f9f9;
+/* General styles for Account Page */
+.account-page {
+  font-family: Arial, sans-serif;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  display: none;
-  opacity: 0;
-  animation: slideInUp 0.5s forwards;
 }
 
-#edit-password-form input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  transition: border-color 0.3s ease;
+h1 {
+  text-align: center;
+  font-size: 2em;
+  color: #333;
 }
 
-#edit-password-form input:focus {
-  border-color: #4CAF50;
+#user-info p {
+  font-size: 1.1em;
+  color: #555;
 }
 
-#edit-password-form button {
-  width: 100%;
+button {
   background-color: #4CAF50;
   color: white;
-  padding: 12px;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-#edit-password-form button:hover {
-  background-color: #45a049;
-  transform: scale(1.05);
-}
-
-/* Cancel Button */
-#cancel-edit-password {
-  background-color: #f44336;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  padding: 10px 20px;
+  cursor: pointer;
   margin-top: 10px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-size: 1em;
 }
 
-#cancel-edit-password:hover {
-  background-color: #e53935;
-  transform: scale(1.05);
+button:hover {
+  background-color: #45a049;
 }
 
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
 
-/* Pop-up Account Styles */
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+/* Forms Styling */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+/* Edit Username Form */
+#edit-username-form {
+  display: none;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#edit-username-form h2 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  color: #333;
+}
+
+/* Edit Name Form */
+#edit-name-form {
+  display: none;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#edit-name-form h2 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  color: #333;
+}
+
+/* Edit Password Form */
+#edit-password-form {
+  display: none;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#edit-password-form h2 {
+  margin-bottom: 10px;
+  font-size: 1.5em;
+  color: #333;
+}
+
+/* Popup Styles */
 .pop-up-account {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.85); /* Darker background */
-  color: white;
-  padding: 25px 35px;
-  border-radius: 15px;
-  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   display: none;
-  z-index: 999;
-  opacity: 0;
-  animation: fadeInPopup 0.6s forwards, scaleUpPopup 0.5s forwards;
   max-width: 400px;
-  width: 90%;
+  width: 100%;
+  text-align: center;
 }
 
 .pop-up-account p {
-  font-size: 18px;
+  font-size: 1.2em;
   margin-bottom: 20px;
-  font-weight: bold;
 }
 
-/* Pop-up Success */
+.pop-up-account button {
+  background-color: #2196F3;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.pop-up-account button:hover {
+  background-color: #0b7dda;
+}
+
+/* Success Popup (green background) */
 .pop-up-account.success {
-  background-color: #4caf50; /* Green background for success */
+  background-color: #d4edda;
+  color: #155724;
 }
 
-.pop-up-account.success #close-popup {
-  background-color: #388e3c; /* Dark green for close button */
-}
-
-.pop-up-account.success #close-popup:hover {
-  background-color: #2e7d32;
-}
-
-/* Pop-up Error */
 .pop-up-account.error {
-  background-color: #f44336; /* Red background for error */
+  background-color: #f8d7da;
+  color: #721c24;
 }
 
-.pop-up-account.error #close-popup {
-  background-color: #d32f2f; /* Dark red for close button */
-}
-
-.pop-up-account.error #close-popup:hover {
-  background-color: #c62828;
-}
-
-#close-popup {
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#close-popup:hover {
-  transform: scale(1.1);
-}
-
-/* Animations */
-@keyframes fadeInPopup {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes scaleUpPopup {
-  0% {
-    transform: translate(-50%, -50%) scale(0.8);
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-/* Styling untuk Form Edit User Info */
-#edit-user-info-form {
-  background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
-}
-
-#edit-user-info-form h2 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  color: #333;
-}
-
-#edit-user-info-form input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 1rem;
-  box-sizing: border-box;
-}
-
-#edit-user-info-form input:focus {
-  border-color: #4CAF50;
-  outline: none;
-}
-
-#edit-user-info-form button {
-  background-color: #4CAF50;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  width: 100%;
-}
-
-#edit-user-info-form button:hover {
-  background-color: #3f51b5;
-}
-
-#cancel-edit-user-info {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 8px 12px;
-  background-color: #f44336;
-  color: white;
-  border-radius: 4px;
-  text-align: center;
-  cursor: pointer;
-  font-size: 1rem;
-}
-
-#cancel-edit-user-info:hover {
-  background-color: #d32f2f;
-}
-
-/* Responsif untuk ukuran layar kecil */
-@media (max-width: 600px) {
-  #edit-user-info-form {
+/* Adjustments for mobile */
+@media (max-width: 768px) {
+  .account-page {
     padding: 15px;
   }
 
-  #edit-user-info-form h2 {
-    font-size: 1.2rem;
+  #edit-username-form,
+  #edit-name-form,
+  #edit-password-form {
+    width: 100%;
+    padding: 15px;
   }
 
-  #edit-user-info-form input {
-    font-size: 0.9rem;
-  }
-
-  #edit-user-info-form button {
-    font-size: 0.9rem;
+  .pop-up-account {
+    width: 90%;
+    max-width: 350px;
   }
 }
 
 
-/* Animations */
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slideIn {
-  0% {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slideInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInPopup {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 
 #hamburgerButton {
   position: fixed; /* Pastikan posisi tetap di layar */
