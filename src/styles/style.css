@@ -1798,47 +1798,26 @@ button:hover {
   }
 }
 
-/* Gaya untuk Drawer */
-#drawer {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: -250px; /* Mulai posisi keluar dari layar */
-  width: 250px;
-  height: 100%;
-  background-color: #333;
-  color: black;
-  transition: transform 0.3s ease;
-}
-
-#drawer.open {
-  display: block;
-  transform: translateX(250px); /* Posisi Drawer ketika dibuka */
-}
-
-/* Gaya Tombol Hamburger */
 #hamburgerButton {
-  cursor: pointer;
-  font-size: 24px;  /* Ukuran font lebih kecil untuk tombol */
-  color: white;  /* Warna kontras agar tombol terlihat jelas */
-  background: transparent;  /* Menghapus latar belakang tombol */
-  border: none;  /* Menghapus border jika ada */
-  position: absolute;  /* Menempatkan tombol di posisi yang sesuai */
-  top: 20px;  /* Posisi atas tombol */
-  left: 20px;  /* Posisi kiri tombol */
-  z-index: 1000;  /* Memastikan tombol berada di atas elemen lainnya */
-  padding: 10px;  /* Memberikan padding di sekitar ikon */
-  border-radius: 5px;  /* Memberikan radius border agar lebih terlihat rapi */
+  position: fixed; /* Pastikan posisi tetap di layar */
+  top: 10px;       /* Menentukan posisi dari atas */
+  left: 10px;      /* Menentukan posisi dari kiri */
+  width: 20px;     /* Tentukan ukuran tombol */
+  height: 20px;    /* Tentukan ukuran tombol */
+  background-color: white; /* Warna latar belakang tombol */
+  color: black;    /* Warna ikon atau teks */
+  border: none;    /* Hilangkan border */
+  display: block;  /* Pastikan tombol terlihat */
+  z-index: 1000;   /* Pastikan tombol berada di atas elemen lain */
+  cursor: pointer; /* Membuat tombol bisa diklik */
 }
 
-#hamburgerButton:hover {
-  color: #f44336;  /* Warna saat tombol di-hover */
+#hamburgerButton:focus {
+  outline: none; /* Menghilangkan outline saat tombol difokuskan */
 }
 
-
-/* Responsif untuk layar kecil */
-@media (max-width: 600px) {
-  #drawer {
-    width: 200px;
+@media (max-width: 768px) {
+  #hamburgerButton {
+    display: block; /* Pastikan tombol hamburger muncul pada layar kecil */
   }
 }
