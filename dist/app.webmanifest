@@ -6,7 +6,7 @@
     "description": "We are dedicated to promoting agrotourism and village tourism in Indonesia.",
     "display": "standalone",
     "background_color": "#FFFFFF",
-    "theme_color": "#D84315",
+    "theme_color": "#4CAF50",
     "icons": [
       {
         "src": "/icons/icon.png",
