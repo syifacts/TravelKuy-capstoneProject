@@ -1469,3 +1469,107 @@ nav a.active {
 .page-btn:hover {
     background: #215f25;
 }
+
+/* Styling untuk form pengisian ulasan */
+#review-form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+#review-form label {
+  font-size: 16px;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+#review-form input,
+#review-form textarea,
+#review-form select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  background-color: #fff;
+}
+
+#review-form button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+}
+
+#review-form button:hover {
+  background-color: #45a049;
+}
+
+#review-status {
+  font-size: 14px;
+  color: #f44336;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Styling untuk tampilan ulasan */
+.review {
+  background-color: #ffffff;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.review p {
+  margin: 5px 0;
+}
+
+.review strong {
+  font-size: 16px;
+  color: #333;
+}
+
+.review small {
+  color: #777;
+}
+/* Tombol hapus ulasan */
+.delete-review.disabled {
+  pointer-events: none; /* Menonaktifkan interaksi dengan tombol */
+  cursor: not-allowed;  /* Mengubah kursor menjadi tanda silang atau tanda larangan */
+  opacity: 0.5;         /* Mengurangi opasitas untuk menunjukkan tombol tidak aktif */
+}
+
+
+/* Styling untuk popup pesan */
+.popup-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  display: none;
+  text-align: center;
+  z-index: 9999;
+  min-width: 250px;
+}
+
+.popup-message.success {
+  background-color: #4CAF50;
+}
+
+.popup-message.error {
+  background-color: #f44336;
+}

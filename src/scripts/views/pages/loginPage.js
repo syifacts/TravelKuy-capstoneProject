@@ -56,7 +56,7 @@ const LoginPage = {
           this.showPopup('success', `Login sukses! Selamat datang, ${data.username}`);
           localStorage.setItem('token', data.accessToken);
           localStorage.setItem('refreshToken', data.refreshToken);
-          localStorage.setItem('userId', data.userId);
+          localStorage.setItem('userId', data.userId);  // Simpan userId
           localStorage.setItem('userName', data.username);
           localStorage.setItem('lastActivity', Date.now());
 
@@ -66,7 +66,7 @@ const LoginPage = {
             window.location.hash = '/';
           }, 2000);
         } else {
-          this.showPopup('error', `Login failed: error in username or password. Please try again.`);
+          this.showPopup('error', 'Login failed: error in username or password. Please try again.');
         }
       } catch (error) {
         this.showPopup('error', 'Terjadi kesalahan saat login. Coba lagi nanti.');
@@ -100,41 +100,35 @@ const LoginPage = {
       const lastActivity = localStorage.getItem('lastActivity');
       const now = Date.now();
 
-      // Jika lebih dari 5 menit (300,000 ms)
-      if (lastActivity && now - lastActivity > 5 * 60 * 1000) {
-        this.logoutUser();
+      // Timeout in 15 minutes (900000 ms)
+      if (lastActivity && now - lastActivity > 900000) {
+        this.logout();
       }
     }, 1000);
   },
 
-  logoutUser() {
-    // Hapus data session
+  logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('userId');
     localStorage.removeItem('userName');
     localStorage.removeItem('lastActivity');
 
-    this.showPopup('error', 'Sesi berakhir. Harap login kembali.');
-
-    setTimeout(() => {
-      window.location.hash = '/login';
-      window.location.reload();
-    }, 2000);
+    window.location.hash = '/login';
   },
 
   showPopup(type, message) {
-    const popup = type === 'success' ? document.getElementById('popup-success') : document.getElementById('popup-error');
-    const popupMessage = type === 'success' ? document.getElementById('popup-message') : document.getElementById('popup-message-error');
+    const popupId = type === 'error' ? 'popup-error' : 'popup-success';
+    const messageId = type === 'error' ? 'popup-message-error' : 'popup-message';
     
-    popupMessage.textContent = message;
-    popup.style.display = 'block';
+    document.getElementById(messageId).textContent = message;
+    document.getElementById(popupId).style.display = 'block';
   },
 
   closePopup() {
-    const popups = document.querySelectorAll('.popup');
-    popups.forEach(popup => popup.style.display = 'none');
-  },
+    document.getElementById('popup-success').style.display = 'none';
+    document.getElementById('popup-error').style.display = 'none';
+  }
 };
 
 export default LoginPage;
