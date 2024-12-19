@@ -1,4 +1,6 @@
-<img src="./dist/icons/icon.png" alt="TravelKuy" width="200" />
+<div align="center">
+  <img src="./dist/icons/icon.png" alt="TravelKuy" width="200" />
+</div>
 
 # TravelKuy
 
