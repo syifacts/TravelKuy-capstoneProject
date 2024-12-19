@@ -1,3 +1,5 @@
+<img src="./dist/icons/icon.png" alt="TravelKuy" width="200" />
+
 # TravelKuy
 
 > **TravelKuy** adalah aplikasi web untuk menampilkan katalog **Agrowisata** dan **Desa Wisata**. Pengguna dapat menjelajahi lokasi wisata berdasarkan kategori, melihat detail tiap lokasi, menyimpan lokasi favorit, serta memberikan ulasan dan rating.
